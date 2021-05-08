@@ -71,6 +71,14 @@
   min-width: 329px;
   padding: 11px 112px;
 }
+.overlap-group2-register:hover{
+
+  background: #2D3135;
+  /* Hover Shadow */
+
+  box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
+  border-radius: 30px;
+}
 
 .patient-register {
   align-self: flex-end;
