@@ -23,7 +23,7 @@ class Hospital extends React.Component {
               <span className="span0 poppins-medium-white-20px">{spanText}</span>
               <span className="span1 ">{spanText2}</span>
             </div>
-            <div className="flex-row">
+            <div className="flex-row-hospital">
               <Link to="/hospitalview">
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-hospital">
@@ -32,14 +32,14 @@ class Hospital extends React.Component {
                   </div>
                 </div>
               </Link>
-              <a href="javascript:SubmitForm('form2')">
+              <Link to="/hospitaladd">
                 <div className="add-record-group smart-layers-pointers">
                   <div className="overlap-group1-hospital">
                     <img className="edit-5" src={add_record_img} />
                     <div className="add-record poppins-medium-amethyst-16px">{addRecord}</div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </form>

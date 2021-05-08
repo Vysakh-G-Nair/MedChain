@@ -58,7 +58,7 @@ class Landing extends React.Component {
             </div>
             <div className="group-40">
               <div className="overlap-group1">
-                <Link to="/hospital">
+                <Link to="/register">
                   <div className="rectangle-49 smart-layers-pointers"></div>
                   <div className="login">{login2}</div>
                 </Link>

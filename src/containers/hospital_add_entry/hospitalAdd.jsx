@@ -1,21 +1,28 @@
 import React from 'react';
-import './hospitalViewStyling.scss';
+import './hospitalAddStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 
   
-class HospitalView extends React.Component {
+class HospitalAdd extends React.Component {
   render () { 
     const {
       hospitalView,
       text1,
       text2,
       overlapGroup2,
+      overlapGroup3,
+      patientEthAddr,
+      doctorEthAddr,
+      symptoms,
       inputType,
       inputPlaceholder,
       recordName,
       overlapGroup1,
       inputType2,
       inputPlaceholder2,
+      inputPlaceholder3,
+      inputPlaceholder4,
+      inputPlaceholder5,
       view,
     } = this.props;
 
@@ -33,7 +40,7 @@ class HospitalView extends React.Component {
             <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>
             <div className="overlap-group2-hospitalview" style={{ backgroundImage: `url(${overlapGroup2})` }}>
               <input
-                className="enter-ethereum-address-hospitalview"
+                className="enter-ethereum-address-hospitaladd"
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
@@ -45,9 +52,45 @@ class HospitalView extends React.Component {
             <div className="record-name poppins-normal-baby-powder-18px">{recordName}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
               <input
-                className="enter-record-name-hospitalview"
+                className="enter-record-name-hospitaladd"
                 name="2215"
                 placeholder={inputPlaceholder2}
+                type={inputType2}
+                required
+              />
+            </div>
+          </div>
+          <div className="group-53">
+            <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
+            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+              <input
+                className="enter-record-name-hospitaladd"
+                name="2215"
+                placeholder={inputPlaceholder3}
+                type={inputType2}
+                required
+              />
+            </div>
+          </div>
+          <div className="group-53">
+            <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
+            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+              <input
+                className="enter-record-name-hospitaladd"
+                name="2215"
+                placeholder={inputPlaceholder4}
+                type={inputType2}
+                required
+              />
+            </div>
+          </div>
+          <div className="group-53-symptoms">
+            <div className="record-name-symptoms poppins-normal-baby-powder-18px">{symptoms}</div>
+            <div className="overlap-group20-symptoms" style={{ backgroundImage: `url(${overlapGroup3})` }}>
+              <input
+                className="enter-record-name-hospitaladd"
+                name="2215"
+                placeholder={inputPlaceholder5}
                 type={inputType2}
                 required
               />
@@ -67,7 +110,7 @@ class HospitalView extends React.Component {
   }
 }
 
-export default withRouter(HospitalView);
+export default withRouter(HospitalAdd);
 
 
         
