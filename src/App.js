@@ -65,7 +65,7 @@ const hospitalAddData = {
   inputPlaceholder3: "Enter patient's ethereum address",
   inputPlaceholder4: "Enter docters's ethereum address",
   inputPlaceholder5: "Enter symptoms, ailments, medications etc.",
-  view: "View",
+  view: "Add",
 };
 
 
@@ -95,7 +95,7 @@ const patientShareRecordData = {
   overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   inputType2: "text",
   inputPlaceholder2: "Enter record name",
-  view: "View",
+  view: "Share Record",
 };
 
 const patientGrantData = {
@@ -105,7 +105,7 @@ const patientGrantData = {
   overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   inputType: "text",
   inputPlaceholder: "Enter docter's ethereum address",
-  view: "View",
+  view: "Grant Permission",
 };
 
 const patientData = {
