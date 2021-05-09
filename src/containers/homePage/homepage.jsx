@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { render } from '@testing-library/react';
 import factory from '../../ethereum/factory'
 import web3 from '../../ethereum/web3'
+import logo_img from './logo.png';
   
 class Landing extends React.Component {
   loginPatient= async (event) => {
@@ -48,30 +49,8 @@ class Landing extends React.Component {
           method="post"
         >
           <div className="overlap-group">
-            <div className="login-1">{login}</div>
             <div className="group-38">
-              <div className="user-id poppins-normal-white-18px">{userid}</div>
-              <div className="overlap-group3" style={{ backgroundImage: `url(${overlapGroup3})` }}>
-                <input
-                  className="enter-your-user-id"
-                  name="8598"
-                  placeholder={inputPlaceholder}
-                  type={inputType}
-                  required
-                />
-              </div>
-            </div>
-            <div className="group-39">
-              <div className="password poppins-normal-white-18px">{password}</div>
-              <div className="overlap-group2" style={{ backgroundImage: `url(${overlapGroup2})` }}>
-                <input
-                  className="enter-your-password"
-                  name="8601"
-                  placeholder={inputPlaceholder2}
-                  type={inputType2}
-                  required
-                />
-              </div>
+              <img className="view-logo" src={logo_img} />
             </div>
             <div className="group-40">
               <div className="overlap-group1">
