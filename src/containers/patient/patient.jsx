@@ -27,8 +27,8 @@ class Patient extends React.Component {
             shareRecord,
             text2,
         } = this.props;
-        // const { state } = this.props.location;
-        // console.log(state);
+        const { state } = this.props.location;
+        console.log(state);
         
         return (
             <div class="container-center-horizontal">
