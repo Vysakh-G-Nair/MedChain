@@ -3,7 +3,8 @@ import './registerStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import user_img from './user.png';
 import hospital_img from './hospital.png';
-import factory from '../../../ethereum/factory'
+import factory from '../../ethereum/factory'
+import web3 from '../../ethereum/web3'
   
 class Register extends React.Component {
   state = {
