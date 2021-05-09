@@ -3,7 +3,8 @@ import './loginAsStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import user_img from './user.png';
 import hospital_img from './hospital.png';
-
+import factory from '../../ethereum/factory'
+import web3 from '../../ethereum/web3'
   
 class LoginAs extends React.Component {
   loginPatient= async (event) => {
