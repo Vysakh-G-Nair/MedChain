@@ -29,8 +29,11 @@ class Register extends React.Component {
         from: accounts[0]
       });
 
-      console.log(patientInstance);
-      this.props.history.push("/patient"); 
+      // console.log(patientInstance);
+      this.props.history.push({
+        pathname: "/patient",
+        state: patientInstance
+      }); 
     } catch (error) {
       this.setState({ errrorMessage: error.message });
     }
@@ -55,8 +58,11 @@ class Register extends React.Component {
           from: accounts[0]
         });
   
-        console.log(doctorInstance);
-        this.props.history.push("/hospital"); 
+        // console.log(doctorInstance);
+        this.props.history.push({
+          pathname: "/hospital",
+          state: doctorInstance
+        });
     } catch (error) {
       this.setState({ errrorMessage: error.message });
     }

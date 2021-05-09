@@ -2,8 +2,6 @@ import React from 'react';
 import './homepageStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import { render } from '@testing-library/react';
-import factory from '../../ethereum/factory'
-import web3 from '../../ethereum/web3'
 import logo_img from './logo.png';
   
 class Landing extends React.Component {
