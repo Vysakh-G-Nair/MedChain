@@ -5,9 +5,18 @@ import view_your_record_img from './view_record.png';
 import grant_img from './grant.png';
 import view_external_img from './view external.png';
 import share_your_record_img from './share.png';
-
+import PatientCreator from '../../ethereum/patient';
   
 class Patient extends React.Component {
+    static async getInitialProps(props) {
+        const { state } = this.props.location;
+        const patient = PatientCreator(state);
+        
+        return {
+            address: state
+        };
+    }
+
     render() {
         const {
             patient,
@@ -18,7 +27,9 @@ class Patient extends React.Component {
             shareRecord,
             text2,
         } = this.props;
-
+        // const { state } = this.props.location;
+        // console.log(state);
+        
         return (
             <div class="container-center-horizontal">
             <form

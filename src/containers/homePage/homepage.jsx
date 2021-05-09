@@ -15,7 +15,11 @@ class Landing extends React.Component {
       from: accounts[0]
     });
 
-    console.log(patientInstance);
+    // console.log(patientInstance);
+    this.props.history.push({
+      pathname: "/patient",
+      state: patientInstance
+    });
   }
 
   render() {
@@ -71,10 +75,10 @@ class Landing extends React.Component {
             </div>
             <div className="group-40">
               <div className="overlap-group1">
-                <Link to="/register" onClick={this.loginPatient}>
+                <a onClick={this.loginPatient}>
                   <div className="rectangle-49 smart-layers-pointers"></div>
                   <div className="login">{login2}</div>
-                </Link>
+                </a>
               </div>
             </div>
             <Link className="align-self-flex-center" >
