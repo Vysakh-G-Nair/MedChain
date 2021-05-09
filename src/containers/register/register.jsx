@@ -12,7 +12,7 @@ class Register extends React.Component {
     loading: false
   };
 
-  onClick1 = async (event) => {
+  registerPatient = async (event) => {
     event.preventDefault();
 
     this.setState({ loading: true, errrorMessage: '' });
@@ -30,15 +30,15 @@ class Register extends React.Component {
       });
 
       console.log(patientInstance);
+      this.props.history.push("/patient"); 
     } catch (error) {
       this.setState({ errrorMessage: error.message });
     }
 
     this.setState({ loading: false });
-    this.props.history.push("/patient"); 
   };
 
-  onClick2 = async (event) => {
+  registerDoctor = async (event) => {
     event.preventDefault();
 
     this.setState({ loading: true, errrorMessage: '' });
@@ -78,7 +78,7 @@ class Register extends React.Component {
         >
           <div className="overlap-group-register">
             <div className="register-as poppins-medium-white-20px">{registerAs}</div>
-            <a onClick={this.onClick1}>
+            <a onClick={this.registerPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                   <img className="user-1-register" src={user_img} />
@@ -86,7 +86,7 @@ class Register extends React.Component {
                 </div>
               </div>
             </a>
-            <a onClick={this.onClick2}>
+            <a onClick={this.registerDoctor}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img className="hospital-2-register" src={hospital_img} />
