@@ -3,9 +3,35 @@ import './registerStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import user_img from './user.png';
 import hospital_img from './hospital.png';
-
+import factory from '../../../ethereum/factory'
   
 class Register extends React.Component {
+  state = {
+    errrorMessage: "",
+    loading: false
+  };
+
+  onClick = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errrorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .registerPatient()
+        .send({
+          from: accounts[0],
+        });
+
+      // Router.pushRoute('/');
+    } catch (error) {
+      this.setState({ errrorMessage: error.message });
+    }
+
+    this.setState({ loading: false });
+  };
+
   render() {
     const { register, registerAs, patient, place } = this.props;
 
