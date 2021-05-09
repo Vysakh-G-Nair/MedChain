@@ -1,41 +1,62 @@
-import React from 'react';
-import './loginAsStyling.scss';
+import React from "react";
+import "./loginAsStyling.scss";
 import { Link, withRouter } from "react-router-dom";
-import user_img from './user.png';
-import hospital_img from './hospital.png';
-import factory from '../../ethereum/factory'
-import web3 from '../../ethereum/web3'
-  
+import user_img from "./user.png";
+import hospital_img from "./hospital.png";
+import factory from "../../ethereum/factory";
+import web3 from "../../ethereum/web3";
+
 class LoginAs extends React.Component {
-  loginPatient= async (event) => {
+  state = {
+    errorMessage: "",
+    loading: false,
+  };
+
+  loginPatient = async (event) => {
     event.preventDefault();
 
-    const accounts = await web3.eth.getAccounts();
+    this.setState({ loading: true, errorMessage: "" });
 
-    const patientInstance = await factory.methods.loginPatient().call({
-      from: accounts[0]
-    });
+    try {
+      const accounts = await web3.eth.getAccounts();
 
-    this.props.history.push({
-      pathname: "/patient",
-      state: patientInstance
-    });
-  }
+      const patientInstance = await factory.methods.loginPatient().call({
+        from: accounts[0],
+      });
 
-  loginDoctor= async (event) => {
+      this.props.history.push({
+        pathname: "/patient",
+        state: patientInstance,
+      });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
+    }
+    this.setState({ loading: false });
+  };
+
+  loginDoctor = async (event) => {
     event.preventDefault();
 
-    const accounts = await web3.eth.getAccounts();
+    this.setState({ loading: true, errorMessage: "" });
 
-    const doctorInstance = await factory.methods.loginDoctor().call({
-      from: accounts[0]
-    });
+    try {
+      const accounts = await web3.eth.getAccounts();
 
-    this.props.history.push({
-      pathname: "/hospital",
-      state: doctorInstance
-    });
-  }
+      const doctorInstance = await factory.methods.loginDoctor().call({
+        from: accounts[0],
+      });
+
+      this.props.history.push({
+        pathname: "/hospital",
+        state: doctorInstance,
+      });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
+    }
+    this.setState({ loading: false });
+  };
 
   render() {
     const { register, registerAs, patient, place } = this.props;
@@ -50,12 +71,16 @@ class LoginAs extends React.Component {
           method="post"
         >
           <div className="overlap-group-register">
-            <div className="register-as poppins-medium-white-20px">{registerAs}</div>
+            <div className="register-as poppins-medium-white-20px">
+              {registerAs}
+            </div>
             <a onClick={this.loginPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                   <img className="user-1-register" src={user_img} />
-                  <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>
+                  <div className="patient-register poppins-semi-bold-amethyst-20px">
+                    {patient}
+                  </div>
                 </div>
               </div>
             </a>
@@ -63,7 +88,9 @@ class LoginAs extends React.Component {
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img className="hospital-2-register" src={hospital_img} />
-                  <div className="place-register poppins-semi-bold-amethyst-20px">{place}</div>
+                  <div className="place-register poppins-semi-bold-amethyst-20px">
+                    {place}
+                  </div>
                 </div>
               </div>
             </a>

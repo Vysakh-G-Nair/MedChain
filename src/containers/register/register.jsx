@@ -8,14 +8,14 @@ import web3 from '../../ethereum/web3'
   
 class Register extends React.Component {
   state = {
-    errrorMessage: "",
+    errorMessage: "",
     loading: false
   };
 
   registerPatient = async (event) => {
     event.preventDefault();
 
-    this.setState({ loading: true, errrorMessage: '' });
+    this.setState({ loading: true, errorMessage: '' });
 
     try {
       const accounts = await web3.eth.getAccounts();
@@ -35,7 +35,8 @@ class Register extends React.Component {
         state: patientInstance
       }); 
     } catch (error) {
-      this.setState({ errrorMessage: error.message });
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
     }
 
     this.setState({ loading: false });
@@ -44,7 +45,7 @@ class Register extends React.Component {
   registerDoctor = async (event) => {
     event.preventDefault();
 
-    this.setState({ loading: true, errrorMessage: '' });
+    this.setState({ loading: true, errorMessage: '' });
 
     try {
       const accounts = await web3.eth.getAccounts();
@@ -64,7 +65,8 @@ class Register extends React.Component {
           state: doctorInstance
         });
     } catch (error) {
-      this.setState({ errrorMessage: error.message });
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
     }
 
     this.setState({ loading: false });
