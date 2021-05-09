@@ -25,6 +25,9 @@ class Register extends React.Component {
           from: accounts[0],
         });
 
+        const patientInstance = await factory.methods.loginPatient().call();
+
+        console.log(patientInstance.options.address);
       // Router.pushRoute('/');
     } catch (error) {
       this.setState({ errrorMessage: error.message });
@@ -55,7 +58,7 @@ class Register extends React.Component {
                 </div>
               </div>
             </Link>
-            <Link to="/hospital">
+            <Link to="/hospital" onClick={this.onClick}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img className="hospital-2-register" src={hospital_img} />
