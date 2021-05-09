@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Landing, Hospital, Register, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
+import { Landing, Hospital, Register, RegisterHospitalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
 
 
 
@@ -68,6 +68,46 @@ const hospitalAddData = {
   view: "Add",
 };
 
+const registerHospitalFormData = {
+  hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  text1: "ENTER DETAILS TO REGISTER DOCTOR",
+  text2: "Doctor’s name",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter your name",
+  recordName: "Doctor ID",
+  patientEthAddr: "Hospital name",
+  doctorEthAddr: "Docter's specialization",
+  symptoms: "Docter's note",
+  overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType2: "text",
+  inputPlaceholder2: "Enter your doctor ID",
+  inputPlaceholder3: "Enter your hospital name",
+  inputPlaceholder4: "Enter your specialization",
+  view: "Register",
+};
+
+const registerPatientFormData = {
+  hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  text1: "ENTER DETAILS TO REGISTER PATIENT",
+  text2: "Patient’s name",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter patient's name",
+  recordName: "Patient's age",
+  patientEthAddr: "Patient's gender",
+  doctorEthAddr: "Patient's blood group",
+  symptoms: "Docter's note",
+  overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType2: "text",
+  inputPlaceholder2: "Enter your age",
+  inputPlaceholder3: "Enter your gender",
+  inputPlaceholder4: "Enter your blood group",
+  view: "Register",
+};
+
 
 
 const patientExternalViewData = {
@@ -123,7 +163,14 @@ const registerData = {
   register: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   registerAs: "REGISTER AS",
   patient: "Patient",
-  place: "Hospital",
+  place: "Doctor",
+};
+
+const loginAsData = {
+  register: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  registerAs: "LOGIN AS",
+  patient: "Patient",
+  place: "Doctor",
 };
 
 
@@ -135,6 +182,9 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={() => <Landing {...landingData} />} />
             <Route path="/register" exact component={() => <Register {...registerData} />} />
+            <Route path="/registerhospitalform" exact component={() => <RegisterHospitalForm {...registerHospitalFormData} />} />
+            <Route path="/registerpatientform" exact component={() => <RegisterPatientForm {...registerPatientFormData} />} />
+            <Route path="/loginas" exact component={() => <LoginAs {...loginAsData} />} />
             <Route path="/patient" exact component={() => <Patient {...patientData} />} />
             <Route path="/hospital" exact component={() => <Hospital {...hospitalData} />} />
             <Route path="/hospitalview" exact component={() => <HospitalView {...hospitalViewData} />} />
