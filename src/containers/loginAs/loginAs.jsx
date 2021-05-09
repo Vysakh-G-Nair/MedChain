@@ -6,6 +6,35 @@ import hospital_img from './hospital.png';
 
   
 class LoginAs extends React.Component {
+  loginPatient= async (event) => {
+    event.preventDefault();
+
+    const accounts = await web3.eth.getAccounts();
+
+    const patientInstance = await factory.methods.loginPatient().call({
+      from: accounts[0]
+    });
+
+    this.props.history.push({
+      pathname: "/patient",
+      state: patientInstance
+    });
+  }
+
+  loginDoctor= async (event) => {
+    event.preventDefault();
+
+    const accounts = await web3.eth.getAccounts();
+
+    const doctorInstance = await factory.methods.loginDoctor().call({
+      from: accounts[0]
+    });
+
+    this.props.history.push({
+      pathname: "/hospital",
+      state: doctorInstance
+    });
+  }
 
   render() {
     const { register, registerAs, patient, place } = this.props;
@@ -21,22 +50,22 @@ class LoginAs extends React.Component {
         >
           <div className="overlap-group-register">
             <div className="register-as poppins-medium-white-20px">{registerAs}</div>
-            <Link to="/patient">
+            <a onClick={this.loginPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                   <img className="user-1-register" src={user_img} />
                   <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>
                 </div>
               </div>
-            </Link>
-            <Link to="/hospital">
+            </a>
+            <a onClick={this.loginDoctor}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img className="hospital-2-register" src={hospital_img} />
                   <div className="place-register poppins-semi-bold-amethyst-20px">{place}</div>
                 </div>
               </div>
-            </Link>
+            </a>
           </div>
         </form>
       </div>

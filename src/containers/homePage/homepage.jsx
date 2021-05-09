@@ -7,22 +7,6 @@ import web3 from '../../ethereum/web3'
 import logo_img from './logo.png';
   
 class Landing extends React.Component {
-  loginPatient= async (event) => {
-    event.preventDefault();
-
-    const accounts = await web3.eth.getAccounts();
-
-    const patientInstance = await factory.methods.loginPatient().call({
-      from: accounts[0]
-    });
-
-    // console.log(patientInstance);
-    this.props.history.push({
-      pathname: "/patient",
-      state: patientInstance
-    });
-  }
-
   render() {
     const {
       landing,
@@ -54,10 +38,10 @@ class Landing extends React.Component {
             </div>
             <div className="group-40">
               <div className="overlap-group1">
-                <a onClick={this.loginPatient}>
+                <Link to='/loginAs'>
                   <div className="rectangle-49 smart-layers-pointers"></div>
                   <div className="login">{login2}</div>
-                </a>
+                </Link>
               </div>
             </div>
             <Link className="align-self-flex-center" >
