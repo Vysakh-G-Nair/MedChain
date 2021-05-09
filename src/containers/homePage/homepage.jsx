@@ -2,9 +2,22 @@ import React from 'react';
 import './homepageStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import { render } from '@testing-library/react';
-
+import factory from '../../ethereum/factory'
+import web3 from '../../ethereum/web3'
   
 class Landing extends React.Component {
+  loginPatient= async (event) => {
+    event.preventDefault();
+
+    const accounts = await web3.eth.getAccounts();
+
+    const patientInstance = await factory.methods.loginPatient().call({
+      from: accounts[0]
+    });
+
+    console.log(patientInstance);
+  }
+
   render() {
     const {
       landing,
@@ -58,7 +71,7 @@ class Landing extends React.Component {
             </div>
             <div className="group-40">
               <div className="overlap-group1">
-                <Link to="/register">
+                <Link to="/register" onClick={this.loginPatient}>
                   <div className="rectangle-49 smart-layers-pointers"></div>
                   <div className="login">{login2}</div>
                 </Link>

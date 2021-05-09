@@ -12,7 +12,7 @@ class Register extends React.Component {
     loading: false
   };
 
-  onClick = async (event) => {
+  onClick1 = async (event) => {
     event.preventDefault();
 
     this.setState({ loading: true, errrorMessage: '' });
@@ -25,10 +25,38 @@ class Register extends React.Component {
           from: accounts[0],
         });
 
-        const patientInstance = await factory.methods.loginPatient().call();
+      const patientInstance = await factory.methods.loginPatient().call({
+        from: accounts[0]
+      });
 
-        console.log(patientInstance.options.address);
+      console.log(patientInstance);
       // Router.pushRoute('/');
+    } catch (error) {
+      this.setState({ errrorMessage: error.message });
+    }
+
+    this.setState({ loading: false });
+  };
+
+  onClick2 = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errrorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .registerDoctor()
+        .send({
+          from: accounts[0],
+        });
+
+        const doctorInstance = await factory.methods.loginDoctor().call({
+          from: accounts[0]
+        });
+  
+        console.log(doctorInstance);
+
     } catch (error) {
       this.setState({ errrorMessage: error.message });
     }
@@ -50,7 +78,7 @@ class Register extends React.Component {
         >
           <div className="overlap-group-register">
             <div className="register-as poppins-medium-white-20px">{registerAs}</div>
-            <Link to="/patient">
+            <Link to="/patient" onClick={this.onClick1}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                   <img className="user-1-register" src={user_img} />
@@ -58,7 +86,7 @@ class Register extends React.Component {
                 </div>
               </div>
             </Link>
-            <Link to="/hospital" onClick={this.onClick}>
+            <Link to="/hospital" onClick={this.onClick2}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img className="hospital-2-register" src={hospital_img} />
