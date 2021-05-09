@@ -105,6 +105,16 @@
   margin-top: 40px;
   min-width: 324px;
 }
+
+.view-logo {
+  align-self: center;
+  height: 200px;
+  margin-left: 5.0px;
+  mix-blend-mode: normal;
+  object-fit: cover;
+  padding-top: 50px;
+}
+
 .landing {
   align-items: flex-start;
   background-image: url(https://anima-uploads.s3.amazonaws.com/projects/608178fed79b79a76d681ef9/releases/60817970aa2568f714955729/img/rectangle-84@1x.svg);
