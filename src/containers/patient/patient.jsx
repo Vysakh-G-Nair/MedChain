@@ -6,14 +6,23 @@ import grant_img from './grant.png';
 import view_external_img from './view external.png';
 import share_your_record_img from './share.png';
 import PatientCreator from '../../ethereum/patient';
+import web3 from "../../ethereum/web3";
   
 class Patient extends React.Component {
     static async getInitialProps(props) {
         const { state } = this.props.location;
         const patient = PatientCreator(state);
-        
+        console.log(patient);
+
+        const accounts = await web3.eth.getAccounts();
+
+        const addressOwner = await patient.methods.ownerPatient().call({
+            from: accounts[0]
+        });
+
         return {
-            address: state
+            address: state,
+            addressOwner: addressOwner
         };
     }
 
@@ -26,9 +35,11 @@ class Patient extends React.Component {
             name,
             shareRecord,
             text2,
+            addressOwner
         } = this.props;
         const { state } = this.props.location;
-        console.log(state);
+        console.log("Dep Adrees: " + state);
+        // console.log("Owner address: " + this.props.addressOwner);
         
         return (
             <div class="container-center-horizontal">
@@ -42,7 +53,7 @@ class Patient extends React.Component {
                 <div className="overlap-group-patient">
                     <div className="text-new-patient poppins-medium-white-20px">
                         <span className="text-1-patient poppins-medium-white-20px">{text1}
-                        <span className="text-1sub-patient ">{text1sub}</span></span>
+                        <span className="text-1sub-patient ">{addressOwner}</span></span>
                     </div>
                 <div className="flex-row">
                     <Link to="/patientview">

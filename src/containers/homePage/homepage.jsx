@@ -42,7 +42,7 @@ class Landing extends React.Component {
                 </Link>
               </div>
             </div>
-            <Link className="align-self-flex-center" >
+            <Link to = "/register" className="align-self-flex-center" >
               <p className="text-1 poppins-normal-white-16px">{text1}</p>
             </Link>
           </div>

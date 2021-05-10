@@ -1,0 +1,145 @@
+{
+	"compiler": {
+		"version": "0.4.26+commit.4563c3fc"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_patient",
+						"type": "address"
+					},
+					{
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "requestPermission",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getExtSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "_patient",
+						"type": "address"
+					},
+					{
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "viewRecord",
+				"outputs": [
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "_designation",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MedChain/External.sol": "External"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/MedChain/Doctor.sol": {
+			"keccak256": "0x80a3f618ddca8935bd8a50294f4107aac1b83fac02ae9da16d6fff5ac2ea2f16",
+			"urls": [
+				"bzzr://c711ac4f0ef6bc36a2139072782fd9f10a6f51dafcd28ddffcfee8bea2e66174"
+			]
+		},
+		"contracts/MedChain/External.sol": {
+			"keccak256": "0x9cc9cfedb6b988268a6a52472bce39d6e2043b8388158793f7d79def6ba60c19",
+			"urls": [
+				"bzzr://8a91f1ca95c6fc0dfe8c558ad13facbdb7eea672083764a577752bc59e883de3"
+			]
+		},
+		"contracts/MedChain/Patient.sol": {
+			"keccak256": "0x9731f7befdd77d26e744741aaa380c5fa288abb79096e1a321e44b849efa6efe",
+			"urls": [
+				"bzzr://a3926049ea4fb7540c435ed5704ab462e1a99ab47bf342c65d40259c66526920"
+			]
+		},
+		"contracts/MedChain/UserFactory.sol": {
+			"keccak256": "0x741b0fa200dcd356db65999f5aaed77758254400ece2779727630e1ee35e850c",
+			"urls": [
+				"bzzr://ea1b0cc0874b86d99793994d21f6984405f9baaef37d169417569fafd27843fe"
+			]
+		}
+	},
+	"version": 1
+}
