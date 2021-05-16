@@ -1,30 +1,20 @@
 import React from 'react';
-import './registerHospitalFormStyling.scss';
+import './registerExternalFormStyling.scss';
 import { Link, withRouter } from "react-router-dom";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 
-const options = [
-  'Hospital', 'Diagnostic center', 'Clinic'
-];
-
-const defaultOption = options[0];
   
-class RegisterHospitalForm extends React.Component {
-
-
+class RegisterExternalForm extends React.Component {
   render () { 
     const {
       hospitalView,
       text1,
       text2,
       overlapGroup2,
-      searchNames,
       patientEthAddr,
       doctorEthAddr,
       inputType,
       inputPlaceholder,
-      categoryName,
+      recordName,
       overlapGroup1,
       inputType2,
       inputPlaceholder2,
@@ -42,7 +32,7 @@ class RegisterHospitalForm extends React.Component {
           action="form1"
           method="post"
         >
-          <div className="text-1-hospitalview poppins-medium-white-20px">{text1}</div>
+          <div className="text-1-externalregister poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
             <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>
             <div className="overlap-group2-hospitalview" style={{ backgroundImage: `url(${overlapGroup2})` }}>
@@ -56,14 +46,13 @@ class RegisterHospitalForm extends React.Component {
             </div>
           </div>
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{categoryName}</div>
-            <div className="overlap-group1-registerhosp" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <Dropdown
-                options={options}
-                onChange={this._onSelect}
-                className="enter-record-name-registerhosp"
+            <div className="record-name poppins-normal-baby-powder-18px">{recordName}</div>
+            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+              <input
+                className="enter-record-name-hospitaladd"
                 name="2215"
                 placeholder={inputPlaceholder2}
+                type={inputType2}
                 required
               />
             </div>
@@ -107,7 +96,7 @@ class RegisterHospitalForm extends React.Component {
   }
 }
 
-export default withRouter(RegisterHospitalForm);
+export default withRouter(RegisterExternalForm);
 
 
         

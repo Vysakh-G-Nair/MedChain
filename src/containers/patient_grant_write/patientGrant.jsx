@@ -1,8 +1,20 @@
 import React from 'react';
 import './patientGrantStyling.scss';
 import { Link, withRouter } from "react-router-dom";
+import { Requests } from '../index.js' ;
 
-  
+const requestsData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  incomingRequests: "INCOMING REQUESTS",
+  doctersName: "Docter’s name",
+  text2: "Docter’s ethereum address",
+  takeAction: "Take Action",
+  manjunathanM: "Manjunathan M",
+  text1: "0xDC25EF3F5B8A186998338A2",
+  name: "Grant",
+  reject: "Reject",
+};
+
 class PatientGrant extends React.Component {
   render () { 
     const {
@@ -41,11 +53,13 @@ class PatientGrant extends React.Component {
           <div className="group-54">
             <div className="overlap-group-patient-grant">
               <Link >
-                <div className="rectangle-94 smart-layers-pointers"></div>
+                <div className="rectangle-94">
                 <div className="view-patient-grant">{view}</div>
+                </div>
               </Link>
           </div>
-        </div>  
+        </div> 
+        <div className="requests-comp"> <Requests {...requestsData} /> </div>
         </form>
       </div>
     );

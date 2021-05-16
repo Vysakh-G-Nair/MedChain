@@ -1,22 +1,12 @@
 import React from 'react';
 import './homepageStyling.scss';
 import { Link, withRouter } from "react-router-dom";
-import { render } from '@testing-library/react';
 import logo_img from './logo.png';
   
 class Landing extends React.Component {
   render() {
     const {
       landing,
-      login,
-      userid,
-      overlapGroup3,
-      inputType,
-      inputPlaceholder,
-      password,
-      overlapGroup2,
-      inputType2,
-      inputPlaceholder2,
       login2,
       text1,
     } = this.props;
@@ -30,20 +20,21 @@ class Landing extends React.Component {
           action="form2"
           method="post"
         >
-          <div className="overlap-group">
+          <div className="overlap-group-landing">
             <div className="group-38">
-              <img className="view-logo" src={logo_img} />
+              <img className="view-logo" src={logo_img} alt="" />
             </div>
             <div className="group-40">
               <div className="overlap-group1">
                 <Link to='/loginAs'>
-                  <div className="rectangle-49 smart-layers-pointers"></div>
+                  <div className="rectangle-49">
                   <div className="login">{login2}</div>
+                  </div>
                 </Link>
               </div>
             </div>
             <Link to = "/register" className="align-self-flex-center" >
-              <p className="text-1 poppins-normal-white-16px">{text1}</p>
+              <p className="text-1-landing poppins-normal-white-16px">{text1}</p>
             </Link>
           </div>
         </form>

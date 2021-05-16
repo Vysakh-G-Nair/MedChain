@@ -1,6 +1,6 @@
 import React from "react";
 import "./loginAsStyling.scss";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import user_img from "./user.png";
 import hospital_img from "./hospital.png";
 import factory from "../../ethereum/factory";
@@ -59,7 +59,7 @@ class LoginAs extends React.Component {
   };
 
   render() {
-    const { register, registerAs, patient, place } = this.props;
+    const { register, registerAs, patient, place, externaluser } = this.props;
 
     return (
       <div class="container-center-horizontal">
@@ -77,7 +77,7 @@ class LoginAs extends React.Component {
             <a onClick={this.loginPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
-                  <img className="user-1-register" src={user_img} />
+                  <img className="user-1-register" src={user_img} alt=""/>
                   <div className="patient-register poppins-semi-bold-amethyst-20px">
                     {patient}
                   </div>
@@ -87,9 +87,19 @@ class LoginAs extends React.Component {
             <a onClick={this.loginDoctor}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
-                  <img className="hospital-2-register" src={hospital_img} />
+                  <img className="hospital-2-register" src={hospital_img} alt="" />
                   <div className="place-register poppins-semi-bold-amethyst-20px">
                     {place}
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a onClick={this.loginPatient}>
+              <div className="group-61-register">
+                <div className="overlap-group2-register">
+                  <img className="user-1-register" src={user_img} alt="" />
+                  <div className="patient-register poppins-semi-bold-amethyst-20px">
+                    {externaluser}
                   </div>
                 </div>
               </div>

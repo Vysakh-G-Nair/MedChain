@@ -1,9 +1,25 @@
 import React from 'react';
 import './hospitalViewStyling.scss';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 
   
 class HospitalView extends React.Component {
+
+constructor(props) {
+    super(props);
+    this.state = { visible: false };
+}
+
+show() {
+    this.setState({ visible: true });
+}
+
+hide() {
+    this.setState({ visible: false });
+}
+
   render () { 
     const {
       hospitalView,
@@ -55,10 +71,20 @@ class HospitalView extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <Link >
-                <div className="rectangle-94 smart-layers-pointers"></div>
+              <a onClick={this.show.bind(this)}>
+                <div className="rectangle-94">
                 <div className="view-hospitalview">{view}</div>
-              </Link>
+                </div>
+              </a>
+
+              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+                  <div className="text-1-rodal">You don’t have permission to view this record</div>
+                  <a >
+                    <div className="rectangle-94-rodal">
+                      <div className="view-rodal">Request Permission</div>
+                    </div>
+                  </a>
+              </Rodal>
           </div>
         </div>  
         </form>

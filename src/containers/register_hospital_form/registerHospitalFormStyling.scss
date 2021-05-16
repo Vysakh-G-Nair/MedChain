@@ -35,7 +35,7 @@
   mix-blend-mode: normal;
   padding: 0;
   resize: none;
-  width: 360px;
+  width: 560px;
   font-family: var(--font-family-poppins);
   font-style: normal;
   font-weight: normal;
@@ -43,8 +43,27 @@
   line-height: 24px;
   color: #7F8489;
   mix-blend-mode: normal;
-  opacity: 0.8;
   margin-left: -178px;
+}
+.enter-record-name-registerhosp {
+  background-color: transparent;
+  border: 0;
+  flex-shrink: 1;
+  height: 23px;
+  mix-blend-mode: normal;
+  padding: 0;
+  position: absolute;
+  z-index: 1020;
+  resize: none;
+  width: 560px;
+  font-family: var(--font-family-poppins);
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--font-size-l);
+  line-height: 24px;
+  color: #7F8489;
+  mix-blend-mode: normal;
+  margin-left: 14px;
 }
 .group-52 {
   align-items: flex-start;
@@ -121,6 +140,17 @@
   display: flex;
   height: 54px;
   margin-left: -0.31px;
+  margin-top: 10px;
+  min-width: 591px;
+  padding: 0 202.5px;
+}
+
+.overlap-group1-registerhosp {
+  align-items: center;
+  background-size: 100% 100%;
+  display: flex;
+  height: 54px;
+  margin-left: -190px;
   margin-top: 10px;
   min-width: 591px;
   padding: 0 202.5px;
@@ -222,6 +252,7 @@
   font-weight: 600;
   position: absolute;
   top: 19px;
+  left: 245px;
 }
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
