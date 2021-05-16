@@ -31,7 +31,7 @@ contract External {
         patient.addRequest(_id, true, name);
     }
     
-    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory) {
+    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
         address dep_patient = Ufactory.patientsAddress(_patient);
         Patient patient = Patient(dep_patient);
         return (patient.viewRecord(_id));

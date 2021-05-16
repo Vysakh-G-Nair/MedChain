@@ -9,19 +9,91 @@
 				"constant": false,
 				"inputs": [
 					{
-						"name": "_id",
-						"type": "uint256"
-					},
-					{
-						"name": "_isView",
-						"type": "bool"
+						"name": "_patient",
+						"type": "address"
 					},
 					{
 						"name": "_name",
 						"type": "string"
+					},
+					{
+						"name": "_age",
+						"type": "uint256"
+					},
+					{
+						"name": "_gender",
+						"type": "string"
+					},
+					{
+						"name": "_bloodGroup",
+						"type": "string"
 					}
 				],
-				"name": "addRequest",
+				"name": "createPatient",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getMedProSummary",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_patient",
+						"type": "address"
+					},
+					{
+						"name": "_id",
+						"type": "uint256"
+					},
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "_nameDoc",
+						"type": "string"
+					},
+					{
+						"name": "_date",
+						"type": "string"
+					},
+					{
+						"name": "_desc",
+						"type": "string"
+					}
+				],
+				"name": "createRecord",
 				"outputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
@@ -31,11 +103,19 @@
 				"constant": false,
 				"inputs": [
 					{
-						"name": "_index",
+						"name": "_patient",
+						"type": "address"
+					},
+					{
+						"name": "_id",
 						"type": "uint256"
+					},
+					{
+						"name": "_isView",
+						"type": "bool"
 					}
 				],
-				"name": "grantRequest",
+				"name": "requestPermission",
 				"outputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
@@ -44,6 +124,10 @@
 			{
 				"constant": true,
 				"inputs": [
+					{
+						"name": "_patient",
+						"type": "address"
+					},
 					{
 						"name": "_id",
 						"type": "uint256"
@@ -81,182 +165,26 @@
 				"type": "function"
 			},
 			{
-				"constant": true,
-				"inputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "requests",
-				"outputs": [
-					{
-						"name": "recordID",
-						"type": "uint256"
-					},
-					{
-						"name": "viewer",
-						"type": "address"
-					},
-					{
-						"name": "nameDoc",
-						"type": "string"
-					},
-					{
-						"name": "isView",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [
-					{
-						"name": "_index",
-						"type": "uint256"
-					}
-				],
-				"name": "view1Record",
-				"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "_id",
-						"type": "uint256"
-					},
-					{
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"name": "_nameDoc",
-						"type": "string"
-					},
-					{
-						"name": "_date",
-						"type": "string"
-					},
-					{
-						"name": "_desc",
-						"type": "string"
-					}
-				],
-				"name": "createRecord",
-				"outputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "getPatSummary",
-				"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "string"
-					},
-					{
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "_index",
-						"type": "uint256"
-					}
-				],
-				"name": "revokeRequest",
-				"outputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"name": "_owner",
 						"type": "address"
 					},
 					{
-						"name": "_isdoc",
-						"type": "bool"
-					},
-					{
-						"name": "_doc",
-						"type": "address"
-					},
-					{
 						"name": "_name",
 						"type": "string"
 					},
 					{
-						"name": "_age",
+						"name": "_category",
+						"type": "string"
+					},
+					{
+						"name": "_place",
+						"type": "string"
+					},
+					{
+						"name": "_lisenceNo",
 						"type": "uint256"
-					},
-					{
-						"name": "_gender",
-						"type": "string"
-					},
-					{
-						"name": "_bloodGroup",
-						"type": "string"
 					}
 				],
 				"payable": false,
@@ -273,7 +201,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MedChain/Patient.sol": "Patient"
+			"contracts/MedChain/MedicalPro.sol": "MedicalPro"
 		},
 		"evmVersion": "byzantium",
 		"libraries": {},

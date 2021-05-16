@@ -70,6 +70,14 @@
 					{
 						"name": "",
 						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
 					}
 				],
 				"payable": false,
@@ -116,28 +124,28 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/MedChain/Doctor.sol": {
-			"keccak256": "0x80a3f618ddca8935bd8a50294f4107aac1b83fac02ae9da16d6fff5ac2ea2f16",
+		"contracts/MedChain/External.sol": {
+			"keccak256": "0xe9678128676baa99ca491717bc4e84f5d0dc3f31b4305a7a1c38e5bd1e1f04fd",
 			"urls": [
-				"bzzr://c711ac4f0ef6bc36a2139072782fd9f10a6f51dafcd28ddffcfee8bea2e66174"
+				"bzzr://227a44d970ca346fd23ca7445a0ec2d0c13c1e186734bad9de06feae2bf7e4bd"
 			]
 		},
-		"contracts/MedChain/External.sol": {
-			"keccak256": "0x9cc9cfedb6b988268a6a52472bce39d6e2043b8388158793f7d79def6ba60c19",
+		"contracts/MedChain/MedicalPro.sol": {
+			"keccak256": "0xab9ceaae15ba41c4f64703d1eef8b167eadf437dcddbb75c79c455b2cff7c3f2",
 			"urls": [
-				"bzzr://8a91f1ca95c6fc0dfe8c558ad13facbdb7eea672083764a577752bc59e883de3"
+				"bzzr://f3bd2c926afb75f3cbf5f12a89638cb2d3fc4fb77863a85d5002fa790965a75a"
 			]
 		},
 		"contracts/MedChain/Patient.sol": {
-			"keccak256": "0x9731f7befdd77d26e744741aaa380c5fa288abb79096e1a321e44b849efa6efe",
+			"keccak256": "0x13e0bd442d9bff6d1911360fe9f4778bfc3758955f6373d827e56b42a048ce84",
 			"urls": [
-				"bzzr://a3926049ea4fb7540c435ed5704ab462e1a99ab47bf342c65d40259c66526920"
+				"bzzr://2a417bbec508cb08be5faa4b6712389d16342e7f251f7c48767caf2421fbe711"
 			]
 		},
 		"contracts/MedChain/UserFactory.sol": {
-			"keccak256": "0x741b0fa200dcd356db65999f5aaed77758254400ece2779727630e1ee35e850c",
+			"keccak256": "0xcff5f71c05b89c2b692e4a63788afa0f00a3ecdfecf1d146033cd783d87df3aa",
 			"urls": [
-				"bzzr://ea1b0cc0874b86d99793994d21f6984405f9baaef37d169417569fafd27843fe"
+				"bzzr://ae36ea8a2679f7cbf9fa21a09e17143f28b18a202425266ac75f971fc4650736"
 			]
 		}
 	},

@@ -1,13 +1,14 @@
 pragma solidity ^0.4.26;
 
 import './UserFactory.sol';
-import './Patient.sol';
 
 contract Patient {
     struct Record {
         uint recordID;
-        address creatorDoc;
+        address creator;
+        string nameDoc;
         string name;
+        string date;
         string description;
         mapping (address => bool) canView;
     }
@@ -53,12 +54,14 @@ contract Patient {
         return (ownerPatient, name, age, gender, bloodGroup, noOfRecords);
     }
     
-    function createRecord(uint _id, string memory _name, string memory _desc) public {
+    function createRecord(uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc) public {
         require(canCreate[msg.sender], "You dont have permission!");
         Record memory record = Record({
             recordID: _id,
             name: _name,
-            creatorDoc: msg.sender,
+            nameDoc: _nameDoc,
+            date: _date,
+            creator: msg.sender,
             description: _desc
         });
         records.push(record); 
@@ -102,14 +105,14 @@ contract Patient {
         }
     }
     
-    function viewRecord(uint _id) public view returns(uint, address, string memory, string memory) {
+    function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
         Record storage record = records[indices[_id]];
         require(record.canView[msg.sender] , "You dont have permission");
-        return (record.recordID, record.creatorDoc, record.name, record.description);
+        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
     }
     
-    function view1Record(uint _index) public view restricted returns(uint, address, string memory, string memory) {
+    function view1Record(uint _index) public view restricted returns(uint, address, string memory, string memory, string memory, string memory) {
         Record storage record = records[_index];
-        return (record.recordID, record.creatorDoc, record.name, record.description);
+        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
     }
 }
