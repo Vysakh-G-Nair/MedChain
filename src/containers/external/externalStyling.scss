@@ -8,6 +8,7 @@
   --font-size-l: 18px;
 }
 
+
 .add-record {
   letter-spacing: 1.00px;
   margin-top: 5px;
@@ -15,7 +16,21 @@
   min-width: 105px;
   mix-blend-mode: normal;
   text-align: center;
+  color: rgba(176,128,255,1.0);
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-l2);
+  font-weight: 600;
+  padding-top: 5px;
 }
+.add-record-group {
+  cursor: pointer;
+  height: 150px;
+  margin-left: 86px;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  width: 152px;
+}
+
 .edit-5 {
   height: 56px;
   margin-right: 21px;
@@ -23,29 +38,37 @@
   object-fit: cover;
   width: 56px;
 }
-.hospital-mobile {
+.flex-row-external {
   align-items: flex-start;
-  background-color: var(--white);
+  display: flex;
+  margin-top: 5px;
+  min-width: 390px;
+}
+.external {
+  align-items: flex-start;
+  background-color: var(--mine-shaft);
   background-size: 100% 100%;
   display: flex;
-  height: 640px;
+  height: 900px;
   mix-blend-mode: normal;
-  padding: 0 24px;
-  width: 360px;
+  padding: 0 466px;
+  width: 1440px;
 }
-.overlap-group-hospitalmobile {
-  align-items: center;
+.overlap-group-external {
+  align-items: flex-end;
   background-color: var(--mine-shaft);
   border-radius: 30px;
   box-shadow: -6px -6px 20px #494e52b2 , 8px 8px 30px #232527e6 , 2px 2px 6px #232527cc , -2px -2px 4px #4a4e5380;
   display: flex;
   flex-direction: column;
-  margin-top: 58px;
-  min-height: 541px;
-  padding: 50px 14px;
-  width: 311px;
+  margin-top: 330px;
+  min-height: 300px;
+  padding: 100px 58px;
+  width: 508px;
 }
-.overlap-group1-hospitalmobile {
+
+
+.overlap-group1-external {
   align-items: flex-end;
   background-color: var(--mine-shaft);
   border-radius: 30px;
@@ -54,9 +77,10 @@
   flex-direction: column;
   min-height: 150px;
   padding: 30px 21px;
+  padding-top: 35px;
   width: 150px;
 }
-.overlap-group1-hospitalmobile:hover {
+.overlap-group1-external:hover {
 
   background: #2D3135;
   /* Hover Shadow */
@@ -64,8 +88,7 @@
   box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
   border-radius: 30px;
   }
-
-.overlap-group2-hospitalmobile {
+.overlap-group2-external {
   align-items: flex-end;
   background-color: var(--mine-shaft);
   border-radius: 30px;
@@ -74,9 +97,11 @@
   flex-direction: column;
   min-height: 150px;
   padding: 30px 18px;
+  padding-top: 35px;
   width: 150px;
+  margin-left: 120px;
 }
-.overlap-group2-hospitalmobile:hover {
+.overlap-group2-external:hover {
 
   background: #2D3135;
   /* Hover Shadow */
@@ -84,9 +109,8 @@
   box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
   border-radius: 30px;
   }
-
 .span0 {
-  letter-spacing: 0.18px;
+  letter-spacing: 0.20px;
   color: var(--white);
   font-family: var(--font-family-poppins);
   font-size: var(--font-size-xl);
@@ -95,21 +119,22 @@
 .span1 {
   color: var(--white);
   font-family: var(--font-family-poppins);
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  letter-spacing: 0.18px;
+  letter-spacing: 0.20px;
 }
-.text-1-hospitalmobile {
-  align-self: flex-end;
+.text-1-external {
+  align-self: center;
   letter-spacing: 1.00px;
-  line-height: 30px;
-  min-height: 60px;
-  min-width: 281px;
+  line-height: 27px;
+  margin-left: 3.0px;
+  min-height: 86px;
+  min-width: 347px;
   mix-blend-mode: normal;
   opacity: 0.8;
   text-align: center;
   text-shadow: 0px 2px 2px #272c3566;
-  width: 281px;
+  width: 347px;
 }
 .view-3 {
   align-self: center;
@@ -126,12 +151,15 @@
   min-width: 112px;
   mix-blend-mode: normal;
   text-align: center;
+  color: rgba(176,128,255,1.0);
+  font-family: var(--font-family-poppins);
+  font-size: var(--font-size-l2);
+  font-weight: 600;
+  padding-top: 5px;
 }
-.x-record-group-mobile {
+.view-record-group {
   cursor: pointer;
   height: 150px;
-  margin-left: 3.0px;
-  margin-top: 40px;
   pointer-events: auto;
   transition: all 0.2s ease;
   width: 152px;
@@ -163,3 +191,4 @@
   pointer-events: auto;
   visibility: visible;
 }
+

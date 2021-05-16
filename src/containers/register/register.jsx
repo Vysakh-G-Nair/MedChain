@@ -1,15 +1,26 @@
 import React from 'react';
 import './registerStyling.scss';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import user_img from './user.png';
 import hospital_img from './hospital.png';
-import factory from '../../ethereum/factory'
-import web3 from '../../ethereum/web3'
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
+import 'font-awesome/css/font-awesome.min.css';
   
 class Register extends React.Component {
   state = {
     errorMessage: "",
-    loading: false
+    loading: false,
+    loading1: false,
+    loading2: false,
+  };
+
+  fetchData = () => {
+    this.setState({ loading1: true });
+
+    setTimeout(() => {
+      this.setState({ loading1: false });
+    }, 2000);
   };
 
   registerPatient = async (event) => {
@@ -73,7 +84,8 @@ class Register extends React.Component {
   };
 
   render() {
-    const { register, registerAs, patient, place } = this.props;
+    const { register, registerAs, patient, place, externaluser } = this.props;
+    const { loading, loading1, loading2 } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -85,20 +97,49 @@ class Register extends React.Component {
           method="post"
         >
           <div className="overlap-group-register">
-            <div className="register-as poppins-medium-white-20px">{registerAs}</div>
-            <a onClick={this.registerPatient}>
+            <div className="register-as-register poppins-medium-white-20px">{registerAs}</div>
+            <a onClick={this.registerPatient} disabled={loading}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
-                  <img className="user-1-register" src={user_img} />
-                  <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>
+                {!loading &&  <img className="user-1-register" src={user_img} alt=""/>}
+                  {loading && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{ marginRight: "0px", color: '#B080FF' }}
+                    />
+                  )}
+                  {!loading && <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>}
+                  {loading && <div className="patient-register poppins-semi-bold-amethyst-20px">Wait...</div>}
                 </div>
               </div>
             </a>
-            <a onClick={this.registerDoctor}>
+            <a onClick={this.fetchData} disabled={loading1}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
-                  <img className="hospital-2-register" src={hospital_img} />
-                  <div className="place-register poppins-semi-bold-amethyst-20px">{place}</div>
+                {!loading1 && <img className="hospital-2-register" src={hospital_img} alt=""/>}
+                  {loading1 && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{ marginRight: "0px", color: '#B080FF' }}
+                    />
+                  )}
+                  {!loading1 && <div className="place-register poppins-semi-bold-amethyst-20px">{place}</div>}
+                  {loading1 && <div className="place-register poppins-semi-bold-amethyst-20px">Wait...</div>}
+                </div>
+              </div>
+            </a>
+            <a onClick={this.registerPatient} disabled={loading2}>
+              <div className="group-61-register">
+                <div className="overlap-group2-register">
+                {!loading2 && <img className="user-1-register" src={user_img} alt=""/>}
+                  {loading2 && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{ marginRight: "0px", color: '#B080FF' }}
+                    />
+                  )}
+                  {!loading2 && <div className="patient-register poppins-semi-bold-amethyst-20px">{externaluser}</div>}
+                  {loading2 && <div className="patient-register poppins-semi-bold-amethyst-20px">Wait...</div>}
                 </div>
               </div>
             </a>

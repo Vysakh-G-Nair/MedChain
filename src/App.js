@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Landing, Hospital, Register, RegisterHospitalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
+import { External, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
 
 
 
@@ -25,15 +25,32 @@ const landingData = {
 
 const hospitalData = {
   hospital: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  spanText: "Welcome Back, ",
-  spanText2: "ABC Hospital!",
   viewRecord: "View Record",
   addRecord: "Add Record",
+};
+
+const externalData = {
+  hospital: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  viewRecord: "View Record",
 };
 
 
 
 const hospitalViewData = {
+  hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  text1: "ENTER DETAILS TO VIEW RECORD",
+  text2: "Patient’s Ethereum address",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter ethereum address",
+  recordName: "Record name",
+  overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType2: "text",
+  inputPlaceholder2: "Enter record name",
+  view: "View",
+};
+
+const externalViewData = {
   hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   text1: "ENTER DETAILS TO VIEW RECORD",
   text2: "Patient’s Ethereum address",
@@ -70,21 +87,41 @@ const hospitalAddData = {
 
 const registerHospitalFormData = {
   hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  text1: "ENTER DETAILS TO REGISTER DOCTOR",
-  text2: "Doctor’s name",
+  text1: "ENTER DETAILS TO REGISTER HOSPITAL",
+  text2: "Name",
   overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
   inputType: "text",
-  inputPlaceholder: "Enter your name",
-  recordName: "Doctor ID",
-  patientEthAddr: "Hospital name",
-  doctorEthAddr: "Docter's specialization",
+  inputPlaceholder: "Enter name",
+  categoryName: "Category",
+  patientEthAddr: "License number",
+  doctorEthAddr: "Location",
   symptoms: "Docter's note",
   overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   inputType2: "text",
-  inputPlaceholder2: "Enter your doctor ID",
-  inputPlaceholder3: "Enter your hospital name",
-  inputPlaceholder4: "Enter your specialization",
+  inputPlaceholder2: "Select your category",
+  inputPlaceholder3: "Enter your license number",
+  inputPlaceholder4: "Enter your location",
+  view: "Register",
+};
+
+const registerExternalFormData = {
+  hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  text1: "ENTER DETAILS TO REGISTER EXTERNAL USER",
+  text2: "Name",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter name",
+  recordName: "Category",
+  patientEthAddr: "License number",
+  doctorEthAddr: "Location",
+  symptoms: "Docter's note",
+  overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType2: "text",
+  inputPlaceholder2: "Select your category",
+  inputPlaceholder3: "Enter your license number",
+  inputPlaceholder4: "Enter your location",
   view: "Register",
 };
 
@@ -150,8 +187,8 @@ const patientGrantData = {
 
 const patientData = {
   patient: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  text1: "Welcome Back, ",
-  text1sub: "Vysakh G Nair!",
+  //text1: "Welcome Back, ",
+  //text1sub: "Vysakh G Nair!",
   view4: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60926b3578d99f0175dcf352/img/view-4@2x.png",
   viewYourRecords: <>View Your<br />Records</>,
   name: <>Grant Write<br />Access</>,
@@ -163,16 +200,32 @@ const registerData = {
   register: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   registerAs: "REGISTER AS",
   patient: "Patient",
-  place: "Doctor",
+  place: "Hospital",
+  externaluser: "External",
 };
 
 const loginAsData = {
   register: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   registerAs: "LOGIN AS",
   patient: "Patient",
-  place: "Doctor",
+  place: "Hospital",
+  externaluser: "External",
 };
 
+
+const viewRecordsData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  incomingRequests: "INCOMING REQUESTS",
+  doctersName: "Record name",
+  text2: "Date created",
+  takeAction: "Take Action",
+  manjunathanM: "Fever",
+  text1: "14/05/2021",
+  name: "Grant",
+  download: "Download",
+  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  yourRecords: "YOUR RECORDS",
+};
 
 class App extends React.Component {
   render() {
@@ -183,6 +236,7 @@ class App extends React.Component {
             <Route path="/" exact component={() => <Landing {...landingData} />} />
             <Route path="/register" exact component={() => <Register {...registerData} />} />
             <Route path="/registerhospitalform" exact component={() => <RegisterHospitalForm {...registerHospitalFormData} />} />
+            <Route path="/registerexternalform" exact component={() => <RegisterExternalForm {...registerExternalFormData} />} />
             <Route path="/registerpatientform" exact component={() => <RegisterPatientForm {...registerPatientFormData} />} />
             <Route path="/loginas" exact component={() => <LoginAs {...loginAsData} />} />
             <Route path="/patient" exact component={() => <Patient {...patientData} />} />
@@ -192,6 +246,9 @@ class App extends React.Component {
             <Route path="/patientshare" exact component={() => <PatientShareRecord {...patientShareRecordData} />} />
             <Route path="/patientexternalview" exact component={() => <PatientExternalView {...patientExternalViewData} />} />
             <Route path="/patientgrant" exact component={() => <PatientGrant {...patientGrantData} />} />
+            <Route path="/viewrecords" exact component={() => <ViewRecords {...viewRecordsData} />} />
+            <Route path="/external" exact component={() => <External {...externalData} />} />
+            <Route path="/externalview" exact component={() => <ExternalView {...externalViewData} />} />
           </Switch>
         </Router>
       </div>

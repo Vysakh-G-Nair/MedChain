@@ -56,8 +56,9 @@ class PatientExternalView extends React.Component {
           <div className="group-54">
             <div className="overlap-group-patient-external-view">
               <Link >
-                <div className="rectangle-94 smart-layers-pointers"></div>
+                <div className="rectangle-94">
                 <div className="view-patient-external-view">{view}</div>
+                </div>
               </Link>
           </div>
         </div>  

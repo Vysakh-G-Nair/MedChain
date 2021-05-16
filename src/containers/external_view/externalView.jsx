@@ -1,25 +1,37 @@
 import React from 'react';
-import './registerPatientFormStyling.scss';
-import { Link, withRouter } from "react-router-dom";
+import './externalViewStyling.scss';
+import { withRouter } from "react-router-dom";
+import Rodal from 'rodal';
+import 'rodal/lib/rodal.css';
 
   
-class RegisterPatientForm extends React.Component {
+class ExternalView extends React.Component {
+
+constructor(props) {
+    super(props);
+    this.state = { visible: false };
+}
+
+show() {
+    this.setState({ visible: true });
+}
+
+hide() {
+    this.setState({ visible: false });
+}
+
   render () { 
     const {
       hospitalView,
       text1,
       text2,
       overlapGroup2,
-      patientEthAddr,
-      doctorEthAddr,
       inputType,
       inputPlaceholder,
       recordName,
       overlapGroup1,
       inputType2,
       inputPlaceholder2,
-      inputPlaceholder3,
-      inputPlaceholder4,
       view,
     } = this.props;
 
@@ -37,7 +49,7 @@ class RegisterPatientForm extends React.Component {
             <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>
             <div className="overlap-group2-hospitalview" style={{ backgroundImage: `url(${overlapGroup2})` }}>
               <input
-                className="enter-ethereum-address-hospitaladd"
+                className="enter-ethereum-address-hospitalview"
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
@@ -49,7 +61,7 @@ class RegisterPatientForm extends React.Component {
             <div className="record-name poppins-normal-baby-powder-18px">{recordName}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
               <input
-                className="enter-record-name-hospitaladd"
+                className="enter-record-name-hospitalview"
                 name="2215"
                 placeholder={inputPlaceholder2}
                 type={inputType2}
@@ -57,37 +69,22 @@ class RegisterPatientForm extends React.Component {
               />
             </div>
           </div>
-          <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <input
-                className="enter-record-name-hospitaladd"
-                name="2215"
-                placeholder={inputPlaceholder3}
-                type={inputType2}
-                required
-              />
-            </div>
-          </div>
-          <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <input
-                className="enter-record-name-hospitaladd"
-                name="2215"
-                placeholder={inputPlaceholder4}
-                type={inputType2}
-                required
-              />
-            </div>
-          </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <Link >
+              <a onClick={this.show.bind(this)}>
                 <div className="rectangle-94">
                 <div className="view-hospitalview">{view}</div>
                 </div>
-              </Link>
+              </a>
+
+              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+                  <div className="text-1-rodal">You don’t have permission to view this record</div>
+                  <a >
+                    <div className="rectangle-94-rodal">
+                      <div className="view-rodal">Request Permission</div>
+                    </div>
+                  </a>
+              </Rodal>
           </div>
         </div>  
         </form>
@@ -96,7 +93,7 @@ class RegisterPatientForm extends React.Component {
   }
 }
 
-export default withRouter(RegisterPatientForm);
+export default withRouter(ExternalView);
 
 
         
