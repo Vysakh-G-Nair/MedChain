@@ -6,13 +6,14 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
 
 const genderoptions = [
   'Male', 'Female', 'Other'
 ];
 
 const defaultOption = genderoptions[0];
-
   
 class RegisterPatientForm extends React.Component {
 
@@ -43,6 +44,35 @@ class RegisterPatientForm extends React.Component {
       this.setState({ loading: false });
     }, 2000);
     
+  };
+
+  registerPatient = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .registerPatient()
+        .send({
+          from: accounts[0],
+        });
+
+      const patientInstance = await factory.methods.loginPatient().call({
+        from: accounts[0]
+      });
+
+      this.props.history.push({
+        pathname: "/patient",
+        state: patientInstance
+      }); 
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
+    }
+
+    this.setState({ loading: false });
   };
 
   render () { 
@@ -156,6 +186,3 @@ class RegisterPatientForm extends React.Component {
 }
 
 export default withRouter(RegisterPatientForm);
-
-
-        

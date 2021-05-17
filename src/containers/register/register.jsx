@@ -1,75 +1,13 @@
 import React from 'react';
 import './registerStyling.scss';
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import user_img from './user.png';
 import hospital_img from './hospital.png';
-import factory from '../../ethereum/factory';
-import web3 from '../../ethereum/web3';
   
 class Register extends React.Component {
   state = {
     errorMessage: "",
     loading: false,
-  };
-
-  registerPatient = async (event) => {
-    event.preventDefault();
-
-    this.setState({ loading: true, errorMessage: '' });
-
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await factory.methods
-        .registerPatient()
-        .send({
-          from: accounts[0],
-        });
-
-      const patientInstance = await factory.methods.loginPatient().call({
-        from: accounts[0]
-      });
-
-      // console.log(patientInstance);
-      this.props.history.push({
-        pathname: "/patient",
-        state: patientInstance
-      }); 
-    } catch (error) {
-      this.setState({ errorMessage: error.message });
-      console.log(this.state.errorMessage);
-    }
-
-    this.setState({ loading: false });
-  };
-
-  registerDoctor = async (event) => {
-    event.preventDefault();
-
-    this.setState({ loading: true, errorMessage: '' });
-
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await factory.methods
-        .registerDoctor()
-        .send({
-          from: accounts[0],
-        });
-
-        const doctorInstance = await factory.methods.loginDoctor().call({
-          from: accounts[0]
-        });
-  
-        // console.log(doctorInstance);
-        this.props.history.push({
-          pathname: "/hospital",
-          state: doctorInstance
-        });
-    } catch (error) {
-      this.setState({ errorMessage: error.message });
-      console.log(this.state.errorMessage);
-    }
-
-    this.setState({ loading: false });
   };
 
   render() {
@@ -87,30 +25,30 @@ class Register extends React.Component {
         >
           <div className="overlap-group-register">
             <div className="register-as-register poppins-medium-white-20px">{registerAs}</div>
-            <a onClick={this.registerPatient}>
+            <Link to='/registerpatientform'>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                 <img className="user-1-register" src={user_img} alt=""/>
                 <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>
                 </div>
               </div>
-            </a>
-            <a onClick={this.registerDoctor}>
+            </Link>
+            <Link to='/registerhospitalform'>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                 <img className="hospital-2-register" src={hospital_img} alt=""/>
                 <div className="place-register poppins-semi-bold-amethyst-20px">{place}</div>
                 </div>
               </div>
-            </a>
-            <a onClick={this.registerPatient}>
+            </Link>
+            <Link to='/registerexternalform'>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                 <img className="user-1-register" src={user_img} alt=""/>
                 <div className="patient-register poppins-semi-bold-amethyst-20px">{externaluser}</div>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         </form>
       </div>

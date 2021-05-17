@@ -4,6 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import 'font-awesome/css/font-awesome.min.css';
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
 
 const options = [
   'Hospital', 'Diagnostic center', 'Clinic'
@@ -26,6 +28,34 @@ class RegisterHospitalForm extends React.Component {
     }, 2000);
   };
 
+  registerDoctor = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .registerDoctor()
+        .send({
+          from: accounts[0],
+        });
+
+        const doctorInstance = await factory.methods.loginDoctor().call({
+          from: accounts[0]
+        });
+  
+        this.props.history.push({
+          pathname: "/hospital",
+          state: doctorInstance
+        });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
+    }
+
+    this.setState({ loading: false });
+  };
 
   render () { 
     const {
