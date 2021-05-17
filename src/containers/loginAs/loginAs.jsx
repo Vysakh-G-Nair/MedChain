@@ -58,6 +58,29 @@ class LoginAs extends React.Component {
     this.setState({ loading: false });
   };
 
+  loginExtUser = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: "" });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+
+      const extUserInstance = await factory.methods.loginExtUser().call({
+        from: accounts[0],
+      });
+
+      this.props.history.push({
+        pathname: "/external",
+        state: extUserInstance,
+      });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      console.log(this.state.errorMessage);
+    }
+    this.setState({ loading: false });
+  };
+
   render() {
     const { register, registerAs, patient, place, externaluser } = this.props;
 
@@ -94,7 +117,7 @@ class LoginAs extends React.Component {
                 </div>
               </div>
             </a>
-            <a onClick={this.loginPatient}>
+            <a onClick={this.loginExtUser}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
                   <img className="user-1-register" src={user_img} alt="" />
