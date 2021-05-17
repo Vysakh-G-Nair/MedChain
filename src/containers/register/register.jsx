@@ -7,7 +7,6 @@ import hospital_img from './hospital.png';
 class Register extends React.Component {
   render() {
     const { register, registerAs, patient, place, externaluser } = this.props;
-    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">

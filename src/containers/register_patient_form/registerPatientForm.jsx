@@ -32,7 +32,7 @@ class RegisterPatientForm extends React.Component {
 
   state = {
     errorMessage: "",
-    loading: false,
+   loading: false,
   };
 
   fetchData = () => {
@@ -112,7 +112,7 @@ class RegisterPatientForm extends React.Component {
               <input
                 className="enter-ethereum-address-hospitaladd"
                 name="2212"
-                placeholder={inputPlaceholder}
+                placeholder={inputPlaceholder}//PATIENTS NAME
                 type={inputType}
                 required
               />
@@ -124,7 +124,7 @@ class RegisterPatientForm extends React.Component {
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder2}
+                placeholder={inputPlaceholder2}//AGE
                 type={inputType2}
                 required
               />
@@ -138,7 +138,7 @@ class RegisterPatientForm extends React.Component {
                 onChange={this._onSelect}
                 className="enter-record-name-registerhosp"
                 name="2215"
-                placeholder={inputPlaceholder3}
+                placeholder={inputPlaceholder3}//GENDER
                 required
               />
             </div>
@@ -149,7 +149,7 @@ class RegisterPatientForm extends React.Component {
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder4}
+                placeholder={inputPlaceholder4}//BLOODGROUP
                 type={inputType2}
                 required
               />
