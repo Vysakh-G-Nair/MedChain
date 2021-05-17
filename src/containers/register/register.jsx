@@ -5,11 +5,6 @@ import user_img from './user.png';
 import hospital_img from './hospital.png';
   
 class Register extends React.Component {
-  state = {
-    errorMessage: "",
-    loading: false,
-  };
-
   render() {
     const { register, registerAs, patient, place, externaluser } = this.props;
     const { loading } = this.state;
