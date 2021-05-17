@@ -82,6 +82,8 @@ const hospitalAddData = {
   inputPlaceholder3: "Enter patient's ethereum address",
   inputPlaceholder4: "Enter docters's ethereum address",
   inputPlaceholder5: "Enter symptoms, ailments, medications etc.",
+  inputPlaceholder6: "Choose todays date",
+  entryDate: "Date",
   view: "Add",
 };
 
@@ -113,15 +115,11 @@ const registerExternalFormData = {
   overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
   inputType: "text",
   inputPlaceholder: "Enter name",
-  recordName: "Category",
-  patientEthAddr: "License number",
-  doctorEthAddr: "Location",
+  recordName: "Designation",
   symptoms: "Docter's note",
   overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   inputType2: "text",
-  inputPlaceholder2: "Select your category",
-  inputPlaceholder3: "Enter your license number",
-  inputPlaceholder4: "Enter your location",
+  inputPlaceholder2: "Enter your designation",
   view: "Register",
 };
 

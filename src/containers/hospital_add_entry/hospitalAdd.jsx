@@ -39,6 +39,8 @@ hide() {
       inputPlaceholder3,
       inputPlaceholder4,
       inputPlaceholder5,
+      inputPlaceholder6,
+      entryDate,
       view,
     } = this.props;
 
@@ -95,6 +97,18 @@ hide() {
                 className="enter-record-name-hospitaladd"
                 name="2215"
                 placeholder={inputPlaceholder4}
+                type={inputType2}
+                required
+              />
+            </div>
+          </div>
+          <div className="group-53">
+            <div className="record-name poppins-normal-baby-powder-18px">{entryDate}</div>
+            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+              <input
+                className="enter-record-name-hospitaladd"
+                name="2215"
+                placeholder={inputPlaceholder6}
                 type={inputType2}
                 required
               />

@@ -3,6 +3,7 @@ import './registerHospitalFormStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 const options = [
   'Hospital', 'Diagnostic center', 'Clinic'
@@ -11,6 +12,19 @@ const options = [
 const defaultOption = options[0];
   
 class RegisterHospitalForm extends React.Component {
+
+  state = {
+    errorMessage: "",
+    loading: false,
+  };
+
+  fetchData = () => {
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+  };
 
 
   render () { 
@@ -32,6 +46,8 @@ class RegisterHospitalForm extends React.Component {
       inputPlaceholder4,
       view,
     } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -94,11 +110,18 @@ class RegisterHospitalForm extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <Link >
+              <a onClick={this.fetchData} disabled={loading}>
                 <div className="rectangle-94">
-                <div className="view-hospitalview">{view}</div>
+                {loading && (
+                  <i
+                    className="fa fa-refresh fa-2x fa-spin"
+                    style={{ marginRight: "0px", color: '#B080FF', marginTop: "12px", marginLeft: "205px" }}
+                  />
+                )}
+                {!loading && <div className="view-hospitalview">{view}</div>}
+                {loading && <div className="view-hospitalview">Wait...</div>}
                 </div>
-              </Link>
+              </a>
           </div>
         </div>  
         </form>
