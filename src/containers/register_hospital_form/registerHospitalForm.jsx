@@ -18,6 +18,7 @@ class RegisterHospitalForm extends React.Component {
   state = {
     errorMessage: "",
     loading: false,
+    hospitalName:""
   };
 
   fetchData = () => {
