@@ -6,6 +6,8 @@ import 'react-dropdown/style.css';
 import 'font-awesome/css/font-awesome.min.css';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 
 const options = [
   'Hospital', 'Diagnostic center', 'Clinic'
@@ -18,26 +20,25 @@ class RegisterHospitalForm extends React.Component {
   state = {
     errorMessage: "",
     loading: false,
-    hospitalName:""
+    hospitalName: "",
+    category: "",
+    lisenceNo: 0,
+    location: "",
+    visible: false
   };
 
-  fetchData = () => {
-    this.setState({ loading: true });
-
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 2000);
-  };
 
   registerDoctor = async (event) => {
     event.preventDefault();
+    
+    const{hospitalName,category,lisenceNo,location}=this.state;
 
     this.setState({ loading: true, errorMessage: '' });
 
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .registerDoctor()
+        .registerMedPro( hospitalName , "hey" , location, lisenceNo)
         .send({
           from: accounts[0],
         });
@@ -51,7 +52,7 @@ class RegisterHospitalForm extends React.Component {
           state: doctorInstance
         });
     } catch (error) {
-      this.setState({ errorMessage: error.message });
+      this.setState({ errorMessage: error.message , visible: true});
       console.log(this.state.errorMessage);
     }
 
@@ -86,8 +87,9 @@ class RegisterHospitalForm extends React.Component {
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
           name="form1"
-          action="form1"
-          method="post"
+          //action="form1"
+          //method="post"
+          onSubmit={this.registerDoctor} error={!!this.state.errorMessage}
         >
           <div className="text-1-hospitalview poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
@@ -96,8 +98,10 @@ class RegisterHospitalForm extends React.Component {
               <input
                 className="enter-ethereum-address-hospitaladd"
                 name="2212"
-                placeholder={inputPlaceholder}
+                placeholder={inputPlaceholder}//hospital name
                 type={inputType}
+                value={this.state.hospitalName}
+                onChange={event => this.setState({ hospitalName: event.target.value })}
                 required
               />
             </div>
@@ -107,11 +111,13 @@ class RegisterHospitalForm extends React.Component {
             <div className="overlap-group1-registerhosp" style={{ backgroundImage: `url(${overlapGroup1})` }}>
               <Dropdown
                 options={options}
-                onChange={this._onSelect}
+                //onChange={this._onSelect}
                 className="enter-record-name-registerhosp"
                 name="2215"
-                placeholder={inputPlaceholder2}
-                required
+                placeholder={inputPlaceholder2}//category
+                value={this.state.category}
+                onChange={event => this.setState({ category: event.target.value })}
+                
               />
             </div>
           </div>
@@ -121,8 +127,10 @@ class RegisterHospitalForm extends React.Component {
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder3}
+                placeholder={inputPlaceholder3}//lisencenumber
                 type={inputType2}
+                value={this.state.lisenceNo}
+                onChange={event => this.setState({ lisenceNo: event.target.value })}
                 required
               />
             </div>
@@ -133,15 +141,17 @@ class RegisterHospitalForm extends React.Component {
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder4}
+                placeholder={inputPlaceholder4}//location
                 type={inputType2}
+                value={this.state.location}
+                onChange={event => this.setState({ location: event.target.value })}
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.fetchData} disabled={loading}>
+              <a onClick={this.registerDoctor} error={!!this.state.errorMessage} disabled={loading}>
                 <div className="rectangle-94">
                 {loading && (
                   <i
@@ -149,10 +159,22 @@ class RegisterHospitalForm extends React.Component {
                     style={{ marginRight: "0px", color: '#B080FF', marginTop: "12px", marginLeft: "205px" }}
                   />
                 )}
-                {!loading && <div className="view-hospitalview">{view}</div>}
-                {loading && <div className="view-hospitalview">Wait...</div>}
+                {!loading && <div className="view-hospitalview">{view}</div>} 
+                {loading && <div className="view-hospitalview">Wait...</div>} 
                 </div>
               </a>
+              <Rodal
+                visible={this.state.visible}
+                onClose={() => this.setState({ visible: false })}>
+                <div className="text-1-rodal">
+                  {this.state.errorMessage}
+                </div>
+                <a onClick={() => this.setState({ visible: false })}>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Close</div>
+                  </div>
+                </a>
+              </Rodal>
           </div>
         </div>  
         </form>
