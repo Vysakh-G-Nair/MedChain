@@ -1,27 +1,40 @@
 import React from 'react';
 import './registerExternalFormStyling.scss';
 import { Link, withRouter } from "react-router-dom";
+import 'font-awesome/css/font-awesome.min.css';
 
   
 class RegisterExternalForm extends React.Component {
+
+  state = {
+    errorMessage: "",
+    loading: false,
+  };
+
+  fetchData = () => {
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+  };
+
   render () { 
     const {
       hospitalView,
       text1,
       text2,
       overlapGroup2,
-      patientEthAddr,
-      doctorEthAddr,
       inputType,
       inputPlaceholder,
       recordName,
       overlapGroup1,
       inputType2,
       inputPlaceholder2,
-      inputPlaceholder3,
-      inputPlaceholder4,
       view,
     } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -57,37 +70,20 @@ class RegisterExternalForm extends React.Component {
               />
             </div>
           </div>
-          <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <input
-                className="enter-record-name-hospitaladd"
-                name="2215"
-                placeholder={inputPlaceholder3}
-                type={inputType2}
-                required
-              />
-            </div>
-          </div>
-          <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <input
-                className="enter-record-name-hospitaladd"
-                name="2215"
-                placeholder={inputPlaceholder4}
-                type={inputType2}
-                required
-              />
-            </div>
-          </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <Link >
+              <a onClick={this.fetchData} disabled={loading} >
                 <div className="rectangle-94">
-                <div className="view-hospitalview">{view}</div>
+                {loading && (
+                  <i
+                    className="fa fa-refresh fa-2x fa-spin"
+                    style={{ marginRight: "0px", color: '#B080FF', marginTop: "12px", marginLeft: "205px" }}
+                  />
+                )}
+                {!loading && <div className="view-hospitalview">{view}</div>}
+                {loading && <div className="view-hospitalview">Wait...</div>}
                 </div>
-              </Link>
+              </a>
           </div>
         </div>  
         </form>
