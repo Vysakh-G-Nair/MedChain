@@ -22,10 +22,14 @@ const detailsData = {
   };
 
 class Patient extends React.Component {
+    state = {
+        address: ""
+    }
+
     static async getInitialProps(props) {
         const { state } = this.props.location;
         const patient = PatientCreator(state);
-        console.log(patient);
+        console.log(patient.options.address);
 
         const accounts = await web3.eth.getAccounts();
 
@@ -48,7 +52,8 @@ class Patient extends React.Component {
             text2,
         } = this.props;
         const { state } = this.props.location;
-        console.log("Dep Adrees: " + state);
+        
+        console.log("Dep Address: " + state);
         // console.log("Owner address: " + this.props.addressOwner);
         
         return (
