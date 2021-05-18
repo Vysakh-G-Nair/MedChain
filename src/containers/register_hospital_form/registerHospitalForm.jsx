@@ -38,7 +38,7 @@ class RegisterHospitalForm extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .registerMedPro( hospitalName , "hey" , location, lisenceNo)
+        .registerMedPro( hospitalName , "hospital" , location, lisenceNo)
         .send({
           from: accounts[0],
         });
