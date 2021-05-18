@@ -28,7 +28,7 @@ class RegisterHospitalForm extends React.Component {
   };
 
 
-  registerDoctor = async (event) => {
+  registerMedical = async (event) => {
     event.preventDefault();
     
     const{hospitalName,category,lisenceNo,location}=this.state;
@@ -89,7 +89,7 @@ class RegisterHospitalForm extends React.Component {
           name="form1"
           //action="form1"
           //method="post"
-          onSubmit={this.registerDoctor} error={!!this.state.errorMessage}
+          //onSubmit={this.registerDoctor} error={!!this.state.errorMessage}
         >
           <div className="text-1-hospitalview poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
@@ -151,7 +151,7 @@ class RegisterHospitalForm extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.registerDoctor} error={!!this.state.errorMessage} disabled={loading}>
+              <a onClick={this.registerMedical} error={!!this.state.errorMessage} disabled={loading}>
                 <div className="rectangle-94">
                 {loading && (
                   <i
