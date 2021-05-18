@@ -12,19 +12,6 @@ import web3 from "../../ethereum/web3";
 const genderoptions = ["Male", "Female", "Other"];
 
 class RegisterPatientForm extends React.Component {
-  // constructor(props) {
-  //   super(props);
-    // this.state = { visible: false };
-  // }
-
-  // show() {
-  //   this.setState({ visible: true });
-  // }
-
-  // hide() {
-  //   this.setState({ visible: false });
-  // }
-
   state = {
     errorMessage: "",
     loading: false,
@@ -32,18 +19,8 @@ class RegisterPatientForm extends React.Component {
     age: 0,
     gender: 0,
     bloodGroup: "",
-    visible: false
+    visible: false,
   };
-
-  // fetchData = () => {
-  //   this.setState({ loading: true });
-
-  //   this.show.bind(this);
-
-  //   setTimeout(() => {
-  //     this.setState({ loading: false });
-  //   }, 2000);
-  // };
 
   registerPatient = async (event) => {
     event.preventDefault();
@@ -54,9 +31,19 @@ class RegisterPatientForm extends React.Component {
 
     try {
       const accounts = await web3.eth.getAccounts();
-      await factory.methods.registerPatient(patientName, age, "Male", bloodGroup, false, '0x0000000000000000000000000000000000000000', '0x0000000000000000000000000000000000000000').send({
-        from: accounts[0],
-      });
+      await factory.methods
+        .registerPatient(
+          patientName,
+          age,
+          "Male",
+          bloodGroup,
+          false,
+          "0x0000000000000000000000000000000000000000",
+          "0x0000000000000000000000000000000000000000"
+        )
+        .send({
+          from: accounts[0],
+        });
 
       const patientInstance = await factory.methods.loginPatient().call({
         from: accounts[0],
@@ -64,7 +51,7 @@ class RegisterPatientForm extends React.Component {
 
       this.props.history.push({
         pathname: "/patient",
-        state: patientInstance
+        state: patientInstance,
       });
     } catch (error) {
       this.setState({ errorMessage: error.message, visible: true });
@@ -101,9 +88,6 @@ class RegisterPatientForm extends React.Component {
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
           name="form1"
-          // action="form1"
-          // method="post"
-          // onSubmit={this.registerPatient} 
         >
           <div className="text-1-hospitalview poppins-medium-white-20px">
             {text1}
@@ -122,7 +106,9 @@ class RegisterPatientForm extends React.Component {
                 placeholder={inputPlaceholder} //PATIENTS NAME
                 type={inputType}
                 value={this.state.patientName}
-                onChange={(event) => this.setState({ patientName: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ patientName: event.target.value })
+                }
                 required
               />
             </div>
@@ -161,7 +147,9 @@ class RegisterPatientForm extends React.Component {
                 name="2215"
                 placeholder={inputPlaceholder3} //GENDER
                 value={genderoptions[0]}
-                onChange={(event) => this.setState({ gender: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ gender: event.target.value })
+                }
                 // defaultOption={genderoptions[0]}
                 // required
               />
@@ -181,37 +169,42 @@ class RegisterPatientForm extends React.Component {
                 placeholder={inputPlaceholder4} //BLOODGROUP
                 type={inputType2}
                 value={this.state.bloodGroup}
-                onChange={(event) => this.setState({ bloodGroup: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ bloodGroup: event.target.value })
+                }
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-            <a onClick={this.registerPatient}>
-              <div className="rectangle-94">
-                {loading && (
-                  <i
-                    className="fa fa-refresh fa-2x fa-spin"
-                    style={{ marginRight: "0px", color: '#B080FF', marginTop: "12px", marginLeft: "205px" }}
-                  />
-                )}
-                {!loading && <div className="view-hospitalview">{view}</div>}
-                {loading && <div className="view-hospitalview">Wait...</div>}
+              <a onClick={this.registerPatient}>
+                <div className="rectangle-94">
+                  {loading && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{
+                        marginRight: "0px",
+                        color: "#B080FF",
+                        marginTop: "12px",
+                        marginLeft: "205px",
+                      }}
+                    />
+                  )}
+                  {!loading && <div className="view-hospitalview">{view}</div>}
+                  {loading && <div className="view-hospitalview">Wait...</div>}
                 </div>
               </a>
               <Rodal
                 visible={this.state.visible}
                 onClose={() => this.setState({ visible: false })}
               >
-                <div className="text-1-rodal">
-                  {this.state.errorMessage}
-                </div>
-                <a onClick={() => this.setState({ visible: false })}>
+                <div className="text-1-rodal">{this.state.errorMessage}</div>
+                {/* <a onClick={() => this.setState({ visible: false })}>
                   <div className="rectangle-94-rodal">
                     <div className="view-rodal">Close</div>
                   </div>
-                </a>
+                </a> */}
               </Rodal>
             </div>
           </div>
