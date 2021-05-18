@@ -4,23 +4,62 @@ import { Link, withRouter } from "react-router-dom";
 import add_record_img from './add_record.png';
 import view_record_img from './view_record.png';
 import { Details } from '../index.js' ;
-
-const detailsData = {
-  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
-  spanText: "Name:",
-  spanText2: <> Vysakh G Nair<br /></>,
-  spanText3: "Age: ",
-  spanText4: <>21 years<br /></>,
-  spanText5: "Gender: ",
-  spanText6: <>M<br /></>,
-  spanText7: "Blood group: ",
-  spanText8: "AB+",
-};
+import web3 from "../../ethereum/web3";
+import HospitalCreator from '../../ethereum/medicalpro';
 
 class Hospital extends React.Component {
+  state = {
+    address: "",
+    addressOwner: '',
+    hosname: "",
+    category: "",
+    lisenceNo: 0,
+    location: ""    
+}
+
+componentWillMount() {
+    const { state } = this.props.location;
+    this.getMedSummary(state);
+}
+
+async getMedSummary(state) {
+    const hospital = HospitalCreator(state);
+    console.log(hospital.options.address);
+
+    const accounts = await web3.eth.getAccounts();
+
+    const summary = await hospital.methods.getMedProSummary().call({
+        from: accounts[0]
+    });
+
+    this.setState({
+        address: state,
+        addressOwner: summary[0],
+        hosname : summary[1],
+        category : summary[2],
+        lisenceNo : summary[4],
+        location : summary[3]        
+    });
+};
+
+
   render() {  
     const { hospital, viewRecord, addRecord } = this.props;
-
+    const { state } = this.props.location;
+    console.log("Dep Adrees: " + state);
+    
+    const detailsData = {
+      overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
+      spanText: "Center Name:",
+      spanText2: <> {this.state.hosname}<br /></>,
+      spanText3: "Category: ",
+      spanText4: <>{this.state.category}<br /></>,
+      spanText5: "LisenceNo:",
+      spanText6: <>{this.state.lisenceNo}<br /></>,
+      spanText7: "Location:",
+      spanText8: <>{this.state.location}<br /></>,
+    };
+    
     return (
       <div class="container-center-horizontal">
         <form
