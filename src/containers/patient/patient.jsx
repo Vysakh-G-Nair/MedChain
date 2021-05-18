@@ -9,38 +9,33 @@ import PatientCreator from '../../ethereum/patient';
 import web3 from "../../ethereum/web3";
 import { Details } from '../index.js' ;
 
-const detailsData = {
-    overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
-    spanText: "Name:",
-    spanText2: <> Vysakh G Nair<br /></>,
-    spanText3: "Age: ",
-    spanText4: <>21 years<br /></>,
-    spanText5: "Gender: ",
-    spanText6: <>M<br /></>,
-    spanText7: "Blood group: ",
-    spanText8: "AB+",
-  };
-
 class Patient extends React.Component {
     state = {
-        address: ""
+        address: "",
+        addressOwner: '',
+        name: ''
     }
 
-    static async getInitialProps(props) {
+    componentWillMount() {
         const { state } = this.props.location;
+        this.getPatSummary(state)
+    }
+
+    async getPatSummary(state) {
         const patient = PatientCreator(state);
         console.log(patient.options.address);
 
         const accounts = await web3.eth.getAccounts();
 
-        const addressOwner = await patient.methods.ownerPatient().call({
+        const summary = await patient.methods.getPatSummary().call({
             from: accounts[0]
         });
 
-        return {
+        this.setState({
             address: state,
-            addressOwner: addressOwner
-        };
+            addressOwner: summary[0],
+            name : summary[1]
+        });
     }
 
     render() {
@@ -51,10 +46,23 @@ class Patient extends React.Component {
             shareRecord,
             text2,
         } = this.props;
-        const { state } = this.props.location;
-        
-        console.log("Dep Address: " + state);
-        // console.log("Owner address: " + this.props.addressOwner);
+        // const { state } = this.props.location;
+
+        const detailsData = {
+            overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
+            spanText: "Name:",
+            spanText2: <>{this.state.name}<br /></>,
+            spanText3: "Age: ",
+            spanText4: <>21 years<br /></>,
+            spanText5: "Gender: ",
+            spanText6: <>M<br /></>,
+            spanText7: "Blood group: ",
+            spanText8: "AB+",
+          };
+
+        // console.log("Dep Address: " + state);
+        // console.log("Owner address: " + this.state.addressOwner);
+        // console.log(this.state.name);
         
         return (
             <div class="container-center-horizontal">

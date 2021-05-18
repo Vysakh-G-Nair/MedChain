@@ -2,14 +2,19 @@ import React from "react";
 import "./registerPatientFormStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-import Dropdown from "react-dropdown";
+// import Dropdown from "react-dropdown";
+import Select from 'react-select';
 import "react-dropdown/style.css";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 
-const genderoptions = ["Male", "Female", "Other"];
+const genderoptions = [ 
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Other", label: "Other" }
+];
 
 class RegisterPatientForm extends React.Component {
   state = {
@@ -17,7 +22,7 @@ class RegisterPatientForm extends React.Component {
     loading: false,
     patientName: "",
     age: 0,
-    gender: 0,
+    gender: null,
     bloodGroup: "",
     visible: false,
   };
@@ -35,7 +40,7 @@ class RegisterPatientForm extends React.Component {
         .registerPatient(
           patientName,
           age,
-          "Male",
+          gender,
           bloodGroup,
           false,
           "0x0000000000000000000000000000000000000000",
@@ -80,7 +85,7 @@ class RegisterPatientForm extends React.Component {
       view,
     } = this.props;
 
-    const { loading } = this.state;
+    const { loading, gender } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -140,7 +145,14 @@ class RegisterPatientForm extends React.Component {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
-              <Dropdown
+              <Select
+                value={gender}
+                onChange={(event) =>
+                  this.setState({ gender: event.target.value })
+                }
+                options={genderoptions}
+              />
+              {/* <Dropdown
                 options={genderoptions}
                 onChange={this._onSelect}
                 className="enter-record-name-registerhosp"
@@ -152,7 +164,7 @@ class RegisterPatientForm extends React.Component {
                 }
                 // defaultOption={genderoptions[0]}
                 // required
-              />
+              /> */}
             </div>
           </div>
           <div className="group-53">
