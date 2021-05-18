@@ -2,8 +2,7 @@ import React from "react";
 import "./registerPatientFormStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-// import Dropdown from "react-dropdown";
-import Select from 'react-select';
+import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
@@ -145,14 +144,14 @@ class RegisterPatientForm extends React.Component {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
-              <Select
+              {/* <Select
                 value={gender}
                 onChange={(event) =>
                   this.setState({ gender: event.target.value })
                 }
                 options={genderoptions}
-              />
-              {/* <Dropdown
+              /> */}
+              <Dropdown
                 options={genderoptions}
                 onChange={this._onSelect}
                 className="enter-record-name-registerhosp"
@@ -164,7 +163,7 @@ class RegisterPatientForm extends React.Component {
                 }
                 // defaultOption={genderoptions[0]}
                 // required
-              /> */}
+              />
             </div>
           </div>
           <div className="group-53">
