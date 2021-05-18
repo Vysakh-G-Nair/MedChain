@@ -2,6 +2,8 @@ import React from 'react';
 import './patientGrantStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import { Requests } from '../index.js' ;
+import PatientCreator from '../../ethereum/patient';
+import web3 from "../../ethereum/web3";
 
 const requestsData = {
   overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
@@ -16,6 +18,38 @@ const requestsData = {
 };
 
 class PatientGrant extends React.Component {
+  state = {
+    address: "",
+    addressOwner: '',
+    name: ''
+}
+
+componentWillMount() {
+    const { state } = this.props.location;
+    this.getPatSummary(state)
+}
+
+async getPatSummary(state) {
+    const patient = PatientCreator(state);
+    console.log("Deployed address: " + patient.options.address);
+
+    const accounts = await web3.eth.getAccounts();
+
+    const summary = await patient.methods.getPatSummary().call({
+        from: accounts[0]
+    });
+
+    this.setState({
+        address: state,
+        addressOwner: summary[0],
+        name : summary[1],
+        age: summary[2],
+        gender: summary[3],
+        bloodGroup: summary[4],
+        noOfRecords: summary[5]
+    });
+  }
+
   render () { 
     const {
       patientShareRecord,

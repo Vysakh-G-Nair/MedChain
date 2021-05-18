@@ -23,7 +23,7 @@ class Patient extends React.Component {
 
     async getPatSummary(state) {
         const patient = PatientCreator(state);
-        console.log(patient.options.address);
+        console.log("Deployed address: " + patient.options.address);
 
         const accounts = await web3.eth.getAccounts();
 
@@ -34,7 +34,11 @@ class Patient extends React.Component {
         this.setState({
             address: state,
             addressOwner: summary[0],
-            name : summary[1]
+            name : summary[1],
+            age: summary[2],
+            gender: summary[3],
+            bloodGroup: summary[4],
+            noOfRecords: summary[5]
         });
     }
 
@@ -46,23 +50,18 @@ class Patient extends React.Component {
             shareRecord,
             text2,
         } = this.props;
-        // const { state } = this.props.location;
 
         const detailsData = {
             overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
-            spanText: "Name:",
+            spanText: "Name: ",
             spanText2: <>{this.state.name}<br /></>,
             spanText3: "Age: ",
-            spanText4: <>21 years<br /></>,
+            spanText4: <>{this.state.age} years<br /></>,
             spanText5: "Gender: ",
-            spanText6: <>M<br /></>,
+            spanText6: <>{this.state.gender}<br /></>,
             spanText7: "Blood group: ",
-            spanText8: "AB+",
+            spanText8: <>{this.state.bloodGroup}<br /></>,
           };
-
-        // console.log("Dep Address: " + state);
-        // console.log("Owner address: " + this.state.addressOwner);
-        // console.log(this.state.name);
         
         return (
             <div class="container-center-horizontal">
