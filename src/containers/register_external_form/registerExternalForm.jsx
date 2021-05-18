@@ -2,6 +2,11 @@ import React from 'react';
 import './registerExternalFormStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
+import factory from '../../ethereum/factory';
+import web3 from '../../ethereum/web3';
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
+
 
   
 class RegisterExternalForm extends React.Component {
@@ -9,15 +14,51 @@ class RegisterExternalForm extends React.Component {
   state = {
     errorMessage: "",
     loading: false,
+    externalName: "",
+    designation: "",
+    visible: false
   };
 
-  fetchData = () => {
-    this.setState({ loading: true });
+ // fetchData = () => {
+ //   this.setState({ loading: true });
 
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 2000);
+ //   setTimeout(() => {
+//   this.setState({ loading: false });
+ //   }, 2000);
+ // };
+
+  registerExtUser = async (event) => {
+    event.preventDefault();
+
+    const { externalName, designation } = this.state;
+
+    this.setState({ loading: true, errorMessage: '' });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await factory.methods
+        .registerExtUser( externalName,designation )
+        .send({
+          from: accounts[0],
+        });
+
+      const externalInstance = await factory.methods.loginExtUser().call({
+        from: accounts[0]
+      });
+
+      this.props.history.push({
+        pathname: "/external",
+        state: externalInstance
+      }); 
+    } catch (error) {
+      this.setState({ errorMessage: error.message,visible: true });
+      console.log(this.state.errorMessage);
+    }
+
+    this.setState({ loading: false });
   };
+
+  
 
   render () { 
     const {
@@ -54,6 +95,8 @@ class RegisterExternalForm extends React.Component {
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
+                value={this.state.externalName}
+                onChange={event => this.setState({ externalName: event.target.value })}
                 required
               />
             </div>
@@ -66,13 +109,15 @@ class RegisterExternalForm extends React.Component {
                 name="2215"
                 placeholder={inputPlaceholder2}
                 type={inputType2}
+                value={this.state.designation}
+                onChange={event => this.setState({ designation: event.target.value })}
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.fetchData} disabled={loading} >
+              <a onClick={this.registerExtUser} disabled={loading} >
                 <div className="rectangle-94">
                 {loading && (
                   <i
@@ -84,6 +129,19 @@ class RegisterExternalForm extends React.Component {
                 {loading && <div className="view-hospitalview">Wait...</div>}
                 </div>
               </a>
+              <Rodal
+                visible={this.state.visible}
+                onClose={() => this.setState({ visible: false })}
+              >
+                <div className="text-1-rodal">
+                  {this.state.errorMessage}
+                </div>
+                <a onClick={() => this.setState({ visible: false })}>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Close</div>
+                  </div>
+                </a>
+              </Rodal>
           </div>
         </div>  
         </form>
