@@ -50,7 +50,7 @@ class RegisterHospitalForm extends React.Component {
         this.props.history.push({
           pathname: "/hospital",
           state: doctorInstance
-        });
+        });        
     } catch (error) {
       this.setState({ errorMessage: error.message , visible: true});
       console.log(this.state.errorMessage);
@@ -109,7 +109,19 @@ class RegisterHospitalForm extends React.Component {
           <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{categoryName}</div>
             <div className="overlap-group1-registerhosp" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-              <Dropdown
+            
+              <div className="enter-record-name-registerhosp">
+                <label>{inputPlaceholder2}
+                <select category={this.state.value} onChange={event => this.setState({ category: event.target.value })}>
+                  <option value="Hospital">Hospital</option>
+                  <option value="Diagnostic center">Diagnostic center</option>
+                  <option value="Clinic">Clinic</option>
+                </select>
+                </label>
+              </div>
+              
+          
+              {/* <Dropdown
                 options={options}
                 //onChange={this._onSelect}
                 className="enter-record-name-registerhosp"
@@ -118,9 +130,10 @@ class RegisterHospitalForm extends React.Component {
                 value={this.state.category}
                 onChange={event => this.setState({ category: event.target.value })}
                 
-              />
+              /> */}
             </div>
           </div>
+
           <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
