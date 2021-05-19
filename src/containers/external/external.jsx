@@ -2,23 +2,53 @@ import React from 'react';
 import './externalStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import view_record_img from './view_record.png';
+import ExternalCreator from '../../ethereum/external';
+import web3 from "../../ethereum/web3";
 import { Details } from '../index.js' ;
 
-const detailsData = {
-  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
-  spanText: "Name:",
-  spanText2: <> Vysakh G Nair<br /></>,
-  spanText3: "Age: ",
-  spanText4: <>21 years<br /></>,
-  spanText5: "Gender: ",
-  spanText6: <>M<br /></>,
-  spanText7: "Blood group: ",
-  spanText8: "AB+",
-};
-
 class External extends React.Component {
+  state = {
+    address: "",
+    addressOwner: '',
+    name: '',
+    designation : ''
+}
+
+componentWillMount() {
+    const { state } = this.props.location;
+    this.getExtSummary(state)
+}
+
+async getExtSummary(state) {
+    const external = ExternalCreator(state);
+    console.log("Deployed address: " + external.options.address);
+
+    const accounts = await web3.eth.getAccounts();
+
+    const summary = await external.methods.getExtSummary().call({
+        from: accounts[0]
+    });
+
+    this.setState({
+        address: state,
+        //addressOwner: summary[0],
+        name : summary[0],
+        designation: summary[1]    
+    });
+  }
+
+  
   render() {  
     const { hospital, viewRecord } = this.props;
+    const { state } = this.props.location;
+
+    const detailsData = {
+      overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
+      spanText: "Name: ",
+      spanText2: <>{this.state.name}<br /></>,
+      spanText3: "Designation: ",
+      spanText4: <>{this.state.designation}<br /></>,
+    };
 
     return (
       <div class="container-center-horizontal">
@@ -32,7 +62,7 @@ class External extends React.Component {
           <div className="details-comp"> <Details {...detailsData} /> </div>
           <div className="overlap-group-external">
             <div className="flex-row-external">
-              <Link to="/hospitalview">
+              <Link to="/externalview">
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-external">
                     <img className="view-3" src={view_record_img} alt=""/>
