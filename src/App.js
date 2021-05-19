@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { External, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
+import { Record, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
 
 
 
@@ -27,6 +27,7 @@ const hospitalData = {
   hospital: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   viewRecord: "View Record",
   addRecord: "Add Record",
+  regPatient: "Reg Patient",
 };
 
 const externalData = {
@@ -143,6 +144,28 @@ const registerPatientFormData = {
   view: "Register",
 };
 
+const registerPatientHospitalData = {
+  hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  text1: "ENTER DETAILS TO REGISTER PATIENT",
+  text2: "Patient’s name",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter patient's name",
+  recordName: "Patient's age",
+  patientGender: "Patient's gender",
+  doctorEthAddr: "Patient's blood group",
+  symptoms: "Docter's note",
+  overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType2: "text",
+  inputPlaceholder2: "Enter your age",
+  inputPlaceholder3: "Enter your gender",
+  inputPlaceholder4: "Enter your blood group",
+  view: "Register",
+  patientEthAddr: "Patient's Ethereum Address",
+  patientEthAddrPH: "Enter patient's ethereum address",
+};
+
 
 
 const patientExternalViewData = {
@@ -190,8 +213,8 @@ const patientData = {
   view4: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60926b3578d99f0175dcf352/img/view-4@2x.png",
   viewYourRecords: <>View Your<br />Records</>,
   name: <>Grant Write<br />Access</>,
-  shareRecord: "Share Record",
-  text2: <>View External<br />Record</>,
+  shareRecord: "Requests",
+  text2: "<>View External<br />Record</>",
 };
 
 const registerData = {
@@ -219,10 +242,41 @@ const viewRecordsData = {
   takeAction: "Take Action",
   manjunathanM: "Fever",
   text1: "14/05/2021",
-  name: "Grant",
+  name: "View",
   download: "Download",
   patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   yourRecords: "YOUR RECORDS",
+};
+
+const recordData = {
+  patientShareRecord: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  recordID: "Record ID: ",
+  recordIDVal: <> A123F<br /></>,
+  creatorEth: "Creator Ethereum Address: ",
+  creatorEthVal: <>ABDDJ1735329299DHSSBBCGET35478292<br /></>,
+  recordName: "Record Name: ",
+  recordNameVal: <>Fever<br /></>,
+  docName: "Doctor Name: ",
+  docNameVal: <>Manjunathan M<br /></>,
+  recDate: "Date Create: d",
+  recDateVal: <>25 April 2021<br /></>,
+  docNote: "Doctor's Note: ",
+  docNoteVal: <>Mild fever only. Paracetamol 650mg 10nos<br /></>,
+};
+
+const requestsData = {
+  patientShareRecord: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  incomingRequests: "INCOMING REQUESTS",
+  personName: "Docter’s name",
+  personEth: "Docter’s ethereum address",
+  takeAction: "Take Action",
+  name1: "Manjunathan M",
+  recID1: "A42627",
+  eth1: "0xDC25EF3F5B8A186998338A2",
+  grant: "Grant",
+  reject: "Reject",
+  recordID: "Record ID",
 };
 
 class App extends React.Component {
@@ -236,6 +290,7 @@ class App extends React.Component {
             <Route path="/registerhospitalform" exact component={() => <RegisterHospitalForm {...registerHospitalFormData} />} />
             <Route path="/registerexternalform" exact component={() => <RegisterExternalForm {...registerExternalFormData} />} />
             <Route path="/registerpatientform" exact component={() => <RegisterPatientForm {...registerPatientFormData} />} />
+            <Route path="/registerpatienthospital" exact component={() => <RegisterPatientHospital {...registerPatientHospitalData} />} />
             <Route path="/loginas" exact component={() => <LoginAs {...loginAsData} />} />
             <Route path="/patient" exact component={() => <Patient {...patientData} />} />
             <Route path="/hospital" exact component={() => <Hospital {...hospitalData} />} />
@@ -247,6 +302,8 @@ class App extends React.Component {
             <Route path="/viewrecords" exact component={() => <ViewRecords {...viewRecordsData} />} />
             <Route path="/external" exact component={() => <External {...externalData} />} />
             <Route path="/externalview" exact component={() => <ExternalView {...externalViewData} />} />
+            <Route path="/record" exact component={() => <Record {...recordData} />} />
+            <Route path="/requests" exact component={() => <Requests {...requestsData} />} />
           </Switch>
         </Router>
       </div>

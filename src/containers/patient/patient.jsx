@@ -83,14 +83,14 @@ class Patient extends React.Component {
                         </div>
                     </div>
                     </Link>
-                    <Link to="/patientgrant">
+                    {/* <Link to="/patientgrant">
                     <div className="group-patient">
                         <div className="overlap-group3-patient">
                         <img className="grant-1" src={grant_img} alt=""/>
                         <div className="name poppins-medium-amethyst-16px">{name}</div>
                         </div>
                     </div>
-                    </Link>
+                    </Link> */}
                     <Link to="/patientshare">
                     <div className="group-patient">
                         <div className="overlap-group2-patient">
@@ -99,14 +99,14 @@ class Patient extends React.Component {
                         </div>
                     </div>
                     </Link>
-                    <Link to="/patientexternalview">
+                    {/* <Link to="/patientexternalview">
                     <div className="group-patient">
                         <div className="overlap-group1-patient">
                         <img className="view-external-1" src={view_external_img} alt=""/>
                         <div className="text-2-patient poppins-medium-amethyst-16px">{text2}</div>
                         </div>
                     </div>
-                    </Link>
+                    </Link> */}
                 </div>
                 </div>
             </form>
