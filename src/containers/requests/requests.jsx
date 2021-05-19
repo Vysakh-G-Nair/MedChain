@@ -1,9 +1,98 @@
 import React from 'react';
 import './requestsStyling.scss';
 import { withRouter } from "react-router-dom";
-
+import PatientCreator from "../../ethereum/patient";
+import web3 from "../../ethereum/web3";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 
 class Requests extends React.Component {
+  state = {
+    address: "",
+    request: {},
+    loading: false,
+    errorMessage: "",
+    visible: false,
+  };
+
+  componentWillMount() {
+    const { state } = this.props.location;
+    this.getInstance(state);
+  }
+
+  async getInstance(state) {
+    const accounts = await web3.eth.getAccounts();
+    const patient = PatientCreator(state);
+    // console.log("Deployed address: " + patient.options.address);
+    console.log("Passed address: " + state);
+    // const requestCount = await patient.methods.getRequestsCount().call(); 
+    const request = await patient.methods.requests(0).call({
+      from: accounts[0]
+    });
+
+    // console.log(request);
+
+    if (request.isView == false && request.recordID == 0) {
+      request.recordID = "Create";
+    }
+
+    this.setState({
+      address: state,
+      request: request,
+    });
+
+    // const requests = await Promise.all(
+    //   Array(parseInt(requestCount))
+    //   .fill()
+    //   .map((element, index) => {
+    //       return patient.methods.requests(index).call();
+    //   })
+    // );
+  }
+
+  grantPerm = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: "" });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      const patient = PatientCreator(this.state.address);
+      console.log("Deployed address: " + patient.options.address);
+
+      await patient.methods.grantRequest(0).send({
+        from: accounts[0],
+      });
+
+      this.setState({ errorMessage: "Successfully granted", visible: true });
+    } catch (error) {
+      this.setState({ errorMessage: error.message, visible: true });
+      console.log(this.state.errorMessage);
+    }
+    this.setState({ loading: false });
+  };
+
+  denyPerm = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: "" });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+      const patient = PatientCreator(this.state.address);
+
+      await patient.methods.revokeRequest(0).send({
+        from: accounts[0],
+      });
+
+      this.setState({ errorMessage: "Successfully revoked", visible: true });
+    } catch (error) {
+      this.setState({ errorMessage: error.message, visible: true });
+      console.log(this.state.errorMessage);
+    }
+    this.setState({ loading: false });
+  };
+
     render() {
       const {
         incomingRequests,
@@ -11,10 +100,10 @@ class Requests extends React.Component {
         personEth,
         takeAction,
         recordID,
-        name1,
-        eth1,
+        // name1,
+        // eth1,
         grant,
-        recID1,
+        // recID1,
         reject,
         patientShareRecord,
       } = this.props;
@@ -38,17 +127,19 @@ class Requests extends React.Component {
                 <div className="rectangle-90-requests"></div>
               </div>
               <div className="flex-row-1-requests">
-                <div className="docname1-requests poppins-normal-baby-powder-18px">{name1}</div>
-                <div className="docether1-requests poppins-normal-baby-powder-18px">{eth1}</div>
-                <div className="recID1-requests poppins-normal-baby-powder-18px">{recID1}</div>
-                <a href="javascript:SubmitForm('form2')">
+                <div className="docname1-requests poppins-normal-baby-powder-18px">{this.state.request.nameDoc}</div>
+                <div className="docether1-requests poppins-normal-baby-powder-18px">{this.state.request.viewer}</div>
+                <div className="recID1-requests poppins-normal-baby-powder-18px">
+                  {this.state.request.recordID}
+                  </div>
+                <a onClick={this.grantPerm}>
                   <div className="grant-button-requests">
                     <div className="overlap-group-1-requests">
                       <div className="name-requests poppins-medium-amethyst-15px">{grant}</div>
                     </div>
                   </div>
                 </a>
-                <a href="javascript:SubmitForm('form2')">
+                <a onClick={this.denyPerm}>
                   <div className="reject-button-requests">
                     <div className="overlap-group-1-requests">
                       <div className="reject-requests poppins-medium-alizarin-crimson-15px">{reject}</div>
@@ -57,6 +148,12 @@ class Requests extends React.Component {
                 </a>
               </div>
               <div className="rectangle-95-requests"></div>
+              <Rodal
+                visible={this.state.visible}
+                onClose={() => this.setState({ visible: false })}
+              >
+                <div className="text-1-rodal">{this.state.errorMessage}</div>
+              </Rodal>
             </div>
           </form>
         </div>

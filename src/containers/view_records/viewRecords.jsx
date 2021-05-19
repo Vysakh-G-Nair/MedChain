@@ -1,9 +1,48 @@
 import React from 'react';
 import './viewRecordsStyling.scss';
-import { withRouter } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
+import PatientCreator from "../../ethereum/patient";
+import web3 from "../../ethereum/web3";
 
 class ViewRecords extends React.Component {
+  state = {
+    address: "",
+    noOfRecords: -1,
+    records: {}
+  };
+
+  componentWillMount() {
+    const { state } = this.props.location;
+    this.getInstance(state);
+  }
+  
+  async getInstance(state) {
+    const patient = PatientCreator(state[0]);
+    console.log("Deployed address: " + patient.options.address);
+    console.log("Passed address: " + state[0]);
+    console.log("No. of records: " + state[1]); 
+    const accounts = await web3.eth.getAccounts();
+    const record = await patient.methods.view1Record(0).call({
+      from: accounts[0]
+    });
+
+    console.log(record);
+
+    this.setState({
+      address: state[0],
+      noOfRecords: state[1],
+      records: record
+    });
+
+    // const requests = await Promise.all(
+    //   Array(parseInt(requestCount))
+    //   .fill()
+    //   .map((element, index) => {
+    //       return patient.methods.requests(index).call();
+    //   })
+    // );
+  }
+
     render() {
       const {
         patientsOwnRecords,
@@ -11,8 +50,8 @@ class ViewRecords extends React.Component {
         doctersName,
         text2,
         takeAction,
-        manjunathanM,
-        text1,
+        // manjunathanM,
+        // text1,
         name,
         download,
       } = this.props;
@@ -34,15 +73,22 @@ class ViewRecords extends React.Component {
                 <div className="rectangle-90-view-records"></div>
               </div>
               <div className="flex-row-1-view-records">
-                <div className="docname1 poppins-normal-baby-powder-18px">{manjunathanM}</div>
-                <div className="docether1 poppins-normal-baby-powder-18px">{text1}</div>
-                <a href="javascript:SubmitForm('form2')">
+                <div className="docname1 poppins-normal-baby-powder-18px">{this.state.records[2]}</div>
+                <div className="docether1 poppins-normal-baby-powder-18px">{this.state.records[4]}</div>
+                {/* <a href="javascript:SubmitForm('form2')"> */}
+                <Link
+                to={{
+                  pathname: "/record",
+                  state: this.state.records
+                }}
+              >
                   <div className="grant-button">
                     <div className="overlap-group-1-view-records">
                       <div className="name-view-records poppins-medium-amethyst-15px">{name}</div>
                     </div>
                   </div>
-                </a>
+                {/* </a> */}
+                </Link>
                 <a href="javascript:SubmitForm('form2')">
                   <div className="reject-button">
                     <div className="overlap-group-1-view-records">
@@ -55,7 +101,6 @@ class ViewRecords extends React.Component {
             </div>
           </form>
           </div>
-          
         </div>
       );
     }
