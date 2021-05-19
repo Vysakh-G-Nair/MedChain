@@ -9,10 +9,10 @@ import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 
-const genderoptions = [ 
+const genderoptions = [
   { value: "Male", label: "Male" },
   { value: "Female", label: "Female" },
-  { value: "Other", label: "Other" }
+  { value: "Other", label: "Other" },
 ];
 
 class RegisterPatientForm extends React.Component {
@@ -39,7 +39,7 @@ class RegisterPatientForm extends React.Component {
         .registerPatient(
           patientName,
           age,
-          gender,
+          "Male",
           bloodGroup,
           false,
           "0x0000000000000000000000000000000000000000",
@@ -157,7 +157,7 @@ class RegisterPatientForm extends React.Component {
                 className="enter-record-name-registerhosp"
                 name="2215"
                 placeholder={inputPlaceholder3} //GENDER
-                value={genderoptions[0]}
+                value={this.state.gender}
                 onChange={(event) =>
                   this.setState({ gender: event.target.value })
                 }

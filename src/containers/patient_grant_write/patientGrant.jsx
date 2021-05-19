@@ -1,12 +1,13 @@
-import React from 'react';
-import './patientGrantStyling.scss';
+import React from "react";
+import "./patientGrantStyling.scss";
 import { Link, withRouter } from "react-router-dom";
-import { Requests } from '../index.js' ;
-import PatientCreator from '../../ethereum/patient';
+import { Requests } from "../index.js";
+import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 
 const requestsData = {
-  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  overlapGroup:
+    "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
   incomingRequests: "INCOMING REQUESTS",
   doctersName: "Docter’s name",
   text2: "Docter’s ethereum address",
@@ -20,37 +21,61 @@ const requestsData = {
 class PatientGrant extends React.Component {
   state = {
     address: "",
-    addressOwner: '',
-    name: ''
-}
+    addressOwner: "",
+    name: "",
+    noOfRecords: -1
+  };
 
-componentWillMount() {
+  componentWillMount() {
     const { state } = this.props.location;
-    this.getPatSummary(state)
-}
-
-async getPatSummary(state) {
-    const patient = PatientCreator(state);
-    console.log("Deployed address: " + patient.options.address);
-
-    const accounts = await web3.eth.getAccounts();
-
-    const summary = await patient.methods.getPatSummary().call({
-        from: accounts[0]
-    });
-
-    this.setState({
-        address: state,
-        addressOwner: summary[0],
-        name : summary[1],
-        age: summary[2],
-        gender: summary[3],
-        bloodGroup: summary[4],
-        noOfRecords: summary[5]
-    });
+    this.getInstance(state);
   }
 
-  render () { 
+  async getInstance(state) {
+    const patient = PatientCreator(state[0]);
+    console.log("Deployed address: " + patient.options.address);
+    console.log("Passed address: " + state[0]);
+    console.log("No. of records: " + state[1]); 
+    const requestCount = await patient.methods.getRequestsCount().call(); 
+
+    this.setState({
+      address: state[0],
+      noOfRecords: state[1]
+    });
+
+    const requests = await Promise.all(
+      Array(parseInt(requestCount))
+      .fill()
+      .map((element, index) => {
+          return patient.methods.requests(index).call();
+      })
+    );
+  }
+
+  grantPerm = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: "" });
+
+    // try {
+    //   const accounts = await web3.eth.getAccounts();
+
+    //   const extUserInstance = await factory.methods.loginExtUser().call({
+    //     from: accounts[0],
+    //   });
+
+    //   this.props.history.push({
+    //     pathname: "/external",
+    //     state: extUserInstance,
+    //   });
+    // } catch (error) {
+    //   this.setState({ errorMessage: error.message });
+    //   console.log(this.state.errorMessage);
+    // }
+    this.setState({ loading: false });
+  };
+
+  render() {
     const {
       patientShareRecord,
       text1,
@@ -101,6 +126,3 @@ async getPatSummary(state) {
 }
 
 export default withRouter(PatientGrant);
-
-
-        

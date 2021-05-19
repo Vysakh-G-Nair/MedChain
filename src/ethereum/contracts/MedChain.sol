@@ -210,6 +210,10 @@ contract Patient {
         Record storage record = records[_index];
         return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
     }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
+    }
 }
 
 contract External {
