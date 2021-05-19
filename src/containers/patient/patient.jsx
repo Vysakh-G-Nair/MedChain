@@ -97,13 +97,9 @@ class Patient extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </Link>
-                  <Link
-                    to={{
-                      pathname: "/patientgrant",
-                      state: [this.state.address, this.state.noOfRecords]
-                    }}
-                  >
+
+                    </Link>
+                    {/* <Link to="/patientgrant">
                     <div className="group-patient">
                       <div className="overlap-group3-patient">
                         <img className="grant-1" src={grant_img} alt="" />
@@ -112,8 +108,8 @@ class Patient extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </Link>
-                  <Link to="/patientshare">
+                    </Link> */}
+                    <Link to="/patientshare">
                     <div className="group-patient">
                       <div className="overlap-group2-patient">
                         <img
@@ -126,8 +122,8 @@ class Patient extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </Link>
-                  <Link to="/patientexternalview">
+                    </Link>
+                    {/* <Link to="/patientexternalview">
                     <div className="group-patient">
                       <div className="overlap-group1-patient">
                         <img
@@ -140,7 +136,8 @@ class Patient extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                    </Link> */}
+                </div>
                 </div>
               </div>
             </form>
