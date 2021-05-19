@@ -25,7 +25,7 @@
     line-height: 24px;
     color: #FFFFFF;
     mix-blend-mode: normal;
-    margin-left: 32px;
+    margin-left: -80px;
   }
   .flex-row-requests {
     align-items: flex-start;
@@ -49,12 +49,12 @@
     margin-top: 36px;
     min-width: 1224px;
   }
-  .grant-button {
+  .grant-button-requests {
     align-items: flex-start;
     cursor: pointer;
     display: flex;
-    margin-left: 183px;
-    min-width: 111px;
+    margin-left: -100px;
+    //min-width: 111px;
   }
   .incoming-requests {
     letter-spacing: 1.00px;
@@ -76,7 +76,7 @@
     color: #FFFFFF;
     mix-blend-mode: normal;
   }
-  .docname1 {
+  .docname1-requests {
     letter-spacing: 0;
     line-height: 24px;
     min-height: 24px;
@@ -93,9 +93,32 @@
     line-height: 24px;
     color: #FFFFFF;
     mix-blend-mode: normal;
+    margin-right: -20px;
+    margin-left: 230px;
+  }
+
+  .doc-eth-requests {
+    letter-spacing: 1.00px;
+    line-height: 24px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    margin-right: 170px;
   }
   .name-requests {
     letter-spacing: 1.00px;
+    margin-left: 0px;
     min-height: 21px;
     min-width: 92px;
     mix-blend-mode: normal;
@@ -114,10 +137,10 @@
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 456px;
-    min-height: 482px;
-    padding: 56px 93px;
-    width: 1504px;
+    margin-top: 56px;
+    min-height: 1082px;
+    padding: 56px 0px;
+    width: 1440px;
     background: #2D3135;
     /* Idle Shadow */
 
@@ -179,7 +202,7 @@
     box-shadow: 12px 6px 40px rgba(255, 105, 169, 0.182009);
     border-radius: 100px;
   }
-  .reject {
+  .reject-requests {
     letter-spacing: 1.00px;
     min-height: 21px;
     min-width: 92px;
@@ -194,11 +217,12 @@
     color: #E32C2C;
     mix-blend-mode: normal;
   }
-  .reject-button {
+  .reject-button-requests {
     align-items: flex-start;
     cursor: pointer;
     display: flex;
     margin-left: 28px;
+    margin-right: 200px;
     min-width: 111px;
   }
   .requests {
@@ -209,13 +233,13 @@
     mix-blend-mode: normal;
     overflow: hidden;
     width: 1440px;
-    margin-top: -350px;
-    margin-right: -425px;
+    margin-top: 0px;
+    margin-right: 0px;
   }
-  .take-action {
+  .take-action-requests {
     letter-spacing: 1.00px;
     line-height: 24px;
-    margin-left: 242px;
+    margin-left: -30px;
     min-height: 24px;
     mix-blend-mode: normal;
     opacity: 0.8;
@@ -229,10 +253,32 @@
     color: #FFFFFF;
     mix-blend-mode: normal;
   }
-  .docether1 {
+  .docether1-requests {
     letter-spacing: 0;
     line-height: 24px;
-    margin-left: 139px;
+    margin-left: 80px;
+    margin-right: 50px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+  }
+
+  .recID1-requests {
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-right: 100px;
+    margin-left: 0px;
     min-height: 24px;
     min-width: 281px;
     mix-blend-mode: normal;
@@ -251,7 +297,7 @@
   .text-2-requests {
     letter-spacing: 1.00px;
     line-height: 24px;
-    margin-left: 139px;
+    margin-right: 20px;
     min-height: 24px;
     min-width: 281px;
     mix-blend-mode: normal;

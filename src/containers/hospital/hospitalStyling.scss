@@ -21,6 +21,7 @@
   font-size: var(--font-size-l2);
   font-weight: 600;
   padding-top: 5px;
+  line-height: 25px;
 }
 .add-record-group {
   cursor: pointer;
@@ -43,6 +44,7 @@
   display: flex;
   margin-top: 5px;
   min-width: 390px;
+  margin-right: 0px;
 }
 .hospital {
   align-items: flex-start;
@@ -64,7 +66,8 @@
   margin-top: 330px;
   min-height: 300px;
   padding: 100px 58px;
-  width: 508px;
+  width: 808px;
+  margin-left: -130px;
 }
 
 

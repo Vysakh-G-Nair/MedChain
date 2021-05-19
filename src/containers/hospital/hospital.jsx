@@ -44,7 +44,7 @@ async getMedSummary(state) {
 
 
   render() {  
-    const { hospital, viewRecord, addRecord } = this.props;
+    const { hospital, viewRecord, addRecord, regPatient } = this.props;
     const { state } = this.props.location;
     console.log("Dep Adrees: " + state);
     
@@ -85,6 +85,14 @@ async getMedSummary(state) {
                   <div className="overlap-group1-hospital">
                     <img className="edit-5" src={add_record_img} alt=""/>
                     <div className="add-record poppins-medium-amethyst-16px">{addRecord}</div>
+                  </div>
+                </div>
+              </Link>
+              <Link to="/registerpatienthospital">
+                <div className="add-record-group smart-layers-pointers">
+                  <div className="overlap-group1-hospital">
+                    <img className="edit-5" src={add_record_img} alt=""/>
+                    <div className="add-record poppins-medium-amethyst-16px">{regPatient}</div>
                   </div>
                 </div>
               </Link>
