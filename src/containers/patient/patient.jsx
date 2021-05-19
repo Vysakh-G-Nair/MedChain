@@ -124,7 +124,7 @@ class Patient extends React.Component {
                       </div>
                     </div>
                     </Link> */}
-              <Link to="/patientshare">
+              <Link to="/requests">
                 <div className="group-patient">
                   <div className="overlap-group2-patient">
                     <img
