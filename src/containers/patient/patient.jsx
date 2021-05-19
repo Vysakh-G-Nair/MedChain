@@ -13,7 +13,11 @@ class Patient extends React.Component {
     state = {
         address: "",
         addressOwner: '',
-        name: ''
+        name: '',
+        age: '',
+        gender: '',
+        bloodGroup: '',
+        noOfRecords: -1
     }
 
     componentWillMount() {
@@ -61,56 +65,83 @@ class Patient extends React.Component {
             spanText6: <>{this.state.gender}<br /></>,
             spanText7: "Blood group: ",
             spanText8: <>{this.state.bloodGroup}<br /></>,
+            spanText9: "No of records: ",
+            spanText10: <>{this.state.noOfRecords}<br /></>,
           };
         
         return (
-            <div class="container-center-horizontal">
+          <div class="container-center-horizontal">
             <form
-                className="patient screen"
-                style={{ backgroundImage: `url(${patient})` }}
-                name="form4"
-                action="form4"
-                method="post"
+              className="patient screen"
+              style={{ backgroundImage: `url(${patient})` }}
+              name="form4"
+              action="form4"
+              method="post"
             >
-                <div className="details-comp"> <Details {...detailsData} /> </div>
-                <div className="overlap-group-patient">
+              <div className="details-comp">
+                {" "}
+                <Details {...detailsData} />{" "}
+              </div>
+              <div className="overlap-group-patient">
                 <div className="flex-row">
-                    <Link to="/patientview">
+                  <Link to="/viewrecords">
                     <div className="group-57">
-                        <div className="overlap-group4-patient">
-                        <img className="view-4" src={view_your_record_img} alt=""/>
-                        <div className="view-your-records poppins-medium-amethyst-16px">{viewYourRecords}</div>
+                      <div className="overlap-group4-patient">
+                        <img
+                          className="view-4"
+                          src={view_your_record_img}
+                          alt=""
+                        />
+                        <div className="view-your-records poppins-medium-amethyst-16px">
+                          {viewYourRecords}
                         </div>
+                      </div>
                     </div>
+
                     </Link>
                     {/* <Link to="/patientgrant">
                     <div className="group-patient">
-                        <div className="overlap-group3-patient">
-                        <img className="grant-1" src={grant_img} alt=""/>
-                        <div className="name poppins-medium-amethyst-16px">{name}</div>
+                      <div className="overlap-group3-patient">
+                        <img className="grant-1" src={grant_img} alt="" />
+                        <div className="name poppins-medium-amethyst-16px">
+                          {name}
                         </div>
+                      </div>
                     </div>
                     </Link> */}
                     <Link to="/patientshare">
                     <div className="group-patient">
-                        <div className="overlap-group2-patient">
-                        <img className="share-1" src={share_your_record_img} alt=""/>
-                        <div className="share-record poppins-medium-amethyst-16px">{shareRecord}</div>
+                      <div className="overlap-group2-patient">
+                        <img
+                          className="share-1"
+                          src={share_your_record_img}
+                          alt=""
+                        />
+                        <div className="share-record poppins-medium-amethyst-16px">
+                          {shareRecord}
                         </div>
+                      </div>
                     </div>
                     </Link>
                     {/* <Link to="/patientexternalview">
                     <div className="group-patient">
-                        <div className="overlap-group1-patient">
-                        <img className="view-external-1" src={view_external_img} alt=""/>
-                        <div className="text-2-patient poppins-medium-amethyst-16px">{text2}</div>
+                      <div className="overlap-group1-patient">
+                        <img
+                          className="view-external-1"
+                          src={view_external_img}
+                          alt=""
+                        />
+                        <div className="text-2-patient poppins-medium-amethyst-16px">
+                          {text2}
                         </div>
+                      </div>
                     </div>
                     </Link> */}
                 </div>
                 </div>
+              </div>
             </form>
-            </div>
+          </div>
         );
     }
 }

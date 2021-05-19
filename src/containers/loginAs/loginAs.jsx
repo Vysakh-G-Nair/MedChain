@@ -5,11 +5,14 @@ import user_img from "./user.png";
 import hospital_img from "./hospital.png";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 
 class LoginAs extends React.Component {
   state = {
     errorMessage: "",
     loading: false,
+    visible: false,
   };
 
   loginPatient = async (event) => {
@@ -29,7 +32,7 @@ class LoginAs extends React.Component {
         state: patientInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message });
+      this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -52,7 +55,7 @@ class LoginAs extends React.Component {
         state: doctorInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message });
+      this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -75,7 +78,7 @@ class LoginAs extends React.Component {
         state: extUserInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message });
+      this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -127,6 +130,17 @@ class LoginAs extends React.Component {
                 </div>
               </div>
             </a>
+            <Rodal
+                visible={this.state.visible}
+                onClose={() => this.setState({ visible: false })}
+              >
+                <div className="text-1-rodal">{this.state.errorMessage}</div>
+                {/* <a onClick={() => this.setState({ visible: false })}>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Close</div>
+                  </div>
+                </a> */}
+              </Rodal>
           </div>
         </form>
       </div>
