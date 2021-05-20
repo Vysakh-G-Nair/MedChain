@@ -16,10 +16,6 @@
     border-radius: 30px;
   }
 
-  .RequestsRow{
-    margin-top: -190px;
-  }
-
   .ag1637-g {
     left: 875px;
     letter-spacing: 0;
@@ -90,7 +86,7 @@
     line-height: 22px;
     color: #9A5BFF;
   }
-  .overlap-group-requests {
+  .requestsRow-requests {
     height: 691px;
     margin-left: 4.0px;
     margin-top: 57px;
@@ -116,7 +112,7 @@
     box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
     border-radius: 30px;
   }
-
+  
   .overlap-group2-requests {
     align-items: flex-start;
     background-color: var(--mine-shaft);
@@ -128,10 +124,8 @@
     min-width: 109px;
     padding: 3px 8px;
   }
-  .patient-s-own-records-requests {
+  .patient-s-own-records-requestsrow {
     align-items: center;
-    background-color: var(--mine-shaft);
-    background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     height: 900px;
