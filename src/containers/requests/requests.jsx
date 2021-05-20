@@ -13,6 +13,7 @@ class Requests extends React.Component {
     loading: false,
     errorMessage: "",
     visible: false,
+    request2: {}
   };
 
   componentWillMount() {
@@ -29,6 +30,9 @@ class Requests extends React.Component {
     const request = await patient.methods.requests(0).call({
       from: accounts[0]
     });
+    const request2 = await patient.methods.requests(1).call({
+      from: accounts[0]
+    });
 
     // console.log(request);
 
@@ -39,6 +43,7 @@ class Requests extends React.Component {
     this.setState({
       address: state,
       request: request,
+      request2: request2
     });
 
     // const requests = await Promise.all(
@@ -60,7 +65,7 @@ class Requests extends React.Component {
       const patient = PatientCreator(this.state.address);
       console.log("Deployed address: " + patient.options.address);
 
-      await patient.methods.grantRequest(0).send({
+      await patient.methods.grantRequest(1).send({
         from: accounts[0],
       });
 
@@ -131,6 +136,28 @@ class Requests extends React.Component {
                 <div className="docether1-requests poppins-normal-baby-powder-18px">{this.state.request.viewer}</div>
                 <div className="recID1-requests poppins-normal-baby-powder-18px">
                   {this.state.request.recordID}
+                  </div>
+                <a onClick={this.grantPerm}>
+                  <div className="grant-button-requests">
+                    <div className="overlap-group-1-requests">
+                      <div className="name-requests poppins-medium-amethyst-15px">{grant}</div>
+                    </div>
+                  </div>
+                </a>
+                <a onClick={this.denyPerm}>
+                  <div className="reject-button-requests">
+                    <div className="overlap-group-1-requests">
+                      <div className="reject-requests poppins-medium-alizarin-crimson-15px">{reject}</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div className="rectangle-95-requests"></div>
+              <div className="flex-row-1-requests">
+                <div className="docname1-requests poppins-normal-baby-powder-18px">{this.state.request2.nameDoc}</div>
+                <div className="docether1-requests poppins-normal-baby-powder-18px">{this.state.request2.viewer}</div>
+                <div className="recID1-requests poppins-normal-baby-powder-18px">
+                  {this.state.request2.recordID}
                   </div>
                 <a onClick={this.grantPerm}>
                   <div className="grant-button-requests">

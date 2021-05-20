@@ -32,7 +32,7 @@ class LoginAs extends React.Component {
         state: patientInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message, visible: true });
+      this.setState({ errorMessage: error.message.slice(20,46), visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -55,7 +55,7 @@ class LoginAs extends React.Component {
         state: doctorInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message, visible: true });
+      this.setState({ errorMessage: error.message.slice(20,44), visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -78,7 +78,7 @@ class LoginAs extends React.Component {
         state: extUserInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message, visible: true });
+      this.setState({ errorMessage: error.message.slice(20,51), visible: true });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });

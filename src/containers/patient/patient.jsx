@@ -179,9 +179,14 @@ class Patient extends React.Component {
                 </div> */}
               <Rodal
                 visible={this.state.visible}
-                onClose={() => this.setState({ visible: false })}
+                // onClose={() => this.setState({ visible: false })}
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
+                <Link to='/'>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Go to homepage</div>
+                  </div>
+                  </Link>
               </Rodal>
             </div>
           </div>
