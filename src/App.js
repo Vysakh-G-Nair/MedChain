@@ -256,17 +256,17 @@ const viewRecordsRowData = {
 const recordData = {
   patientShareRecord: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   recordID: "Record ID: ",
-  recordIDVal: <> A123F<br /></>,
+  // recordIDVal: <> A123F<br /></>,
   creatorEth: "Creator Ethereum Address: ",
-  creatorEthVal: <>ABDDJ1735329299DHSSBBCGET35478292<br /></>,
+  // creatorEthVal: <>ABDDJ1735329299DHSSBBCGET35478292<br /></>,
   recordName: "Record Name: ",
-  recordNameVal: <>Fever<br /></>,
+  // recordNameVal: <>Fever<br /></>,
   docName: "Doctor Name: ",
   docNameVal: <>Manjunathan M<br /></>,
   recDate: "Date Created: ",
   recDateVal: <>25 April 2021<br /></>,
   docNote: "Doctor's Note: ",
-  docNoteVal: <>Mild fever only. Paracetamol 650mg 10nos<br /></>,
+  // docNoteVal: <>Mild fever only. Paracetamol 650mg 10nos<br /></>,
 };
 
 const requestsData = {
