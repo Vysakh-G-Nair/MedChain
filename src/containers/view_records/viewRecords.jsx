@@ -1,7 +1,16 @@
 import React from 'react';
 import './viewRecordsStyling.scss';
 import { withRouter } from "react-router-dom";
+import { ViewRecordsRow } from "../index.js";
 
+const viewRecordsRowData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  manjunathanM: "Fever",
+  text1: "14/05/2021",
+  name: "View",
+  download: "Download",
+  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+};
 
 class ViewRecords extends React.Component {
     render() {
@@ -33,25 +42,9 @@ class ViewRecords extends React.Component {
                 <div className="rectangle-89-view-records"></div>
                 <div className="rectangle-90-view-records"></div>
               </div>
-              <div className="flex-row-1-view-records">
-                <div className="docname1 poppins-normal-baby-powder-18px">{manjunathanM}</div>
-                <div className="docether1 poppins-normal-baby-powder-18px">{text1}</div>
-                <a href="javascript:SubmitForm('form2')">
-                  <div className="grant-button">
-                    <div className="overlap-group-1-view-records">
-                      <div className="name-view-records poppins-medium-amethyst-15px">{name}</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="javascript:SubmitForm('form2')">
-                  <div className="reject-button">
-                    <div className="overlap-group-1-view-records">
-                      <div className="download poppins-medium-alizarin-crimson-15px">{download}</div>
-                    </div>
-                  </div>
-                </a>
+              <div className="RecordRow">
+                <ViewRecordsRow {...viewRecordsRowData} />
               </div>
-              <div className="rectangle-95-view-records"></div>
             </div>
           </form>
           </div>
