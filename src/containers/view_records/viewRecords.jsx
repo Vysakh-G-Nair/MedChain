@@ -3,7 +3,16 @@ import "./viewRecordsStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
-// import { saveAs } from 'file-saver';
+import { ViewRecordsRow } from "../index.js";
+
+const viewRecordsRowData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  manjunathanM: "Fever",
+  text1: "14/05/2021",
+  name: "View",
+  download: "Download",
+  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+};
 
 class ViewRecords extends React.Component {
   state = {
@@ -105,6 +114,7 @@ class ViewRecords extends React.Component {
                 <div className="rectangle-89-view-records"></div>
                 <div className="rectangle-90-view-records"></div>
               </div>
+/* <<<<<<< patient-interface
               <div className="flex-row-1-view-records">
                 <div className="docname1 poppins-normal-baby-powder-18px">
                   {this.state.records[2]}
@@ -171,8 +181,10 @@ class ViewRecords extends React.Component {
                   </div>
                 </div>
                 {/* </a> */}
+======= */
+              <div className="RecordRow">
+                <ViewRecordsRow {...viewRecordsRowData} />
               </div>
-              <div className="rectangle-95-view-records"></div>
             </div>
           </form>
         </div>

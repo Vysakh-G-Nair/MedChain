@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Record, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
+import { Record, ViewRecordsRow, HospitalAddCheck, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
 
 
 
@@ -240,12 +240,17 @@ const viewRecordsData = {
   doctersName: "Record name",
   text2: "Date created",
   takeAction: "Take Action",
-  // manjunathanM: "Fever",
-  // text1: "14/05/2021",
+  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  yourRecords: "YOUR RECORDS",
+};
+
+const viewRecordsRowData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  manjunathanM: "Fever",
+  text1: "14/05/2021",
   name: "View",
   download: "Download",
   patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  yourRecords: "YOUR RECORDS",
 };
 
 const recordData = {
@@ -257,26 +262,31 @@ const recordData = {
   recordName: "Record Name: ",
   // recordNameVal: <>Fever<br /></>,
   docName: "Doctor Name: ",
-  // docNameVal: <>Manjunathan M<br /></>,
+  docNameVal: <>Manjunathan M<br /></>,
   recDate: "Date Created: ",
-  // recDateVal: <>25 April 2021<br /></>,
+  recDateVal: <>25 April 2021<br /></>,
   docNote: "Doctor's Note: ",
   // docNoteVal: <>Mild fever only. Paracetamol 650mg 10nos<br /></>,
 };
 
 const requestsData = {
+  patientSOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  requests: "REQUESTS",
+  rectangle88: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609e042164fa84b611973eb3/img/rectangle-88@1x.svg",
+  takeAction: "Take action",
+  recordId: "Record ID",
+  text2: "Docter’s ethereum address",
+  doctersName: "Docter’s name",
+};
+
+const hospitalAddCheckData = {
   patientShareRecord: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
-  incomingRequests: "INCOMING REQUESTS",
-  personName: "Docter’s name",
-  personEth: "Docter’s ethereum address",
-  takeAction: "Take Action",
-  name1: "Manjunathan M",
-  recID1: "A42627",
-  eth1: "0xDC25EF3F5B8A186998338A2",
-  grant: "Grant",
-  reject: "Reject",
-  recordID: "Record ID",
+  text1: "CHECK ADD PERMISSION",
+  text2: "Patient’s ethereum address",
+  overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
+  inputType: "text",
+  inputPlaceholder: "Enter patient's ethereum address",
+  view: "Check Permission",
 };
 
 class App extends React.Component {
@@ -296,6 +306,7 @@ class App extends React.Component {
             <Route path="/hospital" exact component={() => <Hospital {...hospitalData} />} />
             <Route path="/hospitalview" exact component={() => <HospitalView {...hospitalViewData} />} />
             <Route path="/hospitaladd" exact component={() => <HospitalAdd {...hospitalAddData} />} />
+            <Route path="/hospitaladdcheck" exact component={() => <HospitalAddCheck {...hospitalAddCheckData} />} />
             <Route path="/patientshare" exact component={() => <PatientShareRecord {...patientShareRecordData} />} />
             <Route path="/patientexternalview" exact component={() => <PatientExternalView {...patientExternalViewData} />} />
             <Route path="/patientgrant" exact component={() => <PatientGrant {...patientGrantData} />} />
