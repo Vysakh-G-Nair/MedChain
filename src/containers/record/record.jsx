@@ -6,27 +6,6 @@ import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
 
 class Record extends React.Component {
-  // state = {
-  //     recordID: 0,
-  //     creatorEth: '',
-  //     recordName: '',
-  //     docName: '',
-  //     recDate: '',
-  //     docNote: '',
-  //   };
-
-  //   componentWillMount() {
-  //     const { state } = this.props.location;
-  //     this.setState({
-  //         recordID: state[0],
-  //         creatorEth: state[1],
-  //         recordName: state[2],
-  //         docName: state[3],
-  //         recDate: state[4],
-  //         docNote: state[5],
-  //     })
-  //   }
-
   render() {
     const {
       recordID,
