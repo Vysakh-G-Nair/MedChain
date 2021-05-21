@@ -274,7 +274,7 @@ const requestsData = {
   requests: "REQUESTS",
   rectangle88: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609e042164fa84b611973eb3/img/rectangle-88@1x.svg",
   takeAction: "Take action",
-  recordId: "Record ID",
+  recordId: "Create / View (Record ID)",
   text2: "Docter’s ethereum address",
   doctersName: "Docter’s name",
 };

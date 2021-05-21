@@ -1,6 +1,6 @@
 import React from "react";
 import "./loginAsStyling.scss";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import user_img from "./user.png";
 import hospital_img from "./hospital.png";
 import factory from "../../ethereum/factory";
@@ -32,7 +32,10 @@ class LoginAs extends React.Component {
         state: patientInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message.slice(20,46), visible: true });
+      this.setState({
+        errorMessage: error.message.slice(20, 46),
+        visible: true,
+      });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -55,7 +58,10 @@ class LoginAs extends React.Component {
         state: doctorInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message.slice(20,44), visible: true });
+      this.setState({
+        errorMessage: error.message.slice(20, 44),
+        visible: true,
+      });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -78,7 +84,10 @@ class LoginAs extends React.Component {
         state: extUserInstance,
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message.slice(20,51), visible: true });
+      this.setState({
+        errorMessage: error.message.slice(20, 51),
+        visible: true,
+      });
       console.log(this.state.errorMessage);
     }
     this.setState({ loading: false });
@@ -103,7 +112,7 @@ class LoginAs extends React.Component {
             <a onClick={this.loginPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
-                  <img className="user-1-register" src={user_img} alt=""/>
+                  <img className="user-1-register" src={user_img} alt="" />
                   <div className="patient-register poppins-semi-bold-amethyst-20px">
                     {patient}
                   </div>
@@ -113,7 +122,11 @@ class LoginAs extends React.Component {
             <a onClick={this.loginDoctor}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
-                  <img className="hospital-2-register" src={hospital_img} alt="" />
+                  <img
+                    className="hospital-2-register"
+                    src={hospital_img}
+                    alt=""
+                  />
                   <div className="place-register poppins-semi-bold-amethyst-20px">
                     {place}
                   </div>
@@ -131,16 +144,16 @@ class LoginAs extends React.Component {
               </div>
             </a>
             <Rodal
-                visible={this.state.visible}
-                onClose={() => this.setState({ visible: false })}
-              >
-                <div className="text-1-rodal">{this.state.errorMessage}</div>
-                {/* <a onClick={() => this.setState({ visible: false })}>
-                  <div className="rectangle-94-rodal">
-                    <div className="view-rodal">Close</div>
-                  </div>
-                </a> */}
-              </Rodal>
+              visible={this.state.visible}
+              onClose={() => this.setState({ visible: false })}
+            >
+              <div className="text-1-rodal">{this.state.errorMessage}</div>
+              <Link to="/register">
+                <div className="rectangle-94-rodal">
+                  <div className="view-rodal">Go to Register Page</div>
+                </div>
+              </Link>
+            </Rodal>
           </div>
         </form>
       </div>
