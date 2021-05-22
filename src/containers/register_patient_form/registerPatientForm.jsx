@@ -1,9 +1,8 @@
 import React from "react";
 import "./registerPatientFormStyling.scss";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+import Select from "react-select"
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
@@ -20,7 +19,7 @@ class RegisterPatientForm extends React.Component {
     errorMessage: "",
     loading: false,
     patientName: "",
-    age: 0,
+    age: undefined,
     gender: null,
     bloodGroup: "",
     visible: false,
@@ -39,7 +38,7 @@ class RegisterPatientForm extends React.Component {
         .registerPatient(
           patientName,
           age,
-          "Male",
+          gender,
           bloodGroup,
           false,
           "0x0000000000000000000000000000000000000000",
@@ -144,26 +143,15 @@ class RegisterPatientForm extends React.Component {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
-              {/* <Select
-                value={gender}
-                onChange={(event) =>
-                  this.setState({ gender: event.target.value })
-                }
+              <Select
+                value={(gender != null)? gender.value: gender}
+                onChange={(e) => {
+                  this.setState({ gender: e.value });
+                }}
                 options={genderoptions}
-              /> */}
-              <Dropdown
-                options={genderoptions}
-                onChange={this._onSelect}
-                className="enter-record-name-registerhosp"
-                name="2215"
-                placeholder={inputPlaceholder3} //GENDER
-                value={this.state.gender}
-                onChange={(event) =>
-                  this.setState({ gender: event.target.value })
-                }
-                // defaultOption={genderoptions[0]}
-                // required
+                required
               />
+              {/* {console.log(this.state.gender)} */}
             </div>
           </div>
           <div className="group-53">

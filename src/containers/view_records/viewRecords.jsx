@@ -52,7 +52,6 @@ class ViewRecords extends React.Component {
 
   renderRows() {
     return this.state.records.map((record, index) => {
-      // console.log(index);
       // console.log(record);
       return (
         <ViewRecordsRow {...viewRecordsRowData} record={record} key={index} />
@@ -61,8 +60,7 @@ class ViewRecords extends React.Component {
   }
 
   render() {
-    const { patientsOwnRecords, yourRecords, doctersName, text2, takeAction } =
-      this.props;
+    const { patientsOwnRecords, yourRecords, doctersName, text2, takeAction } = this.props;
 
     return (
       <div class="container-center-horizontal">

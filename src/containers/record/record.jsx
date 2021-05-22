@@ -1,9 +1,8 @@
 import React from "react";
 import "./recordStyling.scss";
 import { Link, withRouter } from "react-router-dom";
-import PatientCreator from "../../ethereum/patient";
-import web3 from "../../ethereum/web3";
-import { Details } from "../index.js";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 
 class Record extends React.Component {
   render() {
@@ -14,16 +13,17 @@ class Record extends React.Component {
       docName,
       recDate,
       docNote,
-      //   recordIDVal,
-      //   creatorEthVal,
-      //   recordNameVal,
-      //   docNameVal,
-      //   recDateVal,
-      //   docNoteVal,
       patientShareRecord,
     } = this.props;
 
-    const { state } = this.props.location;
+    let record;
+
+    if (typeof this.props.location.state === "undefined") {
+      record = [0, 0, 0, 0, 0];
+    } else {
+      const { state } = this.props.location;
+      record = state;
+    }
 
     return (
       <div class="container-center-horizontal">
@@ -41,46 +41,54 @@ class Record extends React.Component {
                   {recordID}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[0]}
+                  {record[0]}
                   <br />
                 </span>
                 <span className="span-record poppins-normal-white-16px">
                   {creatorEth}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[1]}
+                  {record[1]}
                   <br />
                 </span>
                 <span className="span-record poppins-normal-white-16px">
                   {recordName}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[2]}
+                  {record[2]}
                   <br />
                 </span>
                 <span className="span-record poppins-normal-white-16px">
                   {docName}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[3]}
+                  {record[3]}
                   <br />
                 </span>
                 <span className="span-record poppins-normal-white-16px">
                   {recDate}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[4]}
+                  {record[4]}
                   <br />
                 </span>
                 <span className="span-record poppins-normal-white-16px">
                   {docNote}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-                  {state[5]}
+                  {record[5]}
                   <br />
                 </span>
               </p>
             </div>
+            <Rodal visible={record[1] == 0}>
+              <div className="text-1-rodal">No record found!</div>
+              <Link to="/loginAs">
+                <div className="rectangle-94-rodal">
+                  <div className="view-rodal">Go to Login Page</div>
+                </div>
+              </Link>
+            </Rodal>
           </div>
         </form>
       </div>
