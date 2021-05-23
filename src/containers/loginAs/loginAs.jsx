@@ -13,7 +13,15 @@ class LoginAs extends React.Component {
     errorMessage: "",
     loading: false,
     visible: false,
+    noMetavisible: false,
   };
+
+  componentWillMount() {
+    if (typeof window.web3 === 'undefined') {
+      // console.log("No meta");
+      this.setState({ noMetavisible: true });
+    }
+  }
 
   loginPatient = async (event) => {
     event.preventDefault();
@@ -32,11 +40,13 @@ class LoginAs extends React.Component {
         state: patientInstance,
       });
     } catch (error) {
+      const er = error.message;
+      console.log(er);
       this.setState({
-        errorMessage: error.message.slice(20, 46),
+        errorMessage: er.slice(er.indexOf("N"), er.indexOf("nt") + 2),
         visible: true,
       });
-      console.log(this.state.errorMessage);
+      console.log(error.message);
     }
     this.setState({ loading: false });
   };
@@ -62,7 +72,7 @@ class LoginAs extends React.Component {
         errorMessage: error.message.slice(20, 44),
         visible: true,
       });
-      console.log(this.state.errorMessage);
+      console.log(error.message);
     }
     this.setState({ loading: false });
   };
@@ -84,11 +94,12 @@ class LoginAs extends React.Component {
         state: extUserInstance,
       });
     } catch (error) {
+      const er = error.message;
       this.setState({
         errorMessage: error.message.slice(20, 51),
         visible: true,
       });
-      console.log(this.state.errorMessage);
+      console.log(error.message);
     }
     this.setState({ loading: false });
   };
@@ -97,7 +108,7 @@ class LoginAs extends React.Component {
     const { register, registerAs, patient, place, externaluser } = this.props;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="register screen"
           style={{ backgroundImage: `url(${register})` }}
@@ -153,6 +164,17 @@ class LoginAs extends React.Component {
                   <div className="view-rodal">Go to Register Page</div>
                 </div>
               </Link>
+            </Rodal>
+            <Rodal
+              visible={this.state.noMetavisible}
+              onClose={() => this.props.history.push("/")}
+            >
+              <div className="text-1-rodal">Web3 not found! MetaMask may not be installed or configured correctly!</div>
+              <a href="https://metamask.io/" target="_blank">
+                <div className="rectangle-94-rodal">
+                  <div className="view-rodal">Go to MetaMask site</div>
+                </div>
+              </a>
             </Rodal>
           </div>
         </form>
