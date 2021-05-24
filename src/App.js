@@ -68,11 +68,11 @@ const externalViewData = {
 const hospitalAddData = {
   hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   text1: "ENTER DETAILS TO ADD RECORD",
-  text2: "Patient’s name",
+  text2: "Doctor’s name",
   overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
   inputType: "text",
-  inputPlaceholder: "Enter patient's name",
+  inputPlaceholder: "Enter Doctor's name",
   recordName: "Record name",
   patientEthAddr: "Patient's ethereum address",
   doctorEthAddr: "Docter's ethereum address",

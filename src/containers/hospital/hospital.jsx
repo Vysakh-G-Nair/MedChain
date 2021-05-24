@@ -14,7 +14,9 @@ class Hospital extends React.Component {
     hosname: "",
     category: "",
     lisenceNo: 0,
-    location: ""    
+    location: "",
+    visible: false,
+        
 }
 
 componentWillMount() {
@@ -80,7 +82,7 @@ async getMedSummary(state) {
                   </div>
                 </div>
               </Link>
-              <Link to="/hospitaladd">
+              <Link to={{pathname:"/hospitaladdcheck", state:this.state.address}}>
                 <div className="add-record-group smart-layers-pointers">
                   <div className="overlap-group1-hospital">
                     <img className="edit-5" src={add_record_img} alt=""/>
@@ -88,7 +90,7 @@ async getMedSummary(state) {
                   </div>
                 </div>
               </Link>
-              <Link to="/registerpatienthospital">
+              <Link to= {{pathname:"/registerpatienthospital", state:this.state.address}} >
                 <div className="add-record-group smart-layers-pointers">
                   <div className="overlap-group1-hospital">
                     <img className="edit-5" src={add_record_img} alt=""/>
