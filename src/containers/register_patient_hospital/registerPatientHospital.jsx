@@ -35,7 +35,7 @@ class RegisterPatientHospital extends React.Component {
     this.setState({state1:state});
 }
 
-  async hosRegisterPatient(state)
+  async hosRegisterPatient()
   {
     try {
         const accounts = await web3.eth.getAccounts();
