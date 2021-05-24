@@ -6,20 +6,24 @@ import 'rodal/lib/rodal.css';
 
   
 class HospitalAdd extends React.Component {
+state={
+  errorMessage: "",
+  loading: false,
+  doctorName: "",
+  recordName:"",
+  date:"",
+  doctorNote: "",
+  visible: false,
+  state1:""
+};
 
-constructor(props) {
-    super(props);
-    this.state = { visible: false };
-}
-
-show() {
-    this.setState({ visible: true });
-}
-
-hide() {
-    this.setState({ visible: false });
-}
-
+addRecord = async (event) => {
+  event.preventDefault();
+  const { doctorName,recordName,date,doctorNote} = this.state;
+  this.setState({ loading: true, errorMessage: "" });
+  
+  this.setState({ loading: false });  
+};
   render () { 
     const {
       hospitalView,
@@ -62,6 +66,10 @@ hide() {
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
+                value={this.state.doctorName}
+                onChange={(event) =>
+                  this.setState({ doctorName: event.target.value })
+                }
                 required
               />
             </div>
@@ -74,10 +82,15 @@ hide() {
                 name="2215"
                 placeholder={inputPlaceholder2}
                 type={inputType2}
+                value={this.state.recordName}
+                onChange={(event) =>
+                  this.setState({ recordName: event.target.value })
+                }
                 required
               />
             </div>
           </div>
+{/*           
           <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
@@ -89,8 +102,8 @@ hide() {
                 required
               />
             </div>
-          </div>
-          <div className="group-53">
+          </div> */}
+          {/* <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
               <input
@@ -101,7 +114,7 @@ hide() {
                 required
               />
             </div>
-          </div>
+          </div> */}
           <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{entryDate}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
@@ -110,6 +123,10 @@ hide() {
                 name="2215"
                 placeholder={inputPlaceholder6}
                 type={inputType2}
+                value={this.state.date}
+                onChange={(event) =>
+                  this.setState({ date: event.target.value })
+                }
                 required
               />
             </div>
@@ -122,19 +139,23 @@ hide() {
                 name="2215"
                 placeholder={inputPlaceholder5}
                 type={inputType2}
+                value={this.state.doctorNote}
+                onChange={(event) =>
+                  this.setState({ doctorNote: event.target.value })
+                }
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.show.bind(this)}>
+              <a onClick={this.addRecord()}>
                 <div className="rectangle-94">
                 <div className="view-hospitaladd">{view}</div>
                 </div>
               </a>
 
-              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+              <Rodal visible={this.state.visible} onClose={() => this.setState({ visible: false })}>
                   <div className="text-1-rodal">You don’t have permission to add a record</div>
                   <a >
                     <div className="rectangle-94-rodal">

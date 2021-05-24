@@ -8,6 +8,8 @@ import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
+import HospitalCreator from '../../ethereum/medicalpro';
+import Select from "react-select"
 
 const genderoptions = [ 
   { value: "Male", label: "Male" },
@@ -21,48 +23,40 @@ class RegisterPatientHospital extends React.Component {
     loading: false,
     patientName: "",
     age: 0,
+    patientAddr:"",
     gender: null,
     bloodGroup: "",
     visible: false,
+    state1:""
+  }
+
+  componentWillMount() {
+    const { state } = this.props.location;
+    this.setState({state1:state});
+}
+
+  async hosRegisterPatient(state)
+  {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const hospital = HospitalCreator(this.state.state1);
+        console.log("hospital"+hospital.options.address);
+        await hospital.methods
+          .createPatient(this.state.patientAddr, this.state.patientName, this.state.age,this.state.gender, this.state.bloodGroup).send({from: accounts[0]});
+
+      } catch (error) {
+        this.setState({ errorMessage: error.message, visible: true });
+        console.log(this.state.errorMessage);
+      }
+
+    this.setState({ loading: false });
   };
 
   registerPatient = async (event) => {
     event.preventDefault();
-
-    const { patientName, age, gender, bloodGroup } = this.state;
-
+    const { patientName,age,patientAddr,gender, bloodGroup } = this.state;
     this.setState({ loading: true, errorMessage: "" });
-
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await factory.methods
-        .registerPatient(
-          patientName,
-          age,
-          gender,
-          bloodGroup,
-          false,
-          "0x0000000000000000000000000000000000000000",
-          "0x0000000000000000000000000000000000000000"
-        )
-        .send({
-          from: accounts[0],
-        });
-
-      const patientInstance = await factory.methods.loginPatient().call({
-        from: accounts[0],
-      });
-
-      this.props.history.push({
-        pathname: "/patient",
-        state: patientInstance,
-      });
-    } catch (error) {
-      this.setState({ errorMessage: error.message, visible: true });
-      console.log(this.state.errorMessage);
-    }
-
-    this.setState({ loading: false });
+    this.hosRegisterPatient();   
   };
 
   render() {
@@ -151,8 +145,8 @@ class RegisterPatientHospital extends React.Component {
                 name="2215"
                 placeholder={patientEthAddrPH}
                 type={inputType2}
-                value={this.state.age}
-                onChange={(event) => this.setState({ age: event.target.value })}
+                value={this.state.patientAddr}
+                onChange={(event) => this.setState({ patientAddr: event.target.value })}
                 required
               />
             </div>
@@ -165,25 +159,13 @@ class RegisterPatientHospital extends React.Component {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
-              {/* <Select
-                value={gender}
-                onChange={(event) =>
-                  this.setState({ gender: event.target.value })
-                }
+              <Select
+                value={(gender != null)? gender.value: gender}
+                onChange={(e) => {
+                  this.setState({ gender: e.value });
+                }}
                 options={genderoptions}
-              /> */}
-              <Dropdown
-                options={genderoptions}
-                onChange={this._onSelect}
-                className="enter-record-name-registerhosp"
-                name="2215"
-                placeholder={inputPlaceholder3} //GENDER
-                value={genderoptions[0]}
-                onChange={(event) =>
-                  this.setState({ gender: event.target.value })
-                }
-                // defaultOption={genderoptions[0]}
-                // required
+                required
               />
             </div>
           </div>

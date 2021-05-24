@@ -10,18 +10,23 @@ import 'rodal/lib/rodal.css';
 
 class PatientGrant extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { visible: false };
+  state = {
+    pataddress:"",
+    visible: false,
+    errorMessage: "",
   }
 
-  show() {
-      this.setState({ visible: true });
-  }
-
-  hide() {
-      this.setState({ visible: false });
-  }
+  checkPermission = async (event) => {
+    
+    const {pataddress} = this.state;
+    this.setState({ loading: true, errorMessage: "" });
+    this.props.history.push({
+      pathname: "/hospitalAdd",
+      //state: doctorInstance
+    });  
+    
+    this.setState({ loading: false });  
+  };
 
   render() {
     const {
@@ -51,7 +56,11 @@ class PatientGrant extends React.Component {
                 className="enter-ethereum-address-grant"
                 name="2212"
                 placeholder={inputPlaceholder}
+                value={this.state.pataddress}
                 type={inputType}
+                onChange={(event) =>
+                  this.setState({ pataddress: event.target.value })
+                }
                 required
               />
             </div>
@@ -59,13 +68,13 @@ class PatientGrant extends React.Component {
       
           <div className="group-54">
             <div className="overlap-group-patient-grant">
-              <a onClick={this.show.bind(this)}>
+              <a onClick={this.checkPermission}>
                 <div className="rectangle-94">
                 <div className="view-patient-grant">{view}</div>
                 </div>
               </a>
 
-              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+              <Rodal visible={this.state.visible} onClose={() => this.setState({ visible: false })}>
                   <div className="text-1-rodal">You don’t have permission to add a record</div>
                   <a >
                     <div className="rectangle-94-rodal">
