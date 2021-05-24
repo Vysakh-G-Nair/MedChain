@@ -16,7 +16,7 @@ class Hospital extends React.Component {
     lisenceNo: 0,
     location: "",
     visible: false,
-        
+
 }
 
 componentWillMount() {
@@ -74,7 +74,7 @@ async getMedSummary(state) {
           <div className="details-comp"> <Details {...detailsData} /> </div>
           <div className="overlap-group-hospital">
             <div className="flex-row-hospital">
-              <Link to="/hospitalview">
+              <Link to={{pathname:"/hospitalview",state:this.state.address}}>
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-hospital">
                     <img className="view-3" src={view_record_img} alt=""/>

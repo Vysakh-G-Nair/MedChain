@@ -1,23 +1,76 @@
 import React from 'react';
 import './hospitalViewStyling.scss';
-import { withRouter } from "react-router-dom";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-
+import web3 from "../../ethereum/web3";
+import HospitalCreator from '../../ethereum/medicalpro';
+import { Link, withRouter } from "react-router-dom";
   
 class HospitalView extends React.Component {
 
-constructor(props) {
-    super(props);
-    this.state = { visible: false };
+state={
+  patientAddr:"",
+  recordid:0,
+  state1:"",
+  errorMessage:"",
+  visible:false,
+  loading:false
 }
 
-show() {
-    this.setState({ visible: true });
+componentWillMount() {
+  const { state } = this.props.location;
+  this.setState({state1:state});
 }
 
-hide() {
-    this.setState({ visible: false });
+async Viewrecord()
+  {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const hospital = HospitalCreator(this.state.state1);
+        console.log("hospital"+hospital.options.address);
+        const recordinstance = await hospital.methods.viewRecord(this.state.patientAddr,this.state.recordid).call({
+          from: accounts[0]
+      });
+      this.props.history.push({
+        pathname: "/record",
+        state: recordinstance
+      }); 
+      } catch (error) {
+        this.setState({ errorMessage: error.message, visible: true });
+        console.log(this.state.errorMessage);
+      }
+
+    this.setState({ loading: false });
+  };
+
+checkPermission = async(event) =>{
+  event.preventDefault();
+  const {patientAddr,recordid} = this.state;
+  this.setState({ loading: true, errorMessage: "" });
+  this.Viewrecord();
+}
+
+addRequest = async(event) => {
+  event.preventDefault();
+  this.setState({ loading: true, errorMessage: "" });
+  try {
+    const accounts = await web3.eth.getAccounts();
+    const hospital = HospitalCreator(this.state.state1);
+    console.log("hospital"+hospital.options.address);
+    console.log("hospital"+this.state.state1);
+    await hospital.methods.requestPermission(this.state.patientAddr,this.state.recordid,true).send({
+      from: accounts[0]
+  });
+  this.props.history.push({
+    pathname: "/hospital",
+    state: this.state.state1
+  }); 
+  } catch (error) {
+    this.setState({ errorMessage: error.message, visible: true });
+    console.log(this.state.errorMessage);
+  }
+  this.setState({ loading: false });
+
 }
 
   render () { 
@@ -34,6 +87,8 @@ hide() {
       inputPlaceholder2,
       view,
     } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -53,6 +108,9 @@ hide() {
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
+                value={this.state.patientAddr}
+                onChange={(event) =>
+                  this.setState({ patientAddr: event.target.value })}
                 required
               />
             </div>
@@ -65,25 +123,63 @@ hide() {
                 name="2215"
                 placeholder={inputPlaceholder2}
                 type={inputType2}
+                value={this.state.recordid}
+                onChange={(event) =>
+                  this.setState({ recordid: event.target.value })}
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.show.bind(this)}>
+              <a onClick={this.checkPermission}>
                 <div className="rectangle-94">
-                <div className="view-hospitalview">{view}</div>
-                </div>
+                    {loading && (
+                      <i
+                        className="fa fa-refresh fa-2x fa-spin"
+                        style={{
+                          marginRight: "0px",
+                          color: "#B080FF",
+                          marginTop: "12px",
+                          marginLeft: "205px",
+                        }}
+                      />
+                    )}
+                    {!loading && <div className="view-hospitalview">{view}</div>}
+                    {loading && <div className="view-hospitalview">Wait...</div>}
+                 </div>
+                {/* <div className="view-hospitalview">{view}</div> */}
               </a>
-
-              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+9
+              <Rodal 
+              visible={this.state.visible} 
+              onClose={()=>this.props.history.push({
+                pathname: "/hospital",
+                state: this.state.state1
+              })}>
                   <div className="text-1-rodal">You don’t have permission to view this record</div>
-                  <a >
-                    <div className="rectangle-94-rodal">
-                      <div className="view-rodal">Request Permission</div>
-                    </div>
+            
+                  <a onClick = {this.addRequest}>
+
+                  <div className="rectangle-94-rodal">
+                  
+                    {loading && (
+                      <i
+                        className="fa fa-refresh fa-2x fa-spin"
+                        style={{
+                          marginRight: "0px",
+                          color: "#B080FF",
+                          marginTop: "12px",
+                          marginLeft: "205px",
+                        }}
+                      />
+                    )}
+                    {!loading && <div className="view-rodal">Request Permission</div>}
+                    {loading && <div className="view-rodal">Wait...</div>}
+                  </div>
+                  
                   </a>
+                  
               </Rodal>
           </div>
         </div>  
