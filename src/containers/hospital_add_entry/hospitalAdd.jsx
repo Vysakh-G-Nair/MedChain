@@ -3,7 +3,9 @@ import './hospitalAddStyling.scss';
 import { withRouter } from "react-router-dom";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
-
+import PatientCreator from "../../ethereum/patient";
+import web3 from "../../ethereum/web3";
+import HospitalCreator from '../../ethereum/medicalpro';
   
 class HospitalAdd extends React.Component {
 state={
@@ -19,9 +21,27 @@ state={
 
 addRecord = async (event) => {
   event.preventDefault();
-  const { doctorName,recordName,date,doctorNote} = this.state;
+  const { state } = this.props.location;
+  // console.log(state);
+  const { doctorName, recordName, date, doctorNote, recordID } = this.state;
   this.setState({ loading: true, errorMessage: "" });
-  
+
+  try {
+    const accounts = await web3.eth.getAccounts();
+    const hospital = HospitalCreator(state[0]);
+    // console.log("hospital"+hospital.options.address);
+    await hospital.methods.createRecord(state[1], recordID, recordName, doctorName, date, doctorNote).send({
+      from: accounts[0]
+  });
+  this.props.history.push({
+    pathname: "/hospital",
+    state: state[0]
+  }); 
+  } catch (error) {
+    this.setState({ errorMessage: error.message, visible: true });
+    console.log(this.state.errorMessage);
+  }
+
   this.setState({ loading: false });  
 };
   render () { 
@@ -31,7 +51,7 @@ addRecord = async (event) => {
       text2,
       overlapGroup2,
       overlapGroup3,
-      patientEthAddr,
+      recordID,
       doctorEthAddr,
       symptoms,
       inputType,
@@ -47,6 +67,8 @@ addRecord = async (event) => {
       entryDate,
       view,
     } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -90,19 +112,23 @@ addRecord = async (event) => {
               />
             </div>
           </div>
-{/*           
+          
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
+            <div className="record-name poppins-normal-baby-powder-18px">{recordID}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
                 placeholder={inputPlaceholder3}
                 type={inputType2}
+                value={this.state.recordID}
+                onChange={(event) =>
+                  this.setState({ recordID: event.target.value })
+                }
                 required
               />
             </div>
-          </div> */}
+          </div>
           {/* <div className="group-53">
             <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
             <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
@@ -149,14 +175,30 @@ addRecord = async (event) => {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.addRecord()}>
-                <div className="rectangle-94">
+              <a onClick={this.addRecord}>
+                {/* <div className="rectangle-94">
                 <div className="view-hospitaladd">{view}</div>
+                </div> */}
+                <div className="rectangle-94">
+                  
+                  {loading && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{
+                        marginRight: "0px",
+                        color: "#B080FF",
+                        marginTop: "12px",
+                        marginLeft: "205px",
+                      }}
+                    />
+                  )}
+                  {!loading && <div className="view-hospitaladd">{view}</div>}
+                  {loading && <div className="view-hospitaladd">Wait...</div>}
                 </div>
               </a>
 
               <Rodal visible={this.state.visible} onClose={() => this.setState({ visible: false })}>
-                  <div className="text-1-rodal">You don’t have permission to add a record</div>
+                  <div className="text-1-rodal">{this.state.errorMessage}</div>
                   <a >
                     <div className="rectangle-94-rodal">
                       <div className="view-rodal">Request Permission</div>

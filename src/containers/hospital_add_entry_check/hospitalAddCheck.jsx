@@ -2,10 +2,10 @@ import React from "react";
 import "./hospitalAddCheckStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import { Requests } from "../index.js";
-import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import HospitalCreator from '../../ethereum/medicalpro';
 
 
 class PatientGrant extends React.Component {
@@ -14,19 +14,66 @@ class PatientGrant extends React.Component {
     pataddress:"",
     visible: false,
     errorMessage: "",
+    state1:"",
+    loading:false
   }
 
-  checkPermission = async (event) => {
-    
+  componentWillMount() {
+    const { state } = this.props.location;
+    this.setState({state1:state});
+  }
+  
+  checkPermission = async(event) =>{
+    event.preventDefault();
     const {pataddress} = this.state;
+    console.log(pataddress);
     this.setState({ loading: true, errorMessage: "" });
-    this.props.history.push({
-      pathname: "/hospitalAdd",
-      //state: doctorInstance
-    });  
+   
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const hospital = HospitalCreator(this.state.state1);
+        console.log("hospital"+hospital.options.address);
+        const istrue = await hospital.methods.canCreateRec(pataddress).call({
+          from: accounts[0]
+      });
+      if (istrue) {
+      this.props.history.push({
+        pathname: "/hospitaladd",
+        state: [this.state.state1,this.state.pataddress]
+      }); 
+    }
+    else {
+      const error = {message: "You don't have permission!"}
+      throw (error);
+    }
+      } catch (error) {
+        this.setState({ errorMessage: error.message, visible: true });
+        console.log(this.state.errorMessage);
+      }
+  
+      this.setState({ loading: false });
+    };
+
+    addRequest = async(event) => {
+      event.preventDefault();
+      this.setState({ loading: true, errorMessage: "" });
+      try {
+        const accounts = await web3.eth.getAccounts();
+        const hospital = HospitalCreator(this.state.state1);
+        await hospital.methods.requestPermission(this.state.pataddress,0,false).send({
+        from: accounts[0]});
+      this.props.history.push({
+        pathname: "/hospital",
+        state: this.state.state1
+      }); 
+      } catch (error) {
+        this.setState({ errorMessage: error.message, visible: true });
+        console.log(this.state.errorMessage);
+      }
+      this.setState({ loading: false });
     
-    this.setState({ loading: false });  
-  };
+    }
+  
 
   render() {
     const {
@@ -38,6 +85,8 @@ class PatientGrant extends React.Component {
       inputPlaceholder,
       view,
     } = this.props;
+
+    const{loading}=this.state
 
     return (
       <div class="container-center-horizontal">
@@ -74,13 +123,30 @@ class PatientGrant extends React.Component {
                 </div>
               </a>
 
-              <Rodal visible={this.state.visible} onClose={() => this.setState({ visible: false })}>
-                  <div className="text-1-rodal">You don’t have permission to add a record</div>
-                  <a >
-                    <div className="rectangle-94-rodal">
-                      <div className="view-rodal">Request Permission</div>
-                    </div>
-                  </a>
+              <Rodal 
+              visible={this.state.visible} 
+              onClose={()=>this.setState({visible:false})}>
+                  <div className="text-1-rodal">You don’t have permission to create this record</div>
+            
+                  <a onClick = {this.addRequest}>
+
+                  <div className="rectangle-94-rodal">
+                  
+                    {loading && (
+                      <i
+                        className="fa fa-refresh fa-2x fa-spin"
+                        style={{
+                          marginRight: "0px",
+                          color: "#B080FF",
+                          marginTop: "12px",
+                          marginLeft: "205px",
+                        }}
+                      />
+                    )}
+                    {!loading && <div className="view-rodal">Request Permission</div>}
+                    {loading && <div className="view-rodal">Wait...</div>}
+                  </div>
+                  </a> 
               </Rodal>
           </div>
         </div> 
