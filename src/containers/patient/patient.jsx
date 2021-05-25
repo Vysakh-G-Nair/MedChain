@@ -60,6 +60,11 @@ class Patient extends React.Component {
     this.setState({ loading: false });
   }
 
+  test = async (event) => {
+    const { state } = this.props.location;
+    console.log(state);
+  }
+
   render() {
     const { patient, viewYourRecords, name, shareRecord, text2 } = this.props;
 
@@ -148,6 +153,7 @@ class Patient extends React.Component {
                   pathname: "/requests",
                   state: this.state.address,
                 }}
+                onClick={this.test}
               >
                 <div className="group-patient">
                   <div className="overlap-group2-patient">

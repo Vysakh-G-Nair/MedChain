@@ -1,6 +1,6 @@
 import React from "react";
 import "./requestsRowStyling.scss";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
@@ -128,6 +128,16 @@ class RequestsRow extends React.Component {
           onClose={() => this.setState({ visible: false })}
         >
           <div className="text-1-rodal">{this.state.errorMessage}</div>
+          <Link
+            to={{
+              pathname: "/patient",
+              state: this.props.address,
+            }}
+          >
+            <div className="rectangle-94-rodal">
+              <div className="view-rodal">Go to dashboard</div>
+            </div>
+          </Link>
         </Rodal>
       </div>
     );
