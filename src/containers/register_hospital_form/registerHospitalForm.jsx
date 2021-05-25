@@ -8,9 +8,12 @@ import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import Select from "react-select"
 
-const options = [
-  'Hospital', 'Diagnostic center', 'Clinic'
+const options = [ 
+  { value: "Hospital", label: "Hospital" },
+  { value: "Diagnostic center", label: "Diagnostic center" },
+  { value: "Clinic", label: "Clinic" }
 ];
 
 const defaultOption = options[0];
@@ -43,7 +46,7 @@ class RegisterHospitalForm extends React.Component {
           from: accounts[0],
         });
 
-        const doctorInstance = await factory.methods.loginDoctor().call({
+        const doctorInstance = await factory.methods.loginMedPro().call({
           from: accounts[0]
         });
   
@@ -79,7 +82,7 @@ class RegisterHospitalForm extends React.Component {
       view,
     } = this.props;
 
-    const { loading } = this.state;
+    const { loading,category } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -111,26 +114,17 @@ class RegisterHospitalForm extends React.Component {
             <div className="overlap-group1-registerhosp" style={{ backgroundImage: `url(${overlapGroup1})` }}>
             
               <div className="enter-record-name-registerhosp">
-                <label>{inputPlaceholder2}
-                <select category={this.state.value} onChange={event => this.setState({ category: event.target.value })}>
-                  <option value="Hospital">Hospital</option>
-                  <option value="Diagnostic center">Diagnostic center</option>
-                  <option value="Clinic">Clinic</option>
-                </select>
-                </label>
-              </div>
-              
-          
-              {/* <Dropdown
+                <Select
+                value={(category != null)? category.value: category}
+                onChange={(e) => {
+                  this.setState({category: e.value });
+                }}
                 options={options}
-                //onChange={this._onSelect}
-                className="enter-record-name-registerhosp"
-                name="2215"
-                placeholder={inputPlaceholder2}//category
-                value={this.state.category}
-                onChange={event => this.setState({ category: event.target.value })}
-                
-              /> */}
+                required
+              />
+              {/* {console.log(this.state.category)} */}
+              </div>
+                       
             </div>
           </div>
 

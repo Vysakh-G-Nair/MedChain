@@ -158,6 +158,7 @@ registerPatient = async (event) => {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
+              <div className="enter-record-name-registerhosp">
               <Select
                 value={(gender != null)? gender.value: gender}
                 onChange={(e) => {
@@ -166,6 +167,7 @@ registerPatient = async (event) => {
                 options={genderoptions}
                 required
               />
+              </div>
             </div>
           </div>
           <div className="group-53">
