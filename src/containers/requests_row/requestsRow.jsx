@@ -65,7 +65,7 @@ class RequestsRow extends React.Component {
   };
 
   render() {
-    const { reject, name, ethAdd, docName, isView } = this.props;
+    const { reject, name, ethAdd, docName, isView, granted } = this.props;
 
     let { recordID } = this.props;
 
@@ -84,7 +84,12 @@ class RequestsRow extends React.Component {
           <a onClick={this.denyPerm}>
             <div className="group-82-requests">
               <div className="overlap-group1-requests">
-                {!rloading && (
+                {!rloading && !granted && (
+                  <div className="reject-requests poppins-medium-amethyst-15px">
+                    Rejected
+                  </div>
+                )}
+                {!rloading && granted && (
                   <div className="reject-requests poppins-medium-amethyst-15px">
                     {reject}
                   </div>
@@ -94,15 +99,31 @@ class RequestsRow extends React.Component {
                     Wait..
                   </div>
                 )}
+                {rloading && (
+                    <i
+                      className="fa fa-refresh fa-1x fa-spin"
+                      style={{
+                        marginRight: "0px",
+                        color: "#E32C2C",
+                        marginTop: "2px",
+                        marginLeft: "-2px",
+                      }}
+                    />
+                  )}
               </div>
             </div>
           </a>
           <a onClick={this.grantPerm}>
             <div className="group-83-requests">
               <div className="overlap-group1-requests">
-                {!gloading && (
+                {!gloading && !granted && (
                   <div className="name-requests poppins-medium-amethyst-15px">
                     {name}
+                  </div>
+                )}
+                {!gloading && granted && (
+                  <div className="name-requests poppins-medium-amethyst-15px">
+                    Granted
                   </div>
                 )}
                 {gloading && (
@@ -110,6 +131,17 @@ class RequestsRow extends React.Component {
                     Wait..
                   </div>
                 )}
+                {gloading && (
+                    <i
+                      className="fa fa-refresh fa-1x fa-spin"
+                      style={{
+                        marginRight: "0px",
+                        color: "#9A5BFF",
+                        marginTop: "2px",
+                        marginLeft: "-2px",
+                      }}
+                    />
+                  )}
               </div>
             </div>
           </a>

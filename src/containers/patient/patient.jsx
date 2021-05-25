@@ -25,7 +25,7 @@ class Patient extends React.Component {
     visible: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { state } = this.props.location;
     this.getPatSummary(state);
   }

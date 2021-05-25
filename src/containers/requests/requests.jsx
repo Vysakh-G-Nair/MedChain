@@ -63,6 +63,7 @@ class Requests extends React.Component {
           ethAdd={request.viewer}
           address={this.state.address}
           isView={request.isView}
+          granted={request.granted}
         />
       );
     });

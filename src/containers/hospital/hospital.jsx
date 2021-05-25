@@ -13,7 +13,7 @@ class Hospital extends React.Component {
     addressOwner: '',
     hosname: "",
     category: "",
-    lisenceNo: 0,
+    lisenceNo: "",
     location: "",
     visible: false,
 
