@@ -35,29 +35,28 @@ class RegisterPatientHospital extends React.Component {
     this.setState({state1:state});
 }
 
-  async hosRegisterPatient()
-  {
-    try {
-        const accounts = await web3.eth.getAccounts();
-        const hospital = HospitalCreator(this.state.state1);
-        console.log("hospital"+hospital.options.address);
-        await hospital.methods
-          .createPatient(this.state.patientAddr, this.state.patientName, this.state.age,this.state.gender, this.state.bloodGroup).send({from: accounts[0]});
+registerPatient = async (event) => {
+  event.preventDefault();
+  const { patientName,age,patientAddr,gender, bloodGroup } = this.state;
+  this.setState({ loading: true, errorMessage: "" });   
+  try {
+      const accounts = await web3.eth.getAccounts();
+      const hospital = HospitalCreator(this.state.state1);
+      console.log("hospital"+hospital.options.address);
+      await hospital.methods
+        .createPatient(this.state.patientAddr, this.state.patientName, this.state.age,this.state.gender, this.state.bloodGroup).send({from: accounts[0]});
+        this.props.history.push({
+          pathname: "/hospital",
+          state: this.state.state1
+        }); 
+    } catch (error) {
+      this.setState({ errorMessage: error.message, visible: true });
+      console.log(this.state.errorMessage);
+    }
 
-      } catch (error) {
-        this.setState({ errorMessage: error.message, visible: true });
-        console.log(this.state.errorMessage);
-      }
-
-    this.setState({ loading: false });
+  this.setState({ loading: false });
   };
 
-  registerPatient = async (event) => {
-    event.preventDefault();
-    const { patientName,age,patientAddr,gender, bloodGroup } = this.state;
-    this.setState({ loading: true, errorMessage: "" });
-    this.hosRegisterPatient();   
-  };
 
   render() {
     const {
