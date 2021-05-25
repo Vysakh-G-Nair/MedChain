@@ -43,7 +43,7 @@ class LoginAs extends React.Component {
       const er = error.message;
       console.log(er);
       this.setState({
-        errorMessage: er.slice(er.indexOf("N"), er.indexOf("nt") + 2),
+        errorMessage: er.slice(er.indexOf("N"), er.indexOf("!") + 1),
         visible: true,
       });
       console.log(error.message);
@@ -51,7 +51,7 @@ class LoginAs extends React.Component {
     this.setState({ loading: false });
   };
 
-  loginDoctor = async (event) => {
+  loginMedPro = async (event) => {
     event.preventDefault();
 
     this.setState({ loading: true, errorMessage: "" });
@@ -59,7 +59,7 @@ class LoginAs extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
 
-      const doctorInstance = await factory.methods.loginDoctor().call({
+      const doctorInstance = await factory.methods.loginMedPro().call({
         from: accounts[0],
       });
 
@@ -130,7 +130,7 @@ class LoginAs extends React.Component {
                 </div>
               </div>
             </a>
-            <a onClick={this.loginDoctor}>
+            <a onClick={this.loginMedPro}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
                   <img

@@ -32,8 +32,10 @@ class Requests extends React.Component {
     const accounts = await web3.eth.getAccounts();
     const patient = PatientCreator(state);
     console.log("Deployed address: " + patient.options.address);
-    // const requestCount = await patient.methods.getRequestsCount().call({from:});
-    const requestCount = 7;
+    const requestCount = await patient.methods.getRequestsCount().call({
+      from: accounts[0],
+    });
+    // const requestCount = 7;
 
     const requests = await Promise.all(
       Array(parseInt(requestCount))
