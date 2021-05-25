@@ -22,33 +22,29 @@ componentWillMount() {
   this.setState({state1:state});
 }
 
-async Viewrecord()
-  {
-    try {
-        const accounts = await web3.eth.getAccounts();
-        const hospital = HospitalCreator(this.state.state1);
-        console.log("hospital"+hospital.options.address);
-        const recordinstance = await hospital.methods.viewRecord(this.state.patientAddr,this.state.recordid).call({
-          from: accounts[0]
-      });
-      this.props.history.push({
-        pathname: "/record",
-        state: recordinstance
-      }); 
-      } catch (error) {
-        this.setState({ errorMessage: error.message, visible: true });
-        console.log(this.state.errorMessage);
-      }
-
-    this.setState({ loading: false });
-  };
-
 checkPermission = async(event) =>{
   event.preventDefault();
   const {patientAddr,recordid} = this.state;
   this.setState({ loading: true, errorMessage: "" });
-  this.Viewrecord();
-}
+ 
+  try {
+      const accounts = await web3.eth.getAccounts();
+      const hospital = HospitalCreator(this.state.state1);
+      console.log("hospital"+hospital.options.address);
+      const recordinstance = await hospital.methods.viewRecord(this.state.patientAddr,this.state.recordid).call({
+        from: accounts[0]
+    });
+    this.props.history.push({
+      pathname: "/record",
+      state: recordinstance
+    }); 
+    } catch (error) {
+      this.setState({ errorMessage: error.message, visible: true });
+      console.log(this.state.errorMessage);
+    }
+
+    this.setState({ loading: false });
+  };
 
 addRequest = async(event) => {
   event.preventDefault();

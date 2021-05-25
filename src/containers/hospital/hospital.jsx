@@ -52,7 +52,7 @@ async getMedSummary(state) {
     
     const detailsData = {
       overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609cab0d2e5b4db0132e7a2a/img/rectangle-51@2x.svg",
-      spanText: "Center Name:",
+      spanText: "Center:",
       spanText2: <> {this.state.hosname}<br /></>,
       spanText3: "Category: ",
       spanText4: <>{this.state.category}<br /></>,
