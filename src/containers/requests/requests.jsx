@@ -33,7 +33,7 @@ class Requests extends React.Component {
     const patient = PatientCreator(state);
     console.log("Deployed address: " + patient.options.address);
     // const requestCount = await patient.methods.getRequestsCount().call({from:});
-    const requestCount = 5;
+    const requestCount = 7;
 
     const requests = await Promise.all(
       Array(parseInt(requestCount))

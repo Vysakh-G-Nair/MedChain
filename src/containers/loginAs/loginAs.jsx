@@ -16,7 +16,7 @@ class LoginAs extends React.Component {
     noMetavisible: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (typeof window.web3 === 'undefined') {
       // console.log("No meta");
       this.setState({ noMetavisible: true });
