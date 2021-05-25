@@ -16,8 +16,6 @@ const options = [
   { value: "Clinic", label: "Clinic" }
 ];
 
-const defaultOption = options[0];
-  
 class RegisterHospitalForm extends React.Component {
 
   state = {
@@ -25,7 +23,7 @@ class RegisterHospitalForm extends React.Component {
     loading: false,
     hospitalName: "",
     category: "",
-    lisenceNo: 0,
+    lisenceNo: null,
     location: "",
     visible: false
   };
@@ -41,7 +39,7 @@ class RegisterHospitalForm extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .registerMedPro( hospitalName , "hospital" , location, lisenceNo)
+        .registerMedPro( hospitalName , category , location, lisenceNo)
         .send({
           from: accounts[0],
         });

@@ -23,6 +23,10 @@ class LoginAs extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState({ noMetavisible: false });
+  }
+
   loginPatient = async (event) => {
     event.preventDefault();
 
@@ -31,17 +35,17 @@ class LoginAs extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
 
-      const patientInstance = await factory.methods.loginPatient().call({
+      const patientDeployedAddr = await factory.methods.loginPatient().call({
         from: accounts[0],
       });
 
       this.props.history.push({
         pathname: "/patient",
-        state: patientInstance,
+        state: patientDeployedAddr,
       });
     } catch (error) {
       const er = error.message;
-      console.log(er);
+      // console.log(er);
       this.setState({
         errorMessage: er.slice(er.indexOf("N"), er.indexOf("!") + 1),
         visible: true,
@@ -59,17 +63,18 @@ class LoginAs extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
 
-      const doctorInstance = await factory.methods.loginMedPro().call({
+      const medProDeployedAddr = await factory.methods.loginMedPro().call({
         from: accounts[0],
       });
 
       this.props.history.push({
         pathname: "/hospital",
-        state: doctorInstance,
+        state: medProDeployedAddr,
       });
     } catch (error) {
+      const er = error.message;
       this.setState({
-        errorMessage: error.message.slice(20, 44),
+        errorMessage: er.slice(er.indexOf("N"), er.indexOf("!") + 1),
         visible: true,
       });
       console.log(error.message);
@@ -85,18 +90,18 @@ class LoginAs extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
 
-      const extUserInstance = await factory.methods.loginExtUser().call({
+      const extUserDeployedAddr = await factory.methods.loginExtUser().call({
         from: accounts[0],
       });
 
       this.props.history.push({
         pathname: "/external",
-        state: extUserInstance,
+        state: extUserDeployedAddr,
       });
     } catch (error) {
       const er = error.message;
       this.setState({
-        errorMessage: error.message.slice(20, 51),
+        errorMessage: er.slice(er.indexOf("N"), er.indexOf("!") + 1),
         visible: true,
       });
       console.log(error.message);
@@ -105,7 +110,7 @@ class LoginAs extends React.Component {
   };
 
   render() {
-    const { register, registerAs, patient, place, externaluser } = this.props;
+    const { register, registerAs, patient, medPro, externaluser } = this.props;
 
     return (
       <div className="container-center-horizontal">
@@ -139,7 +144,7 @@ class LoginAs extends React.Component {
                     alt=""
                   />
                   <div className="place-register poppins-semi-bold-amethyst-20px">
-                    {place}
+                    {medPro}
                   </div>
                 </div>
               </div>
