@@ -37,7 +37,7 @@ class ViewRecords extends React.Component {
       Array(parseInt(noOfRecords))
         .fill()
         .map((element, index) => {
-          return patient.methods.view1Record(index).call({
+          return patient.methods.viewRecords(index).call({
             from: accounts[0],
           });
         })

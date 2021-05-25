@@ -41,7 +41,6 @@ class RegisterPatientForm extends React.Component {
           gender,
           bloodGroup,
           false,
-          "0x0000000000000000000000000000000000000000",
           "0x0000000000000000000000000000000000000000"
         )
         .send({
@@ -143,6 +142,7 @@ class RegisterPatientForm extends React.Component {
               className="overlap-group1-registerpatien"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
+              <div className="enter-record-name-registerhosp">
               <Select
                 value={(gender != null)? gender.value: gender}
                 onChange={(e) => {
@@ -151,6 +151,7 @@ class RegisterPatientForm extends React.Component {
                 options={genderoptions}
                 required
               />
+              </div>
               {/* {console.log(this.state.gender)} */}
             </div>
           </div>
