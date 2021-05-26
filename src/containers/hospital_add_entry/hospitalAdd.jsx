@@ -1,50 +1,57 @@
-import React from 'react';
-import './hospitalAddStyling.scss';
+import React from "react";
+import "./hospitalAddStyling.scss";
 import { withRouter } from "react-router-dom";
-import Rodal from 'rodal';
-import 'rodal/lib/rodal.css';
-import PatientCreator from "../../ethereum/patient";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
-import HospitalCreator from '../../ethereum/medicalpro';
-  
+import HospitalCreator from "../../ethereum/medicalpro";
+
 class HospitalAdd extends React.Component {
-state={
-  errorMessage: "",
-  loading: false,
-  doctorName: "",
-  recordName:"",
-  date:"",
-  doctorNote: "",
-  visible: false,
-  state1:""
-};
+  state = {
+    errorMessage: "",
+    loading: false,
+    doctorName: "",
+    recordName: "",
+    date: "",
+    doctorNote: "",
+    visible: false,
+  };
 
-addRecord = async (event) => {
-  event.preventDefault();
-  const { state } = this.props.location;
-  // console.log(state);
-  const { doctorName, recordName, date, doctorNote, recordID } = this.state;
-  this.setState({ loading: true, errorMessage: "" });
+  addRecord = async (event) => {
+    event.preventDefault();
+    const { state } = this.props.location;
+    // console.log(state);
+    const { doctorName, recordName, date, doctorNote, recordID } = this.state;
+    this.setState({ loading: true, errorMessage: "" });
 
-  try {
-    const accounts = await web3.eth.getAccounts();
-    const hospital = HospitalCreator(state[0]);
-    // console.log("hospital"+hospital.options.address);
-    await hospital.methods.createRecord(state[1], recordID, recordName, doctorName, date, doctorNote).send({
-      from: accounts[0]
-  });
-  this.props.history.push({
-    pathname: "/hospital",
-    state: state[0]
-  }); 
-  } catch (error) {
-    this.setState({ errorMessage: error.message, visible: true });
-    console.log(this.state.errorMessage);
-  }
+    try {
+      const accounts = await web3.eth.getAccounts();
+      const hospital = HospitalCreator(state[0]);
+      // console.log("hospital"+hospital.options.address);
+      await hospital.methods
+        .createRecord(
+          state[1],
+          recordID,
+          recordName,
+          doctorName,
+          date,
+          doctorNote
+        )
+        .send({
+          from: accounts[0],
+        });
+      this.props.history.push({
+        pathname: "/hospital",
+        state: state[0],
+      });
+    } catch (error) {
+      this.setState({ errorMessage: error.message, visible: true });
+      console.log(this.state.errorMessage);
+    }
 
-  this.setState({ loading: false });  
-};
-  render () { 
+    this.setState({ loading: false });
+  };
+  render() {
     const {
       hospitalView,
       text1,
@@ -52,7 +59,7 @@ addRecord = async (event) => {
       overlapGroup2,
       overlapGroup3,
       recordID,
-      doctorEthAddr,
+      // doctorEthAddr,
       symptoms,
       inputType,
       inputPlaceholder,
@@ -61,7 +68,7 @@ addRecord = async (event) => {
       inputType2,
       inputPlaceholder2,
       inputPlaceholder3,
-      inputPlaceholder4,
+      // inputPlaceholder4,
       inputPlaceholder5,
       inputPlaceholder6,
       entryDate,
@@ -79,10 +86,17 @@ addRecord = async (event) => {
           action="form1"
           method="post"
         >
-          <div className="text-1-hospitalview poppins-medium-white-20px">{text1}</div>
+          <div className="text-1-hospitalview poppins-medium-white-20px">
+            {text1}
+          </div>
           <div className="group-52">
-            <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>
-            <div className="overlap-group2-hospitalview" style={{ backgroundImage: `url(${overlapGroup2})` }}>
+            <div className="text-2-hospitalview poppins-normal-baby-powder-18px">
+              {text2}
+            </div>
+            <div
+              className="overlap-group2-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup2})` }}
+            >
               <input
                 className="enter-ethereum-address-hospitaladd"
                 name="2212"
@@ -97,8 +111,13 @@ addRecord = async (event) => {
             </div>
           </div>
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{recordName}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {recordName}
+            </div>
+            <div
+              className="overlap-group1-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
@@ -112,10 +131,15 @@ addRecord = async (event) => {
               />
             </div>
           </div>
-          
+
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{recordID}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {recordID}
+            </div>
+            <div
+              className="overlap-group1-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
@@ -142,8 +166,13 @@ addRecord = async (event) => {
             </div>
           </div> */}
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{entryDate}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {entryDate}
+            </div>
+            <div
+              className="overlap-group1-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
@@ -158,8 +187,13 @@ addRecord = async (event) => {
             </div>
           </div>
           <div className="group-53-symptoms">
-            <div className="record-name-symptoms poppins-normal-baby-powder-18px">{symptoms}</div>
-            <div className="overlap-group20-symptoms" style={{ backgroundImage: `url(${overlapGroup3})` }}>
+            <div className="record-name-symptoms poppins-normal-baby-powder-18px">
+              {symptoms}
+            </div>
+            <div
+              className="overlap-group20-symptoms"
+              style={{ backgroundImage: `url(${overlapGroup3})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
@@ -180,7 +214,6 @@ addRecord = async (event) => {
                 <div className="view-hospitaladd">{view}</div>
                 </div> */}
                 <div className="rectangle-94">
-                  
                   {loading && (
                     <i
                       className="fa fa-refresh fa-2x fa-spin"
@@ -197,16 +230,19 @@ addRecord = async (event) => {
                 </div>
               </a>
 
-              <Rodal visible={this.state.visible} onClose={() => this.setState({ visible: false })}>
-                  <div className="text-1-rodal">{this.state.errorMessage}</div>
-                  <a >
-                    <div className="rectangle-94-rodal">
-                      <div className="view-rodal">Request Permission</div>
-                    </div>
-                  </a>
+              <Rodal
+                visible={this.state.visible}
+                onClose={() => this.setState({ visible: false })}
+              >
+                <div className="text-1-rodal">{this.state.errorMessage}</div>
+                <a>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Request Permission</div>
+                  </div>
+                </a>
               </Rodal>
+            </div>
           </div>
-        </div>  
         </form>
       </div>
     );
@@ -214,6 +250,3 @@ addRecord = async (event) => {
 }
 
 export default withRouter(HospitalAdd);
-
-
-        
