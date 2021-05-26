@@ -69,7 +69,7 @@ class RequestsRow extends React.Component {
 
     let { recordID } = this.props;
 
-    if (isView == false && recordID == 0) {
+    if (isView === false) {
       recordID = "Create";
     } else {
       recordID = "View (" + recordID + ")";
@@ -81,6 +81,7 @@ class RequestsRow extends React.Component {
       <div class="container-center-horizontal">
         <div className="requestsRow-requests">
           <div className="rectangle-95-requests"></div>
+          {/* eslint-disable-next-line */}
           <a onClick={this.denyPerm}>
             <div className="group-82-requests">
               <div className="overlap-group1-requests">
@@ -113,6 +114,7 @@ class RequestsRow extends React.Component {
               </div>
             </div>
           </a>
+          {/* eslint-disable-next-line */}
           <a onClick={this.grantPerm}>
             <div className="group-83-requests">
               <div className="overlap-group1-requests">

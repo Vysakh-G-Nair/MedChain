@@ -74,11 +74,11 @@ class Requests extends React.Component {
       patientSOwnRecords,
       requests,
       rectangle88,
-      reject,
-      name,
-      ag1637G,
-      text1,
-      recordName1,
+      // reject,
+      // name,
+      // ag1637G,
+      // text1,
+      // recordName1,
       takeAction,
       recordId,
       text2,
@@ -96,7 +96,7 @@ class Requests extends React.Component {
         >
           <div className="requests poppins-medium-white-20px">{requests}</div>
           <div className="overlap-group-requests">
-            <img className="rectangle-88-requests" src={rectangle88} />
+            <img className="rectangle-88-requests" src={rectangle88} alt="Rectangle"/>
             <div className="rectangle-90-requests"></div>
             <div className="take-action-requests poppins-medium-baby-powder-18px">
               {takeAction}

@@ -152,6 +152,7 @@ class HospitalView extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
+              {/* eslint-disable-next-line */}
               <a onClick={this.checkPermission}>
                 <div className="rectangle-94">
                   {loading && (
@@ -181,7 +182,7 @@ class HospitalView extends React.Component {
                 }
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
-
+                {/* eslint-disable-next-line */}
                 <a onClick={this.addRequest}>
                   <div className="rectangle-94-rodal">
                     {loading && (

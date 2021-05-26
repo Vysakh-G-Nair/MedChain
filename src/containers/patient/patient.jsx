@@ -54,7 +54,7 @@ class Patient extends React.Component {
       });
     } catch (error) {
       let er = error.message;
-      if (er.indexOf(":") != -1) {
+      if (er.indexOf(":") !== -1) {
         er = er.slice(er.indexOf(":") + 1, er.indexOf("!") + 1)
       }
       this.setState({ errorMessage: er, visible: true });
@@ -65,7 +65,7 @@ class Patient extends React.Component {
   }
 
   render() {
-    const { patient, viewYourRecords, name, shareRecord, text2 } = this.props;
+    const { patient, viewYourRecords, shareRecord } = this.props;
 
     const detailsData = {
       overlapGroup:

@@ -209,6 +209,7 @@ class HospitalAdd extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
+              {/* eslint-disable-next-line */}
               <a onClick={this.addRecord}>
                 {/* <div className="rectangle-94">
                 <div className="view-hospitaladd">{view}</div>
@@ -235,11 +236,11 @@ class HospitalAdd extends React.Component {
                 onClose={() => this.setState({ visible: false })}
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
-                <a>
+                {/* <a>
                   <div className="rectangle-94-rodal">
                     <div className="view-rodal">Request Permission</div>
                   </div>
-                </a>
+                </a> */}
               </Rodal>
             </div>
           </div>

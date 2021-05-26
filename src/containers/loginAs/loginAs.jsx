@@ -121,6 +121,7 @@ class LoginAs extends React.Component {
             <div className="register-as poppins-medium-white-20px">
               {registerAs}
             </div>
+            {/* eslint-disable-next-line */}
             <a onClick={this.loginPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
@@ -131,6 +132,7 @@ class LoginAs extends React.Component {
                 </div>
               </div>
             </a>
+            {/* eslint-disable-next-line */}
             <a onClick={this.loginMedPro}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
@@ -145,6 +147,7 @@ class LoginAs extends React.Component {
                 </div>
               </div>
             </a>
+            {/* eslint-disable-next-line */}
             <a onClick={this.loginExtUser}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
@@ -171,7 +174,7 @@ class LoginAs extends React.Component {
               onClose={() => this.props.history.push("/")}
             >
               <div className="text-1-rodal">Web3 not found! MetaMask may not be installed or configured correctly!</div>
-              <a href="https://metamask.io/" target="_blank">
+              <a href="https://metamask.io/" target="_blank" rel="noreferrer">
                 <div className="rectangle-94-rodal">
                   <div className="view-rodal">Go to MetaMask site</div>
                 </div>

@@ -188,6 +188,7 @@ class RegisterPatientHospital extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
+              {/* eslint-disable-next-line */}
               <a onClick={this.registerPatient}>
                 <div className="rectangle-94">
                   {loading && (
