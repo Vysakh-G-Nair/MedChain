@@ -20,7 +20,7 @@ state = {
 
 // componentWillMount() {
 //   const { state } = this.props.location;
-//   this.setState({state1:state});
+//   this.setState({address:state});
 // }
 
 checkPermission = async(event) =>{
@@ -63,7 +63,7 @@ addRequest = async(event) => {
   });
   this.props.history.push({
     pathname: "/external",
-    state: this.state.state1
+    state: this.state.address
   }); 
   } catch (error) {
     // this.setState({ errorMessage: error.message, visible: true });
