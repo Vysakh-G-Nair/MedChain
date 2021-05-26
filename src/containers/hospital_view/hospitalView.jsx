@@ -62,7 +62,6 @@ addRequest = async(event) => {
     const accounts = await web3.eth.getAccounts();
     const hospital = HospitalCreator(this.state.state1);
     console.log("hospital"+hospital.options.address);
-    console.log("hospital"+this.state.state1);
     await hospital.methods.requestPermission(this.state.patientAddr,this.state.recordid,true).send({
       from: accounts[0]
   });
