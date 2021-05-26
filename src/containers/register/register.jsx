@@ -32,15 +32,15 @@ class Register extends React.Component {
         from: accounts[0],
       });
 
-      if (type == 0) {
+      if (type === 0) {
         this.props.history.push({
           pathname: "/registerpatientform",
         });
-      } else if (type == 1) {
+      } else if (type === 1) {
         this.props.history.push({
           pathname: "/registerhospitalform",
         });
-      } else if (type == 2) {
+      } else if (type === 2) {
         this.props.history.push({
           pathname: "/registerexternalform",
         });
@@ -92,6 +92,7 @@ class Register extends React.Component {
               {registerAs}
             </div>
             {/* <Link to='/registerpatientform'> */}
+            {/* eslint-disable-next-line */}
             <a onClick={this.regPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
@@ -104,6 +105,7 @@ class Register extends React.Component {
               {/* </Link> */}
             </a>
             {/* <Link to='/registerhospitalform'> */}
+            {/* eslint-disable-next-line */}
             <a onClick={this.regMedPro}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
@@ -120,6 +122,7 @@ class Register extends React.Component {
               {/* </Link> */}
             </a>
             {/* <Link to='/registerexternalform'> */}
+            {/* eslint-disable-next-line */}
             <a onClick={this.regExtUser}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
@@ -150,7 +153,7 @@ class Register extends React.Component {
                 Web3 not found! MetaMask may not be installed or configured
                 correctly!
               </div>
-              <a href="https://metamask.io/" target="_blank">
+              <a href="https://metamask.io/" target="_blank" rel="noreferrer">
                 <div className="rectangle-94-rodal">
                   <div className="view-rodal">Go to MetaMask site</div>
                 </div>

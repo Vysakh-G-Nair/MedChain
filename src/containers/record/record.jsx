@@ -81,7 +81,7 @@ class Record extends React.Component {
                 </span>
               </p>
             </div>
-            <Rodal visible={record[1] == 0}>
+            <Rodal visible={record[1] === 0}>
               <div className="text-1-rodal">No record found!</div>
               <Link to="/loginAs">
                 <div className="rectangle-94-rodal">

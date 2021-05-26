@@ -2,8 +2,6 @@ import React from "react";
 import "./patientGrantStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import { Requests } from "../index.js";
-import PatientCreator from "../../ethereum/patient";
-import web3 from "../../ethereum/web3";
 
 const requestsData = {
   overlapGroup:
@@ -19,62 +17,6 @@ const requestsData = {
 };
 
 class PatientGrant extends React.Component {
-  state = {
-    address: "",
-    addressOwner: "",
-    name: "",
-    noOfRecords: -1
-  };
-
-  componentWillMount() {
-    const { state } = this.props.location;
-    this.getInstance(state);
-  }
-
-  async getInstance(state) {
-    const patient = PatientCreator(state[0]);
-    console.log("Deployed address: " + patient.options.address);
-    console.log("Passed address: " + state[0]);
-    console.log("No. of records: " + state[1]); 
-    const requestCount = await patient.methods.getRequestsCount().call(); 
-
-    this.setState({
-      address: state[0],
-      noOfRecords: state[1]
-    });
-
-    const requests = await Promise.all(
-      Array(parseInt(requestCount))
-      .fill()
-      .map((element, index) => {
-          return patient.methods.requests(index).call();
-      })
-    );
-  }
-
-  grantPerm = async (event) => {
-    event.preventDefault();
-
-    this.setState({ loading: true, errorMessage: "" });
-
-    // try {
-    //   const accounts = await web3.eth.getAccounts();
-
-    //   const extUserInstance = await factory.methods.loginExtUser().call({
-    //     from: accounts[0],
-    //   });
-
-    //   this.props.history.push({
-    //     pathname: "/external",
-    //     state: extUserInstance,
-    //   });
-    // } catch (error) {
-    //   this.setState({ errorMessage: error.message });
-    //   console.log(this.state.errorMessage);
-    // }
-    this.setState({ loading: false });
-  };
-
   render() {
     const {
       patientShareRecord,

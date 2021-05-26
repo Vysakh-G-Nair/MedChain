@@ -127,20 +127,21 @@ class PatientGrant extends React.Component {
 
           <div className="group-54">
             <div className="overlap-group-patient-grant">
+              {/* eslint-disable-next-line */}
               <a onClick={this.checkPermission}>
                 <div className="rectangle-94">
                   {!loading && <div className="view-patient-grant">{view}</div>}
                   {loading && <div className="view-patient-grant">Wait..</div>}
                   {loading && (
                     <i
-                    className="fa fa-refresh fa-2x fa-spin"
-                    style={{
-                      marginRight: "50px",
-                      color: "#B080FF",
-                      marginTop: "12px",
-                      marginLeft: "305px",
-                    }}
-                  />
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{
+                        marginRight: "50px",
+                        color: "#B080FF",
+                        marginTop: "12px",
+                        marginLeft: "305px",
+                      }}
+                    />
                   )}
                 </div>
               </a>
@@ -150,7 +151,7 @@ class PatientGrant extends React.Component {
                 onClose={() => this.setState({ visible: false })}
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
-
+                {/* eslint-disable-next-line */}
                 <a onClick={this.addRequest}>
                   <div className="rectangle-94-rodal">
                     {loading && (

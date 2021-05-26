@@ -1,6 +1,6 @@
 import React from 'react';
 import './registerExternalFormStyling.scss';
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
@@ -117,6 +117,7 @@ class RegisterExternalForm extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
+              {/* eslint-disable-next-line */}
               <a onClick={this.registerExtUser} disabled={loading} >
                 <div className="rectangle-94">
                 {loading && (
@@ -136,6 +137,7 @@ class RegisterExternalForm extends React.Component {
                 <div className="text-1-rodal">
                   {this.state.errorMessage}
                 </div>
+                {/* eslint-disable-next-line */}
                 <a onClick={() => this.setState({ visible: false })}>
                   <div className="rectangle-94-rodal">
                     <div className="view-rodal">Close</div>

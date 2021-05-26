@@ -175,6 +175,7 @@ class RegisterHospitalForm extends React.Component {
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
+              {/* eslint-disable-next-line */}
               <a
                 onClick={this.registerMedical}
                 error={!!this.state.errorMessage}
@@ -201,6 +202,7 @@ class RegisterHospitalForm extends React.Component {
                 onClose={() => this.setState({ visible: false })}
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
+                {/* eslint-disable-next-line */}
                 <a onClick={() => this.setState({ visible: false })}>
                   <div className="rectangle-94-rodal">
                     <div className="view-rodal">Close</div>
