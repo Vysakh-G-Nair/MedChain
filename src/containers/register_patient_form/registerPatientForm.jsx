@@ -2,7 +2,7 @@ import React from "react";
 import "./registerPatientFormStyling.scss";
 import { withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-import Select from "react-select"
+import Select from "react-select";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
@@ -47,13 +47,13 @@ class RegisterPatientForm extends React.Component {
           from: accounts[0],
         });
 
-      const patientInstance = await factory.methods.loginPatient().call({
+      const patientDeployedAddr = await factory.methods.loginPatient().call({
         from: accounts[0],
       });
 
       this.props.history.push({
         pathname: "/patient",
-        state: patientInstance,
+        state: patientDeployedAddr,
       });
     } catch (error) {
       this.setState({ errorMessage: error.message, visible: true });
@@ -143,14 +143,14 @@ class RegisterPatientForm extends React.Component {
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
               <div className="enter-record-name-registerhosp">
-              <Select
-                value={(gender != null)? gender.value: gender}
-                onChange={(e) => {
-                  this.setState({ gender: e.value });
-                }}
-                options={genderoptions}
-                required
-              />
+                <Select
+                  value={gender != null ? gender.value : gender}
+                  onChange={(e) => {
+                    this.setState({ gender: e.value });
+                  }}
+                  options={genderoptions}
+                  required
+                />
               </div>
               {/* {console.log(this.state.gender)} */}
             </div>
