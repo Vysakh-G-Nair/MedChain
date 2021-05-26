@@ -25,7 +25,7 @@ class Hospital extends React.Component {
 
   async getMedSummary(state) {
     const hospital = HospitalCreator(state);
-    console.log(hospital.options.address);
+    console.log("Hospital deployed at: " + hospital.options.address);
 
     const accounts = await web3.eth.getAccounts();
 
@@ -45,8 +45,6 @@ class Hospital extends React.Component {
 
   render() {
     const { hospital, viewRecord, addRecord, regPatient } = this.props;
-    const { state } = this.props.location;
-    console.log("Dep Adrees: " + state);
 
     const detailsData = {
       overlapGroup:
@@ -66,7 +64,7 @@ class Hospital extends React.Component {
           <br />
         </>
       ),
-      spanText5: "LisenceNo: ",
+      spanText5: "Lisence No.: ",
       spanText6: (
         <>
           {this.state.lisenceNo}
@@ -83,7 +81,7 @@ class Hospital extends React.Component {
     };
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital screen"
           style={{ backgroundImage: `url(${hospital})` }}

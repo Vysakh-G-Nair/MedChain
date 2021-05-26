@@ -1,9 +1,9 @@
 import React from "react";
 import "./registerHospitalFormStyling.scss";
 import { withRouter } from "react-router-dom";
-import 'font-awesome/css/font-awesome.min.css';
-import factory from '../../ethereum/factory';
-import web3 from '../../ethereum/web3';
+import "font-awesome/css/font-awesome.min.css";
+import factory from "../../ethereum/factory";
+import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import Select from "react-select";
@@ -20,7 +20,7 @@ class RegisterHospitalForm extends React.Component {
     loading: false,
     hospitalName: "",
     category: "",
-    lisenceNo: null,
+    lisenceNo: "",
     location: "",
     visible: false,
   };
@@ -62,7 +62,7 @@ class RegisterHospitalForm extends React.Component {
       text1,
       text2,
       overlapGroup2,
-      searchNames,
+      // searchNames,
       patientEthAddr,
       doctorEthAddr,
       inputType,
@@ -70,7 +70,7 @@ class RegisterHospitalForm extends React.Component {
       categoryName,
       overlapGroup1,
       inputType2,
-      inputPlaceholder2,
+      // inputPlaceholder2,
       inputPlaceholder3,
       inputPlaceholder4,
       view,
@@ -79,14 +79,11 @@ class RegisterHospitalForm extends React.Component {
     const { loading, category } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
           name="form1"
-          //action="form1"
-          //method="post"
-          //onSubmit={this.registerDoctor} error={!!this.state.errorMessage}
         >
           <div className="text-1-hospitalview poppins-medium-white-20px">
             {text1}

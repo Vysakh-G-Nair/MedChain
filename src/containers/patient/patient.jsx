@@ -53,16 +53,15 @@ class Patient extends React.Component {
         noOfRecords: summary[5],
       });
     } catch (error) {
-      this.setState({ errorMessage: error.message, visible: true });
-      console.log(this.state.errorMessage);
+      let er = error.message;
+      if (er.indexOf(":") != -1) {
+        er = er.slice(er.indexOf(":") + 1, er.indexOf("!") + 1)
+      }
+      this.setState({ errorMessage: er, visible: true });
+      console.log(error.message);
     }
 
     this.setState({ loading: false });
-  }
-
-  test = async (event) => {
-    const { state } = this.props.location;
-    console.log(state);
   }
 
   render() {
