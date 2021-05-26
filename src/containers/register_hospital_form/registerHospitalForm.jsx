@@ -1,22 +1,21 @@
-import React from 'react';
-import './registerHospitalFormStyling.scss';
+import React from "react";
+import "./registerHospitalFormStyling.scss";
 import { withRouter } from "react-router-dom";
-import 'react-dropdown/style.css';
-import 'font-awesome/css/font-awesome.min.css';
-import factory from '../../ethereum/factory';
-import web3 from '../../ethereum/web3';
+import "react-dropdown/style.css";
+import "font-awesome/css/font-awesome.min.css";
+import factory from "../../ethereum/factory";
+import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import Select from "react-select"
+import Select from "react-select";
 
-const options = [ 
+const options = [
   { value: "Hospital", label: "Hospital" },
   { value: "Diagnostic center", label: "Diagnostic center" },
-  { value: "Clinic", label: "Clinic" }
+  { value: "Clinic", label: "Clinic" },
 ];
 
 class RegisterHospitalForm extends React.Component {
-
   state = {
     errorMessage: "",
     loading: false,
@@ -24,42 +23,41 @@ class RegisterHospitalForm extends React.Component {
     category: "",
     lisenceNo: null,
     location: "",
-    visible: false
+    visible: false,
   };
-
 
   registerMedical = async (event) => {
     event.preventDefault();
-    
-    const{hospitalName,category,lisenceNo,location}=this.state;
 
-    this.setState({ loading: true, errorMessage: '' });
+    const { hospitalName, category, lisenceNo, location } = this.state;
+
+    this.setState({ loading: true, errorMessage: "" });
 
     try {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
-        .registerMedPro( hospitalName , category , location, lisenceNo)
+        .registerMedPro(hospitalName, category, location, lisenceNo)
         .send({
           from: accounts[0],
         });
 
-        const doctorInstance = await factory.methods.loginMedPro().call({
-          from: accounts[0]
-        });
-  
-        this.props.history.push({
-          pathname: "/hospital",
-          state: doctorInstance
-        });        
+      const medProDeployedAddr = await factory.methods.loginMedPro().call({
+        from: accounts[0],
+      });
+
+      this.props.history.push({
+        pathname: "/hospital",
+        state: medProDeployedAddr,
+      });
     } catch (error) {
-      this.setState({ errorMessage: error.message , visible: true});
+      this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
 
     this.setState({ loading: false });
   };
 
-  render () { 
+  render() {
     const {
       hospitalView,
       text1,
@@ -79,7 +77,7 @@ class RegisterHospitalForm extends React.Component {
       view,
     } = this.props;
 
-    const { loading,category } = this.state;
+    const { loading, category } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -91,96 +89,130 @@ class RegisterHospitalForm extends React.Component {
           //method="post"
           //onSubmit={this.registerDoctor} error={!!this.state.errorMessage}
         >
-          <div className="text-1-hospitalview poppins-medium-white-20px">{text1}</div>
+          <div className="text-1-hospitalview poppins-medium-white-20px">
+            {text1}
+          </div>
           <div className="group-52">
-            <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>
-            <div className="overlap-group2-hospitalview" style={{ backgroundImage: `url(${overlapGroup2})` }}>
+            <div className="text-2-hospitalview poppins-normal-baby-powder-18px">
+              {text2}
+            </div>
+            <div
+              className="overlap-group2-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup2})` }}
+            >
               <input
                 className="enter-ethereum-address-hospitaladd"
                 name="2212"
-                placeholder={inputPlaceholder}//hospital name
+                placeholder={inputPlaceholder} //hospital name
                 type={inputType}
                 value={this.state.hospitalName}
-                onChange={event => this.setState({ hospitalName: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ hospitalName: event.target.value })
+                }
                 required
               />
             </div>
           </div>
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{categoryName}</div>
-            <div className="overlap-group1-registerhosp" style={{ backgroundImage: `url(${overlapGroup1})` }}>
-            
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {categoryName}
+            </div>
+            <div
+              className="overlap-group1-registerhosp"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <div className="enter-record-name-registerhosp">
                 <Select
-                value={(category != null)? category.value: category}
-                onChange={(e) => {
-                  this.setState({category: e.value });
-                }}
-                options={options}
-                required
-              />
-              {/* {console.log(this.state.category)} */}
+                  value={category != null ? category.value : category}
+                  onChange={(e) => {
+                    this.setState({ category: e.value });
+                  }}
+                  options={options}
+                  required
+                />
+                {/* {console.log(this.state.category)} */}
               </div>
-                       
             </div>
           </div>
 
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{patientEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {patientEthAddr}
+            </div>
+            <div
+              className="overlap-group1-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder3}//lisencenumber
+                placeholder={inputPlaceholder3} //lisencenumber
                 type={inputType2}
                 value={this.state.lisenceNo}
-                onChange={event => this.setState({ lisenceNo: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ lisenceNo: event.target.value })
+                }
                 required
               />
             </div>
           </div>
           <div className="group-53">
-            <div className="record-name poppins-normal-baby-powder-18px">{doctorEthAddr}</div>
-            <div className="overlap-group1-hospitalview" style={{ backgroundImage: `url(${overlapGroup1})` }}>
+            <div className="record-name poppins-normal-baby-powder-18px">
+              {doctorEthAddr}
+            </div>
+            <div
+              className="overlap-group1-hospitalview"
+              style={{ backgroundImage: `url(${overlapGroup1})` }}
+            >
               <input
                 className="enter-record-name-hospitaladd"
                 name="2215"
-                placeholder={inputPlaceholder4}//location
+                placeholder={inputPlaceholder4} //location
                 type={inputType2}
                 value={this.state.location}
-                onChange={event => this.setState({ location: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ location: event.target.value })
+                }
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.registerMedical} error={!!this.state.errorMessage} disabled={loading}>
+              <a
+                onClick={this.registerMedical}
+                error={!!this.state.errorMessage}
+                disabled={loading}
+              >
                 <div className="rectangle-94">
-                {loading && (
-                  <i
-                    className="fa fa-refresh fa-2x fa-spin"
-                    style={{ marginRight: "0px", color: '#B080FF', marginTop: "12px", marginLeft: "205px" }}
-                  />
-                )}
-                {!loading && <div className="view-hospitalview">{view}</div>} 
-                {loading && <div className="view-hospitalview">Wait...</div>} 
+                  {loading && (
+                    <i
+                      className="fa fa-refresh fa-2x fa-spin"
+                      style={{
+                        marginRight: "0px",
+                        color: "#B080FF",
+                        marginTop: "12px",
+                        marginLeft: "205px",
+                      }}
+                    />
+                  )}
+                  {!loading && <div className="view-hospitalview">{view}</div>}
+                  {loading && <div className="view-hospitalview">Wait...</div>}
                 </div>
               </a>
               <Rodal
                 visible={this.state.visible}
-                onClose={() => this.setState({ visible: false })}>
-                <div className="text-1-rodal">
-                  {this.state.errorMessage}
-                </div>
+                onClose={() => this.setState({ visible: false })}
+              >
+                <div className="text-1-rodal">{this.state.errorMessage}</div>
                 <a onClick={() => this.setState({ visible: false })}>
                   <div className="rectangle-94-rodal">
                     <div className="view-rodal">Close</div>
                   </div>
                 </a>
               </Rodal>
+            </div>
           </div>
-        </div>  
         </form>
       </div>
     );
@@ -188,6 +220,3 @@ class RegisterHospitalForm extends React.Component {
 }
 
 export default withRouter(RegisterHospitalForm);
-
-
-        
