@@ -33,20 +33,17 @@ class PatientGrant extends React.Component {
         const accounts = await web3.eth.getAccounts();
         const hospital = HospitalCreator(this.state.state1);
         console.log("hospital"+hospital.options.address);
-        const istrue = await hospital.methods.canCreateRec(pataddress).call({
+        await hospital.methods.canCreateRec(pataddress).call({
           from: accounts[0]
       });
-      if (istrue) {
+     
       this.props.history.push({
         pathname: "/hospitaladd",
         state: [this.state.state1,this.state.pataddress]
-      }); 
-    }
-    else {
-      const error = {message: "You don't have permission!"}
-      throw (error);
-    }
-      } catch (error) {
+ 
+      });
+     }
+      catch (error) {
         this.setState({ errorMessage: error.message, visible: true });
         console.log(this.state.errorMessage);
       }
