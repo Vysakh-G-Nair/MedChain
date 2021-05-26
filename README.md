@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# MedChain - A decentralised EHR system using Ethereum Blockchain
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
