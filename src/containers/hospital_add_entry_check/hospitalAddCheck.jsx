@@ -36,7 +36,7 @@ class PatientGrant extends React.Component {
       });
     } catch (error) {
       const er = error.message;
-      if (er.indexOf("!") == -1) {
+      if (er.indexOf("!") === -1) {
         // console.log(er);
         this.setState({ errorMessage: error.message, visible: true });
       } else {
@@ -92,7 +92,7 @@ class PatientGrant extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="patient-grant screen"
           style={{ backgroundImage: `url(${patientShareRecord})` }}

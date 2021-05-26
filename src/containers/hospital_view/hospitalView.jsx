@@ -9,7 +9,7 @@ import { withRouter } from "react-router-dom";
 class HospitalView extends React.Component {
   state = {
     patientAddr: "",
-    recordID: null,
+    recordID: "",
     address: "",
     errorMessage: "",
     visible: false,
@@ -36,7 +36,7 @@ class HospitalView extends React.Component {
       });
     } catch (error) {
       const er = error.message;
-      if (er.indexOf("!") == -1) {
+      if (er.indexOf("!") === -1) {
         // console.log(er);
         this.setState({ errorMessage: error.message, visible: true });
       } else {
@@ -97,7 +97,7 @@ class HospitalView extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
