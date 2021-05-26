@@ -11,27 +11,26 @@ class ExternalView extends React.Component {
 
 state = {
   errorMessage: "",
-  state1: "",
+  address: "",
   loading: false,
   patientAddr: "",
   recordid: "",
   visible: false
 };
 
-componentWillMount() {
-  const { state } = this.props.location;
-  this.setState({state1:state});
-}
+// componentWillMount() {
+//   const { state } = this.props.location;
+//   this.setState({state1:state});
+// }
 
 checkPermission = async(event) =>{
   event.preventDefault();
-  
-  const {patientAddr,recordid} = this.state;
-  this.setState({ loading: true, errorMessage: "" });
-  {
+  const { state } = this.props.location;
+  this.setState({ loading: true, errorMessage: "", address: state });
+
     try {
         const accounts = await web3.eth.getAccounts();
-        const external = ExternalCreator(this.state.state1);
+        const external = ExternalCreator(this.state.address);
         console.log("external"+external.options.address);
         const recordinstance = await 
         external.methods.viewRecord(this.state.patientAddr,this.state.recordid).call({
@@ -47,18 +46,18 @@ checkPermission = async(event) =>{
       }
 
     this.setState({ loading: false });
-  };
+};
 
-}
+
 
 addRequest = async(event) => {
   event.preventDefault();
   this.setState({ loading: true, errorMessage: "" });
   try {
     const accounts = await web3.eth.getAccounts();
-    const external = ExternalCreator(this.state.state1);
+    const external = ExternalCreator(this.state.address);
     console.log("external"+external.options.address);
-    console.log("external"+this.state.state1);
+    console.log("external"+this.state.address);
     await external.methods.requestPermission(this.state.patientAddr,this.state.recordid).send({
       from: accounts[0]
   });
@@ -67,8 +66,15 @@ addRequest = async(event) => {
     state: this.state.state1
   }); 
   } catch (error) {
-    this.setState({ errorMessage: error.message, visible: true });
-    console.log(this.state.errorMessage);
+    // this.setState({ errorMessage: error.message, visible: true });
+    // console.log(this.state.errorMessage);
+    const er = error.message;
+      // console.log(er);
+      this.setState({
+        errorMessage: er.slice(er.indexOf(""), er.indexOf("!") + 1),
+        visible: true,
+      });
+      console.log(error.message);
   }
   this.setState({ loading: false });
 
@@ -93,7 +99,7 @@ addRequest = async(event) => {
     const { loading } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
@@ -156,7 +162,7 @@ addRequest = async(event) => {
               visible={this.state.visible} 
               onClose={()=>this.props.history.push({
                 pathname: "/external",
-                state: this.state.state1
+                state: this.state.address
               })}>
                   <div className="text-1-rodal">You don’t have permission to view this record</div>
                   <a onClick = {this.addRequest}>
