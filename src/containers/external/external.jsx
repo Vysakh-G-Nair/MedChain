@@ -31,9 +31,9 @@ async getExtSummary(state) {
 
     this.setState({
         address: state,
-        //addressOwner: summary[0],
-        name : summary[0],
-        designation: summary[1]    
+        addressOwner: summary[0],
+        name : summary[1],
+        designation: summary[2]    
     });
   }
 
@@ -62,7 +62,7 @@ async getExtSummary(state) {
           <div className="details-comp"> <Details {...detailsData} /> </div>
           <div className="overlap-group-external">
             <div className="flex-row-external">
-              <Link to="/externalview">
+              <Link to={{pathname:"/externalView",state:this.state.address}}>
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-external">
                     <img className="view-3" src={view_record_img} alt=""/>

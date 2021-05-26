@@ -3,22 +3,77 @@ import './externalViewStyling.scss';
 import { withRouter } from "react-router-dom";
 import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
+import ExternalCreator from '../../ethereum/external';
+import web3 from '../../ethereum/web3';
 
   
 class ExternalView extends React.Component {
 
-constructor(props) {
-    super(props);
-    this.state = { visible: false };
+state = {
+  errorMessage: "",
+  state1: "",
+  loading: false,
+  patientAddr: "",
+  recordid: "",
+  visible: false
+};
+
+componentWillMount() {
+  const { state } = this.props.location;
+  this.setState({state1:state});
 }
 
-show() {
-    this.setState({ visible: true });
+checkPermission = async(event) =>{
+  event.preventDefault();
+  
+  const {patientAddr,recordid} = this.state;
+  this.setState({ loading: true, errorMessage: "" });
+  {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        const external = ExternalCreator(this.state.state1);
+        console.log("external"+external.options.address);
+        const recordinstance = await 
+        external.methods.viewRecord(this.state.patientAddr,this.state.recordid).call({
+          from: accounts[0]
+      });
+      this.props.history.push({
+        pathname: "/record",
+        state: recordinstance
+      }); 
+      } catch (error) {
+        this.setState({ errorMessage: error.message, visible: true });
+        console.log(this.state.errorMessage);
+      }
+
+    this.setState({ loading: false });
+  };
+
 }
 
-hide() {
-    this.setState({ visible: false });
+addRequest = async(event) => {
+  event.preventDefault();
+  this.setState({ loading: true, errorMessage: "" });
+  try {
+    const accounts = await web3.eth.getAccounts();
+    const external = ExternalCreator(this.state.state1);
+    console.log("external"+external.options.address);
+    console.log("external"+this.state.state1);
+    await external.methods.requestPermission(this.state.patientAddr,this.state.recordid).send({
+      from: accounts[0]
+  });
+  this.props.history.push({
+    pathname: "/external",
+    state: this.state.state1
+  }); 
+  } catch (error) {
+    this.setState({ errorMessage: error.message, visible: true });
+    console.log(this.state.errorMessage);
+  }
+  this.setState({ loading: false });
+
 }
+
 
   render () { 
     const {
@@ -34,6 +89,8 @@ hide() {
       inputPlaceholder2,
       view,
     } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div class="container-center-horizontal">
@@ -53,6 +110,8 @@ hide() {
                 name="2212"
                 placeholder={inputPlaceholder}
                 type={inputType}
+                value={this.state.patientAddr}
+                onChange={event => this.setState({ patientAddr: event.target.value })}
                 required
               />
             </div>
@@ -65,23 +124,57 @@ hide() {
                 name="2215"
                 placeholder={inputPlaceholder2}
                 type={inputType2}
+                value={this.state.recordid}
+                onChange={event => this.setState({ recordid: event.target.value })}
                 required
               />
             </div>
           </div>
           <div className="group-54">
             <div className="overlap-group-hospitalview">
-              <a onClick={this.show.bind(this)}>
+              <a onClick={this.checkPermission}>
                 <div className="rectangle-94">
-                <div className="view-hospitalview">{view}</div>
+                {loading && (
+                      <i
+                        className="fa fa-refresh fa-2x fa-spin"
+                        style={{
+                          marginRight: "0px",
+                          color: "#B080FF",
+                          marginTop: "12px",
+                          marginLeft: "205px",
+                        }}
+                      />
+                    )}
+                    {!loading && <div className="view-hospitalview">{view}</div>}
+                    {loading && <div className="view-hospitalview">Wait...</div>}
+
+                {/*<div className="view-hospitalview">{view}</div>*/}
                 </div>
               </a>
 
-              <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
+              <Rodal 
+              visible={this.state.visible} 
+              onClose={()=>this.props.history.push({
+                pathname: "/external",
+                state: this.state.state1
+              })}>
                   <div className="text-1-rodal">You don’t have permission to view this record</div>
-                  <a >
+                  <a onClick = {this.addRequest}>
                     <div className="rectangle-94-rodal">
-                      <div className="view-rodal">Request Permission</div>
+                    {loading && (
+                      <i
+                        className="fa fa-refresh fa-2x fa-spin"
+                        style={{
+                          marginRight: "0px",
+                          color: "#B080FF",
+                          marginTop: "12px",
+                          marginLeft: "205px",
+                        }}
+                      />
+                    )}
+                    {!loading && <div className="view-rodal">Request Permission</div>}
+                    {loading && <div className="view-rodal">Wait...</div>}
+                      {/*<div className="view-rodal">Request Permission</div>*/}
                     </div>
                   </a>
               </Rodal>
