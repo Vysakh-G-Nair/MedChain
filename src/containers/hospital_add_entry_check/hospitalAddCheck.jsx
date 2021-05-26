@@ -126,7 +126,7 @@ class PatientGrant extends React.Component {
               <Rodal 
               visible={this.state.visible} 
               onClose={()=>this.setState({visible:false})}>
-                  <div className="text-1-rodal">You don’t have permission to create this record</div>
+                  <div className="text-1-rodal">{this.state.errorMessage}</div>
             
                   <a onClick = {this.addRequest}>
 

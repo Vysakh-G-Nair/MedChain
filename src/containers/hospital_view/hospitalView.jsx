@@ -39,8 +39,17 @@ checkPermission = async(event) =>{
       state: recordinstance
     }); 
     } catch (error) {
+      const er = error.message;
+      if(er.indexOf("{")==-1){
+      // console.log(er);
       this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
+      }
+      else{
+        this.setState({
+          errorMessage: er.slice(er.indexOf("Y"), er.indexOf("{") + 1),
+          visible: true,});
+      }
     }
 
     this.setState({ loading: false });
@@ -153,7 +162,7 @@ addRequest = async(event) => {
                 pathname: "/hospital",
                 state: this.state.state1
               })}>
-                  <div className="text-1-rodal">You don’t have permission to view this record</div>
+                  <div className="text-1-rodal">{this.state.errorMessage}</div>
             
                   <a onClick = {this.addRequest}>
 
