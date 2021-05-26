@@ -78,7 +78,7 @@ class HospitalAdd extends React.Component {
     const { loading } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}

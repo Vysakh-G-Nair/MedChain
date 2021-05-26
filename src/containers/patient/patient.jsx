@@ -108,7 +108,7 @@ class Patient extends React.Component {
     };
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="patient screen"
           style={{ backgroundImage: `url(${patient})` }}

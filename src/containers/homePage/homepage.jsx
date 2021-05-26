@@ -12,7 +12,7 @@ class Landing extends React.Component {
     } = this.props;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="landing screen"
           style={{ backgroundImage: `url(${landing})` }}

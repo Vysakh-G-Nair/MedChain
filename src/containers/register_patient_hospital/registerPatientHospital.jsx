@@ -1,17 +1,17 @@
 import React from "react";
 import "./registerPatientHospitalStyling.scss";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
-import HospitalCreator from '../../ethereum/medicalpro';
-import Select from "react-select"
+import HospitalCreator from "../../ethereum/medicalpro";
+import Select from "react-select";
 
-const genderoptions = [ 
+const genderoptions = [
   { value: "Male", label: "Male" },
   { value: "Female", label: "Female" },
-  { value: "Other", label: "Other" }
+  { value: "Other", label: "Other" },
 ];
 
 class RegisterPatientHospital extends React.Component {
@@ -19,41 +19,37 @@ class RegisterPatientHospital extends React.Component {
     errorMessage: "",
     loading: false,
     patientName: "",
-    age: 0,
-    patientAddr:"",
+    age: "",
+    patientAddr: "",
     gender: null,
     bloodGroup: "",
     visible: false,
-    state1:""
-  }
+    address: "",
+  };
 
-  componentWillMount() {
+  registerPatient = async (event) => {
+    event.preventDefault();
     const { state } = this.props.location;
-    this.setState({state1:state});
-}
-
-registerPatient = async (event) => {
-  event.preventDefault();
-  const { patientName,age,patientAddr,gender, bloodGroup } = this.state;
-  this.setState({ loading: true, errorMessage: "" });   
-  try {
+    const { patientName, age, patientAddr, gender, bloodGroup } = this.state;
+    this.setState({ loading: true, errorMessage: "", address: state });
+    try {
       const accounts = await web3.eth.getAccounts();
-      const hospital = HospitalCreator(this.state.state1);
-      console.log("hospital"+hospital.options.address);
+      const hospital = HospitalCreator(this.state.address);
+      console.log("Hospital deployed address: " + hospital.options.address);
       await hospital.methods
-        .createPatient(this.state.patientAddr, this.state.patientName, this.state.age,this.state.gender, this.state.bloodGroup).send({from: accounts[0]});
-        this.props.history.push({
-          pathname: "/hospital",
-          state: this.state.state1
-        }); 
+        .createPatient(patientAddr, patientName, age, gender, bloodGroup)
+        .send({ from: accounts[0] });
+      this.props.history.push({
+        pathname: "/hospital",
+        state: this.state.address,
+      });
     } catch (error) {
       this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
 
-  this.setState({ loading: false });
+    this.setState({ loading: false });
   };
-
 
   render() {
     const {
@@ -71,7 +67,7 @@ registerPatient = async (event) => {
       overlapGroup1,
       inputType2,
       inputPlaceholder2,
-      inputPlaceholder3,
+      // inputPlaceholder3,
       inputPlaceholder4,
       view,
     } = this.props;
@@ -79,7 +75,7 @@ registerPatient = async (event) => {
     const { loading, gender } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
@@ -142,7 +138,9 @@ registerPatient = async (event) => {
                 placeholder={patientEthAddrPH}
                 type={inputType2}
                 value={this.state.patientAddr}
-                onChange={(event) => this.setState({ patientAddr: event.target.value })}
+                onChange={(event) =>
+                  this.setState({ patientAddr: event.target.value })
+                }
                 required
               />
             </div>
@@ -156,14 +154,14 @@ registerPatient = async (event) => {
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
               <div className="enter-record-name-registerhosp">
-              <Select
-                value={(gender != null)? gender.value: gender}
-                onChange={(e) => {
-                  this.setState({ gender: e.value });
-                }}
-                options={genderoptions}
-                required
-              />
+                <Select
+                  value={gender != null ? gender.value : gender}
+                  onChange={(e) => {
+                    this.setState({ gender: e.value });
+                  }}
+                  options={genderoptions}
+                  required
+                />
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Record, ViewRecordsRow, HospitalAddCheck, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
+import { Record, HospitalAddCheck, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient, PatientExternalView, PatientShareRecord, PatientGrant } from './containers/index' ;
 
 
 
@@ -84,7 +84,7 @@ const hospitalAddData = {
   inputPlaceholder4: "Enter docters's ethereum address",
   inputPlaceholder5: "Enter symptoms, ailments, medications etc.",
   inputPlaceholder6: "Choose todays date",
-  entryDate: "Date",
+  entryDate: "Date (dd/mm/yyyy)",
   view: "Add",
 };
 
@@ -244,14 +244,14 @@ const viewRecordsData = {
   yourRecords: "YOUR RECORDS",
 };
 
-const viewRecordsRowData = {
-  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
-  manjunathanM: "Fever",
-  text1: "14/05/2021",
-  name: "View",
-  download: "Download",
-  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-};
+// const viewRecordsRowData = {
+//   overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+//   manjunathanM: "Fever",
+//   text1: "14/05/2021",
+//   name: "View",
+//   download: "Download",
+//   patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+// };
 
 const recordData = {
   patientShareRecord: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",

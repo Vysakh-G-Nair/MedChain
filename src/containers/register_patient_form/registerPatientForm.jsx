@@ -85,7 +85,7 @@ class RegisterPatientForm extends React.Component {
     const { loading, gender } = this.state;
 
     return (
-      <div class="container-center-horizontal">
+      <div className="container-center-horizontal">
         <form
           className="hospital-view screen"
           style={{ backgroundImage: `url(${hospitalView})` }}
