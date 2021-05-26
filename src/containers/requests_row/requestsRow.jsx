@@ -15,7 +15,7 @@ class RequestsRow extends React.Component {
   };
 
   grantPerm = async (event) => {
-    console.log("Inside" + this.props.index);
+    // console.log("Inside" + this.props.index);
     event.preventDefault();
 
     this.setState({ gloading: true, errorMessage: "" });
