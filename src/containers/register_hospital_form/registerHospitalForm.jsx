@@ -1,7 +1,6 @@
 import React from 'react';
 import './registerHospitalFormStyling.scss';
 import { withRouter } from "react-router-dom";
-import 'react-dropdown/style.css';
 import 'font-awesome/css/font-awesome.min.css';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';

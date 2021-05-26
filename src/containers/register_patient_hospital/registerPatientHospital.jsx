@@ -2,11 +2,8 @@ import React from "react";
 import "./registerPatientHospitalStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from '../../ethereum/medicalpro';
 import Select from "react-select"
