@@ -6,7 +6,7 @@ contract UserFactory {
     mapping (address => address) extUserAddress;
     
     function canRegister() public view {
-        require(medProsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && patientsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && extUserAddress[msg.sender] == 0x0000000000000000000000000000000000000000, "Already registered as a Patient or a Medical Professional or an External user!");
+        require(medProsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && patientsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && extUserAddress[msg.sender] == 0x0000000000000000000000000000000000000000, "Already registered as a user in the system!");
     }
     
     function registerPatient(string memory _name, uint _age, string memory _gender, string memory _bloodGroup, bool _isdoc, address _owner) public {
@@ -160,7 +160,7 @@ contract Patient {
     
     function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
         Record storage record = records[indices[_id]];
-        require(record.canView[msg.sender] , "You don't have permission to view this record");
+        require(record.canView[msg.sender] , "You don't have permission to view this record!");
         return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
     }
     
@@ -231,7 +231,7 @@ contract MedicalPro {
     
     function canCreateRec(address _patient) public view returns (bool) {
         Patient patient = getPatient(_patient);
-        return (patient.canCreate(this));
+        require (patient.canCreate(this), "You don't have permission to create a record!");
     }
 }
 

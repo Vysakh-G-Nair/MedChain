@@ -1,13 +1,13 @@
-import React from 'react';
-import './registerStyling.scss';
+import React from "react";
+import "./registerStyling.scss";
 import { Link, withRouter } from "react-router-dom";
-import user_img from './user.png';
-import hospital_img from './hospital.png';
+import user_img from "./user.png";
+import hospital_img from "./hospital.png";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
-  
+
 class Register extends React.Component {
   state = {
     noMetavisible: false,
@@ -17,7 +17,7 @@ class Register extends React.Component {
   };
 
   componentDidMount() {
-    if (typeof window.web3 === 'undefined') {
+    if (typeof window.web3 === "undefined") {
       this.setState({ noMetavisible: true });
     }
   }
@@ -36,13 +36,11 @@ class Register extends React.Component {
         this.props.history.push({
           pathname: "/registerpatientform",
         });
-      }
-      else if (type == 1) {
+      } else if (type == 1) {
         this.props.history.push({
           pathname: "/registerhospitalform",
         });
-      }
-      else if (type == 2) {
+      } else if (type == 2) {
         this.props.history.push({
           pathname: "/registerexternalform",
         });
@@ -90,36 +88,48 @@ class Register extends React.Component {
           method="post"
         >
           <div className="overlap-group-register">
-            <div className="register-as-register poppins-medium-white-20px">{registerAs}</div>
+            <div className="register-as-register poppins-medium-white-20px">
+              {registerAs}
+            </div>
             {/* <Link to='/registerpatientform'> */}
             <a onClick={this.regPatient}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
-                <img className="user-1-register" src={user_img} alt=""/>
-                <div className="patient-register poppins-semi-bold-amethyst-20px">{patient}</div>
+                  <img className="user-1-register" src={user_img} alt="" />
+                  <div className="patient-register poppins-semi-bold-amethyst-20px">
+                    {patient}
+                  </div>
                 </div>
               </div>
-            {/* </Link> */}
+              {/* </Link> */}
             </a>
             {/* <Link to='/registerhospitalform'> */}
             <a onClick={this.regMedPro}>
               <div className="group-62-register">
                 <div className="overlap-group1-register">
-                <img className="hospital-2-register" src={hospital_img} alt=""/>
-                <div className="place-register poppins-semi-bold-amethyst-20px">{medPro}</div>
+                  <img
+                    className="hospital-2-register"
+                    src={hospital_img}
+                    alt=""
+                  />
+                  <div className="place-register poppins-semi-bold-amethyst-20px">
+                    {medPro}
+                  </div>
                 </div>
               </div>
-            {/* </Link> */}
+              {/* </Link> */}
             </a>
             {/* <Link to='/registerexternalform'> */}
             <a onClick={this.regExtUser}>
               <div className="group-61-register">
                 <div className="overlap-group2-register">
-                <img className="user-1-register" src={user_img} alt=""/>
-                <div className="patient-register poppins-semi-bold-amethyst-20px">{externaluser}</div>
+                  <img className="user-1-register" src={user_img} alt="" />
+                  <div className="patient-register poppins-semi-bold-amethyst-20px">
+                    {externaluser}
+                  </div>
                 </div>
               </div>
-            {/* </Link> */}
+              {/* </Link> */}
             </a>
             <Rodal
               visible={this.state.visible}
@@ -136,7 +146,10 @@ class Register extends React.Component {
               visible={this.state.noMetavisible}
               onClose={() => this.props.history.push("/")}
             >
-              <div className="text-1-rodal">Web3 not found! MetaMask may not be installed or configured correctly!</div>
+              <div className="text-1-rodal">
+                Web3 not found! MetaMask may not be installed or configured
+                correctly!
+              </div>
               <a href="https://metamask.io/" target="_blank">
                 <div className="rectangle-94-rodal">
                   <div className="view-rodal">Go to MetaMask site</div>

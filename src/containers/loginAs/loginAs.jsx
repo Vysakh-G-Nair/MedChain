@@ -23,10 +23,6 @@ class LoginAs extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this.setState({ noMetavisible: false });
-  }
-
   loginPatient = async (event) => {
     event.preventDefault();
 
