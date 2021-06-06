@@ -21,7 +21,6 @@ export { default as ViewRecords } from "./view_records/viewRecords";
 export { default as ViewRecordsRow } from "./view_records_row/viewRecordsRow";
 export { default as External } from "./external/external";
 export { default as Record } from "./record/record";
-export { default as Files } from "./files/Files";
 export { default as ExternalView } from "./external_view/externalView";
 
 
