@@ -3,6 +3,15 @@ import "./recordStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
+
 
 class Record extends React.Component {
   render() {
@@ -34,6 +43,10 @@ class Record extends React.Component {
             backgroundSize: "100% 100%",
           }}
         >
+          <div className="header-record"> 
+            <Header {...headerData} />
+          </div>
+          
           <div className="boxposition">
             <div className="overlap-group-record-record">
               <p className="text-1-record-record poppins-normal-white-16px">

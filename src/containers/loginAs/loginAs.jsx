@@ -7,6 +7,14 @@ import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class LoginAs extends React.Component {
   state = {
@@ -117,6 +125,9 @@ class LoginAs extends React.Component {
           action="form2"
           method="post"
         >
+          <div className=""> 
+            <Header {...headerData} />
+          </div>
           <div className="overlap-group-register">
             <div className="register-as poppins-medium-white-20px">
               {registerAs}

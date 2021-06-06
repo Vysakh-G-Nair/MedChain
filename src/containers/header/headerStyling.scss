@@ -1,0 +1,212 @@
+:root {
+    --font-family-poppins: Poppins;
+    --font-size-xxl: 22px;
+    --font-size-xl: 20px;  
+    --mine-shaft: #2D3135;
+    --white: #FFFFFF;
+    --font-size-l2: 16px;
+    --font-size-l: 18px;
+  }
+
+.group-85-header {
+  align-items: center;
+  background-color: var(--mine-shaft);
+  box-shadow: 0px 6px 20px #494e52b2 , 0px 8px 30px #232527e6 , 0px 2px 6px #232527cc , 0px 2px 4px #4a4e5380;
+  display: flex;
+  height: 86px;
+  width: 1440px;
+  padding: 0 32px;
+  position: absolute;
+  margin-left: -465px;
+}
+
+.left-arrow-1 {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  mix-blend-mode: normal;
+  padding: 6.0px 4px;
+  width: 36px;
+}
+
+.vector-2 {
+  height: 36px;
+  mix-blend-mode: normal;
+  width: 36px;
+  margin-top: -7px;
+}
+
+.medlogo-1-header {
+  height: 32px;
+  margin-left: 16px;
+  mix-blend-mode: normal;
+  object-fit: cover;
+  width: 157px;
+}
+
+.overlap-group4-header {
+  height: 28px;
+  margin-left: 429px;
+  position: relative;
+  width: 568px;
+}
+
+.group-83-header {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  height: 28px;
+  left: 457px;
+  min-width: 111px;
+  position: absolute;
+  top: 0;
+}
+
+.overlap-group1-1-header {
+  align-items: flex-start;
+  background-color: var(--mine-shaft);
+  border-radius: 30px;
+  box-shadow: -6px -6px 20px #494e52b2 , 8px 8px 30px #232527e6 , 2px 2px 6px #232527cc , -2px -2px 4px #4a4e5380;
+  display: flex;
+  height: 28px;
+  justify-content: flex-end;
+  min-width: 109px;
+  padding: 3px 8px;
+}
+
+.overlap-group1-1-header:hover {
+  background: #2D3135;
+    /* Hover Shadow */
+  
+    box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
+    border-radius: 30px;
+}
+
+.check {
+  letter-spacing: 1.00px;
+  min-height: 21px;
+  min-width: 92px;
+  mix-blend-mode: normal;
+  text-align: center;
+  width: 92px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #9A5BFF;
+}
+
+.group-84-header {
+  align-items: flex-end;
+  display: flex;
+  height: 25px;
+  left: 0;
+  min-width: 468px;
+  position: absolute;
+  top: 2px;
+}
+
+.loupe-1-header {
+  align-items: flex-start;
+  display: flex;
+  height: 20px;
+  mix-blend-mode: normal;
+  overflow: hidden;
+  width: 20px;
+}
+
+.overlap-group1-header {
+  align-items: flex-end;
+  background-size: 100% 100%;
+  display: flex;
+  height: 18px;
+  justify-content: flex-end;
+  margin-top: -0.36px;
+  min-width: 18px;
+}
+
+.vector-header {
+  height: 20px;
+  margin-bottom: -2.74px;
+  mix-blend-mode: normal;
+  width: 20px;
+}
+
+.flex-col-header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -1.0px;
+  margin-left: 6px;
+  min-height: 22px;
+  width: 419px;
+}
+
+.enter-ethereum-address-header {
+  background-color: transparent;
+  border: 0;
+  flex-shrink: 1;
+  height: 20px;
+  margin-left: -30.0px;
+  mix-blend-mode: normal;
+  padding: 0;
+  resize: none;
+  width: 390px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #7F8489;
+  mix-blend-mode: normal;
+}
+
+.vector-1-header {
+  height: 2px;
+  margin-top: 5px;
+  width: 419px;
+}
+
+.reject-button-header {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  margin-left: 56px;
+  min-width: 111px;
+}
+
+.overlap-group1-1 {
+  align-items: flex-start;
+  background-color: var(--mine-shaft);
+  border-radius: 30px;
+  box-shadow: -6px -6px 20px #494e52b2 , 8px 8px 30px #232527e6 , 2px 2px 6px #232527cc , -2px -2px 4px #4a4e5380;
+  display: flex;
+  height: 28px;
+  justify-content: flex-end;
+  min-width: 109px;
+  padding: 3px 8px;
+}
+
+.log-out {
+  letter-spacing: 1.00px;
+  min-height: 21px;
+  min-width: 92px;
+  mix-blend-mode: normal;
+  text-align: center;
+  width: 92px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 1px;
+
+  color: #E32C2C;
+}
+
+
+

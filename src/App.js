@@ -229,7 +229,7 @@ const loginAsData = {
   register: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
   registerAs: "LOGIN AS",
   patient: "Patient",
-  medPro: "Medical Professional",
+  medPro: "Physician",
   externaluser: "External",
 };
 

@@ -7,6 +7,16 @@
   --font-size-l2: 16px;
   --font-size-l: 18px;
 }
+.overlap-group1-registerhosp-category{
+  align-items: center;
+  background-size: 100% 100%;
+  display: flex;
+  height: 54px;
+  margin-left: 0px;
+  margin-top: 10px;
+  min-width: 591px;
+  padding: 0 202.5px;
+}
 
 .enter-ethereum-address-hospitaladd {
   background-color: transparent;
@@ -210,6 +220,7 @@
   width: 427px;
 
 }
+
 .text-2-hospitalview {
   font-family: var(--font-family-poppins);
   font-style: normal;

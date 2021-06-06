@@ -7,6 +7,14 @@ import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 const genderoptions = [
   { value: "Male", label: "Male" },
@@ -63,6 +71,54 @@ class RegisterPatientForm extends React.Component {
     this.setState({ loading: false });
   };
 
+  styles = {
+    container: (provided, state) => ({
+      ...provided,
+      backgroundColor: "#2D3135",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: "#7F8489",
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: "#2D3135",
+      borderColor: "#2D3135",
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      borderColor: state.isFocused ? "#2D3135" : "#2D3135",
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "#2D3135" : "#2D3135"
+      }
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      fontWeight: state.isSelected ? "bold" : "normal",
+      color: "#7F8489",
+      backgroundColor: "#2D3135",
+      backgroundColor: state.isFocused ? "white" : "#2D3135",
+      fontSize: state.selectProps.myFontSize,
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: "#7F8489",
+      fontSize: state.selectProps.myFontSize
+    }),
+    menuList: (provided, state) => ({
+      ...provided,
+      padding: "0px",
+    }),
+    menu: (provided, state) => ({
+      ...provided,
+      borderRadius: 0,
+      hyphens: "auto",
+      marginTop: 0,
+      textAlign: "left",
+      wordWrap: "break-word"
+    })
+  };
+
   render() {
     const {
       hospitalView,
@@ -91,6 +147,9 @@ class RegisterPatientForm extends React.Component {
           style={{ backgroundImage: `url(${hospitalView})` }}
           name="form1"
         >
+          <div className="header-hospitaladd"> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-hospitalview poppins-medium-white-20px">
             {text1}
           </div>
@@ -139,7 +198,7 @@ class RegisterPatientForm extends React.Component {
               {patientEthAddr}
             </div>
             <div
-              className="overlap-group1-registerpatien"
+              className="overlap-group1-registerhosp-category"
               style={{ backgroundImage: `url(${overlapGroup1})` }}
             >
               <div className="enter-record-name-registerhosp">
@@ -149,6 +208,7 @@ class RegisterPatientForm extends React.Component {
                     this.setState({ gender: e.value });
                   }}
                   options={genderoptions}
+                  styles={this.styles}
                   required
                 />
               </div>

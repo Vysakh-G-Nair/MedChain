@@ -8,6 +8,10 @@
     --font-size-l: 18px;
   }
 
+  .header-viewrecords{
+    margin-left: -510px;
+    margin-top: -130px;
+  }
   .RecordRow {
     margin-top: 120px;
   }
@@ -36,6 +40,7 @@
     text-shadow: 0px 2px 2px #272c3566;
     white-space: nowrap;
     width: 281px;
+    margin-top: 140px;
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;

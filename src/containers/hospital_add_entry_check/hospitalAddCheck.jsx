@@ -5,6 +5,14 @@ import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import HospitalCreator from "../../ethereum/medicalpro";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class PatientGrant extends React.Component {
   state = {
@@ -100,6 +108,9 @@ class PatientGrant extends React.Component {
           action="form1"
           method="post"
         >
+          <div className="header-hospitaladd"> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-patient-grant poppins-medium-white-20px">
             {text1}
           </div>

@@ -5,6 +5,15 @@ import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
+import { Header, Files } from "../index.js";
+
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class HospitalAdd extends React.Component {
   state = {
@@ -86,6 +95,9 @@ class HospitalAdd extends React.Component {
           action="form1"
           method="post"
         >
+          <div className="header-hospitaladd"> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-hospitalview poppins-medium-white-20px">
             {text1}
           </div>
@@ -186,16 +198,16 @@ class HospitalAdd extends React.Component {
               />
             </div>
           </div>
-          <div className="group-53-symptoms">
-            <div className="record-name-symptoms poppins-normal-baby-powder-18px">
+          <div className="group-53-notes">
+            <div className="record-name-notes poppins-normal-baby-powder-18px">
               {symptoms}
             </div>
             <div
-              className="overlap-group20-symptoms"
+              className="overlap-group20-notes"
               style={{ backgroundImage: `url(${overlapGroup3})` }}
             >
               <input
-                className="enter-record-name-hospitaladd"
+                className="enter-record-name-hospitaladd-notes"
                 name="2215"
                 placeholder={inputPlaceholder5}
                 type={inputType2}
@@ -207,6 +219,9 @@ class HospitalAdd extends React.Component {
               />
             </div>
           </div>
+          
+          
+
           <div className="group-54">
             <div className="overlap-group-hospitalview">
               {/* eslint-disable-next-line */}

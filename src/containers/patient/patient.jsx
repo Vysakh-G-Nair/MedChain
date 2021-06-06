@@ -10,6 +10,15 @@ import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import { Header } from "../index.js";
+
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class Patient extends React.Component {
   state = {
@@ -80,7 +89,7 @@ class Patient extends React.Component {
       spanText3: "Age: ",
       spanText4: (
         <>
-          {this.state.age} years
+          {this.state.age} 
           <br />
         </>
       ),
@@ -116,7 +125,10 @@ class Patient extends React.Component {
           action="form4"
           method="post"
         >
-          <div className="details-comp">
+          <div className="header-patient"> 
+            <Header {...headerData} />
+          </div>
+          <div className="details-comp-patient">
             {" "}
             <Details {...detailsData} />{" "}
           </div>

@@ -1,6 +1,14 @@
 import React from 'react';
 import './patientExternalViewStyling.scss';
 import { Link, withRouter } from "react-router-dom";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
   
 class PatientExternalView extends React.Component {
@@ -28,6 +36,9 @@ class PatientExternalView extends React.Component {
           action="form1"
           method="post"
         >
+          <div className=""> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-patient-external-view poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
             <div className="text-2-patient-external-view poppins-normal-baby-powder-18px">{text2}</div>
