@@ -6,6 +6,14 @@ import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 
   
@@ -86,6 +94,9 @@ class RegisterExternalForm extends React.Component {
           action="form1"
           method="post"
         >
+          <div className="header-hospitaladd"> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-externalregister poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
             <div className="text-2-hospitalview poppins-normal-baby-powder-18px">{text2}</div>

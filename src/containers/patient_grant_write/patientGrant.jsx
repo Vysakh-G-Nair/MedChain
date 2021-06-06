@@ -2,6 +2,14 @@ import React from "react";
 import "./patientGrantStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import { Requests } from "../index.js";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 const requestsData = {
   overlapGroup:
@@ -37,6 +45,9 @@ class PatientGrant extends React.Component {
           action="form1"
           method="post"
         >
+          <div className=""> 
+            <Header {...headerData} />
+          </div>
           <div className="text-1-patient-grant poppins-medium-white-20px">{text1}</div>
           <div className="group-52">
             <div className="text-2-patient-grant poppins-normal-baby-powder-18px">{text2}</div>

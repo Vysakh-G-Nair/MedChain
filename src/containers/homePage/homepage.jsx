@@ -2,7 +2,15 @@ import React from 'react';
 import './homepageStyling.scss';
 import { Link, withRouter } from "react-router-dom";
 import logo_img from './logo.png';
-  
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
+
 class Landing extends React.Component {
   render() {
     const {
@@ -20,6 +28,9 @@ class Landing extends React.Component {
           action="form2"
           method="post"
         >
+          <div className="landing-header"> 
+            <Header {...headerData} />
+          </div>
           <div className="overlap-group-landing">
             <div className="group-38">
               <img className="view-logo" src={logo_img} alt="" />

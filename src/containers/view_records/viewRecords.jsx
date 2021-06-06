@@ -4,6 +4,14 @@ import { withRouter } from "react-router-dom";
 import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import { ViewRecordsRow } from "../index.js";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 const viewRecordsRowData = {
   overlapGroup:
@@ -68,6 +76,9 @@ class ViewRecords extends React.Component {
           className="patient-s-own-records screen"
           style={{ backgroundImage: `url(${patientsOwnRecords})` }}
         >
+          <div className="header-viewrecords"> 
+            <Header {...headerData} />
+          </div>
           <div className="your-records poppins-medium-white-20px">
             {yourRecords}
           </div>

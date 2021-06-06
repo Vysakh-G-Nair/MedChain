@@ -6,6 +6,15 @@ import view_record_img from "./view_record.png";
 import { Details } from "../index.js";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
+import { Header } from "../index.js";
+
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class Hospital extends React.Component {
   state = {
@@ -89,6 +98,9 @@ class Hospital extends React.Component {
           action="form2"
           method="post"
         >
+          <div className=""> 
+            <Header {...headerData} />
+          </div>
           <div className="details-comp">
             {" "}
             <Details {...detailsData} />{" "}
@@ -98,6 +110,7 @@ class Hospital extends React.Component {
               <Link
                 to={{ pathname: "/hospitalview", state: this.state.address }}
               >
+                
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-hospital">
                     <img className="view-3" src={view_record_img} alt="" />

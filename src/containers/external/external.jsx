@@ -5,6 +5,14 @@ import view_record_img from "./view_record.png";
 import ExternalCreator from "../../ethereum/external";
 import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
+import { Header } from "../index.js";
+
+const headerData = {
+  inputPlaceholder: "Enter Ethereum Address",
+  check: "Check",
+  inputType: "text",
+  logOut: "Log Out"
+};
 
 class External extends React.Component {
   state = {
@@ -68,6 +76,9 @@ class External extends React.Component {
           action="form2"
           method="post"
         >
+          <div className=""> 
+            <Header {...headerData} />
+          </div>
           <div className="details-comp">
             {" "}
             <Details {...detailsData} />{" "}
