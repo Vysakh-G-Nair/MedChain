@@ -79,7 +79,7 @@ class External extends React.Component {
           <div className=""> 
             <Header {...headerData} />
           </div>
-          <div className="details-comp">
+          <div className="details-comp-external">
             {" "}
             <Details {...detailsData} />{" "}
           </div>

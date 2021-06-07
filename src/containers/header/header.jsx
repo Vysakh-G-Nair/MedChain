@@ -27,15 +27,16 @@ class Header extends React.Component {
             <div className="overlap-group4-header">
               <a href="javascript:SubmitForm('form5')">
                 <div className="group-83-header">
-                  <div className="overlap-group1-1-header">
-                    <div className="check poppins-medium-amethyst-15px">{check}</div>
+                  <div className="overlap-group1-1-header-check">
+                    <img className="vector-header" src={search_img} />
+                    {/* <div className="check poppins-medium-amethyst-15px">{check}</div> */}
                   </div>
                 </div>
               </a>
               <div className="group-84-header">
                 <div className="loupe-1-header">
                   <div className="overlap-group1-header" >
-                    <img className="vector-header" src={search_img} />
+                    {/* <img className="vector-header" src={search_img} /> */}
                   </div>
                 </div>
                 <div className="flex-col-header">
