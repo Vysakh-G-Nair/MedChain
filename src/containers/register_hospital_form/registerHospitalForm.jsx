@@ -144,7 +144,7 @@ class RegisterHospitalForm extends React.Component {
           <div className="header-hospitaladd"> 
             <Header {...headerData} />
           </div>
-          <div className="text-1-hospitalview poppins-medium-white-20px">
+          <div className="text-1-hospitalview-medicalpro poppins-medium-white-20px">
             {text1}
           </div>
           <div className="group-52">
