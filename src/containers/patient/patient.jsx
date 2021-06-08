@@ -12,14 +12,6 @@ import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import { Header } from "../index.js";
 
-
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
-
 class Patient extends React.Component {
   state = {
     address: "",
@@ -75,6 +67,14 @@ class Patient extends React.Component {
 
   render() {
     const { patient, viewYourRecords, shareRecord } = this.props;
+
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      inputType: "/patient",
+      logOut: "Log Out",
+      address: this.state.address
+    };
 
     const detailsData = {
       overlapGroup:

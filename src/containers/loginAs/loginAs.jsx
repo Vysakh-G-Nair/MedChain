@@ -12,8 +12,8 @@ import { Header } from "../index.js";
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
+  inputType: "/",
+  logOut: false,
 };
 
 class LoginAs extends React.Component {

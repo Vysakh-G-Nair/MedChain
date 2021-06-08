@@ -13,7 +13,7 @@ const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
   inputType: "text",
-  logOut: "Log Out"
+  logOut: false
 };
 
 class Register extends React.Component {
