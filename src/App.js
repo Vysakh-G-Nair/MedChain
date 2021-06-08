@@ -90,7 +90,7 @@ const hospitalAddData = {
 
 const registerHospitalFormData = {
   hospitalView: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  text1: "ENTER DETAILS TO REGISTER HOSPITAL",
+  text1: "ENTER DETAILS TO REGISTER MEDICAL PROFESSIONAL",
   text2: "Name",
   overlapGroup2: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   overlapGroup3: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/6094db5c8169e97a53cdd8e2/img/rectangle-51@1x.svg",
