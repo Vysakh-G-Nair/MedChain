@@ -7,13 +7,6 @@ import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
-
 class External extends React.Component {
   state = {
     address: "",
@@ -47,6 +40,14 @@ class External extends React.Component {
 
   render() {
     const { hospital, viewRecord } = this.props;
+
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      inputType: "/external",
+      logOut: "Log Out",
+      address: this.state.address
+    };
 
     const detailsData = {
       overlapGroup:

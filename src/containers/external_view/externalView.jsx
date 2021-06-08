@@ -7,13 +7,6 @@ import ExternalCreator from "../../ethereum/external";
 import web3 from "../../ethereum/web3";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
-
 class ExternalView extends React.Component {
   state = {
     errorMessage: "",
@@ -102,6 +95,14 @@ class ExternalView extends React.Component {
     } = this.props;
 
     const { loading } = this.state;
+
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      inputType: "/external",
+      logOut: "Log Out",
+      address: this.props.location.state
+    };    
 
     return (
       <div className="container-center-horizontal">

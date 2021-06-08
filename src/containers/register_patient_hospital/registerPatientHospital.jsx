@@ -71,7 +71,7 @@ class RegisterPatientHospital extends React.Component {
     control: (provided, state) => ({
       ...provided,
       backgroundColor: "#2D3135",
-      borderColor: "#2D3135",
+      // borderColor: "#2D3135",
       borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
       borderColor: state.isFocused ? "#2D3135" : "#2D3135",
       boxShadow: state.isFocused ? null : null,
@@ -84,7 +84,7 @@ class RegisterPatientHospital extends React.Component {
       ...provided,
       fontWeight: state.isSelected ? "bold" : "normal",
       color: "#7F8489",
-      backgroundColor: "#2D3135",
+      // backgroundColor: "#2D3135",
       backgroundColor: state.isFocused ? "white" : "#2D3135",
       fontSize: state.selectProps.myFontSize,
     }),

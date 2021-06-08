@@ -3,7 +3,7 @@ import "./requestsStyling.scss";
 import { withRouter } from "react-router-dom";
 import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
-import { RequestsRow } from "../index.js";
+import { RequestsRow, Header } from "../index.js";
 
 const requestsRowData = {
   patientSOwnRecords:
@@ -85,6 +85,14 @@ class Requests extends React.Component {
       doctersName,
     } = this.props;
 
+    // const headerData = {
+    //   inputPlaceholder: "Enter Ethereum Address",
+    //   check: "Check",
+    //   inputType: "/patient",
+    //   logOut: "Log Out",
+    //   address: this.state.address
+    // };
+
     return (
       <div class="container-center-horizontal">
         <form
@@ -94,6 +102,9 @@ class Requests extends React.Component {
           action="form2"
           method="post"
         >
+          {/* <div className="header-viewrecords"> 
+            <Header {...headerData} />
+          </div> */}
           <div className="requests poppins-medium-white-20px">{requests}</div>
           <div className="overlap-group-requests">
             <img className="rectangle-88-requests" src={rectangle88} alt="Rectangle"/>

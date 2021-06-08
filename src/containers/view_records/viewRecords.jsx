@@ -6,13 +6,6 @@ import web3 from "../../ethereum/web3";
 import { ViewRecordsRow } from "../index.js";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
-
 const viewRecordsRowData = {
   overlapGroup:
     "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
@@ -69,6 +62,14 @@ class ViewRecords extends React.Component {
 
   render() {
     const { patientsOwnRecords, yourRecords, doctersName, text2, takeAction } = this.props;
+
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      inputType: "/patient",
+      logOut: "Log Out",
+      address: this.state.address
+    };
 
     return (
       <div class="container-center-horizontal">

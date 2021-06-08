@@ -5,7 +5,7 @@ import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
-import { Header, Files } from "../index.js";
+import { Header } from "../index.js";
 
 
 const headerData = {
