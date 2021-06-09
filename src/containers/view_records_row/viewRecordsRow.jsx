@@ -3,7 +3,7 @@ import "./viewRecordsRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 
 class ViewRecords extends React.Component {
-  downloadTxt(record) {
+  downloadPDF(record) {
     const { jsPDF } = require("jspdf");
     const doc = new jsPDF();
     record = [
@@ -11,9 +11,10 @@ class ViewRecords extends React.Component {
       "Creator's Ethereum Address: " + record[1],
       "Record Name: " + record[2],
       "Record Creator Doctor's Name: " + record[3],
-      "Record Date: " + record[3],
-      "Record Description: " + record[4]
+      "Record Date: " + record[4],
+      "Record Description: " + record[5]
     ];
+    doc.setFont("times");
     doc.text(record, 10, 10);
     doc.save(record[0] + ".pdf"); 
   }
@@ -44,7 +45,7 @@ class ViewRecords extends React.Component {
               </div>
             </div>
           </Link>
-          <a onClick={() => this.downloadTxt(record)} >
+          <a onClick={() => this.downloadPDF(record)} >
           <div className="reject-button">
             <div className="overlap-group-1-view-records">
               <div className="download poppins-medium-alizarin-crimson-15px">
