@@ -11,7 +11,7 @@ import { Header } from "../index.js";
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
-  inputType: "text",
+  logoLink: "/",
   logOut: false
 };
 

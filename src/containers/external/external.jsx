@@ -44,7 +44,7 @@ class External extends React.Component {
     const headerData = {
       inputPlaceholder: "Enter Ethereum Address",
       check: "Check",
-      inputType: "/external",
+      logoLink: "/external",
       logOut: "Log Out",
       address: this.state.address
     };
