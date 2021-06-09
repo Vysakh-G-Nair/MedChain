@@ -3,36 +3,20 @@ import "./viewRecordsRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 
 class ViewRecords extends React.Component {
-  // downloadTxt(record) {
-  //   var FileSaver = require('file-saver');
-  //   // const { record } = this.props;
-  //   record = Object.values(record);
-  //   var blob = new Blob(record, {type: "text/plain;charset=utf-8"});
-  //   FileSaver.saveAs(blob, "RecordID-" + record[0] + ".txt");
-  //   // console.log(record);
-  // }
-
-  // downloadTxt(record) {
-  //   const { jsPDF } = require("jspdf");
-  //   const doc = new jsPDF();
-  //   // doc.text("Record", 10, 10, 'center');
-  //   record = [
-  //     "Record ID: " + record[0],
-  //     "Creator's Ethereum Address: " + record[1],
-  //     "Record Name: " + record[2],
-  //     "Record Creator Doctor's Name: " + record[3],
-  //     "Record Date: " + record[3],
-  //     "Record Description: " + record[4]
-  //   ];
-  //   // doc.text("\n Record ID: " + record[0], 10, 10);
-  //   // doc.text("\n Record Creator's Ethereum Address: " + record[1], 10, 10);
-  //   // doc.text("\n Record Name: " + record[2], 10, 10);
-  //   // doc.text("\n Record Creator Doctor's Name: " + record[3], 10, 10);
-  //   // doc.text("\n Record Date: " + record[3], 10, 10);
-  //   // doc.text("\n Record Description: " + record[4], 10, 10);
-  //   doc.text(record, 10, 10);
-  //   doc.save(record[0] + ".pdf"); 
-  // }
+  downloadTxt(record) {
+    const { jsPDF } = require("jspdf");
+    const doc = new jsPDF();
+    record = [
+      "Record ID: " + record[0],
+      "Creator's Ethereum Address: " + record[1],
+      "Record Name: " + record[2],
+      "Record Creator Doctor's Name: " + record[3],
+      "Record Date: " + record[3],
+      "Record Description: " + record[4]
+    ];
+    doc.text(record, 10, 10);
+    doc.save(record[0] + ".pdf"); 
+  }
 
   render() {
     const { name, download, record } = this.props;
