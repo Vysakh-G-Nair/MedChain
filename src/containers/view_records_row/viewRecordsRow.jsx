@@ -2,8 +2,7 @@ import React from "react";
 import "./viewRecordsRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 
-
-class ViewRecords extends React.Component {
+class ViewRecordsRow extends React.Component {
   downloadPDF(record) {
     const { jsPDF } = require("jspdf");
     const doc = new jsPDF();
