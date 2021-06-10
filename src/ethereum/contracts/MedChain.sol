@@ -198,8 +198,8 @@ contract MedicalPro {
     string category;
     string place;
     string lisenceNo;
-    address[] public regPatients;
-    string[] public namePatients;
+    address[] regPatients;
+    string[] namePatients;
     
     constructor (address _owner, string memory _name, string memory _category, string _place, string _lisenceNo) public {
         owner = _owner;
@@ -224,6 +224,10 @@ contract MedicalPro {
         Ufactory.registerPatient(_name, _age, _gender, _bloodGroup, true, _patient);
         regPatients.push(_patient);
         namePatients.push(_name);
+    }
+    
+    function regPatient(uint _index) public view returns(address, string memory) {
+        return (regPatients[_index], namePatients[_index]);
     }
     
     function getPatient(address _patient) private view returns (Patient) {
