@@ -72,7 +72,7 @@ class Patient extends React.Component {
     const headerData = {
       inputPlaceholder: "Enter Ethereum Address",
       check: "Check",
-      inputType: "/patient",
+      logoLink: "/patient",
       logOut: "Log Out",
       address: this.state.address
     };

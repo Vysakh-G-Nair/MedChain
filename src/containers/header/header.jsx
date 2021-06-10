@@ -8,7 +8,7 @@ import logo_hori_img from "./medlogohori.png";
 
 class Header extends React.Component {
   render() {
-    const { inputPlaceholder, inputType, logOut, address } = this.props;
+    const { inputPlaceholder, logoLink, logOut, address } = this.props;
 
     return (
       <div className="group-85-header">
@@ -18,24 +18,39 @@ class Header extends React.Component {
             this.props.history.goBack();
           }}
         >
-          {logOut && (<div className="left-arrow-1">
-            <img className="vector-2" src={back_img} alt="back" />
-          </div>
+          {logOut && (
+            <div className="left-arrow-1">
+              <img className="vector-2" src={back_img} alt="back" />
+            </div>
           )}
         </a>
-        <Link
-          to={{
-            pathname: inputType,
-            state: address,
-          }}
-        >
-        <img className="medlogo-1-header" src={logo_hori_img} alt="logo" />
-        </Link>
+        {logoLink !== "back" && (
+          <Link
+            to={{
+              pathname: logoLink,
+              state: address,
+            }}
+          >
+            <img className="medlogo-1-header" src={logo_hori_img} alt="logo" />
+          </Link>
+        )}
+        {logoLink === "back" && (
+          // eslint-disable-next-line
+          <a
+            onClick={() => {
+              this.props.history.goBack();
+            }}
+          >
+            <img className="medlogo-1-header" src={logo_hori_img} alt="logo" />
+          </a>
+        )}
         <div className="overlap-group4-header">
           {/* eslint-disable-next-line */}
-          <a onClick={() => {
-            this.props.history.goBack();
-          }}>
+          <a
+            onClick={() => {
+              this.props.history.goBack();
+            }}
+          >
             <div className="group-83-header">
               <div className="overlap-group1-1-header-check">
                 <img className="vector-header" src={search_img} alt="search" />
@@ -54,7 +69,7 @@ class Header extends React.Component {
                 className="enter-ethereum-address-header"
                 name="enter-ethereum-address"
                 placeholder={inputPlaceholder}
-                type='text'
+                type="text"
                 required
               />
               <img className="vector-1-header" src={vector1_img} alt="Header" />
