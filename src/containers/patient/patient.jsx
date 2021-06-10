@@ -2,6 +2,7 @@ import React from "react";
 import "./patientStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import view_your_record_img from "./view_record.png";
+import label from "./label.svg";
 // import grant_img from "./grant.png";
 // import view_external_img from "./view external.png";
 import share_your_record_img from "./share.png";
@@ -173,7 +174,12 @@ class Patient extends React.Component {
                       src={share_your_record_img}
                       alt=""
                     />
-                    <div className="share-record poppins-medium-amethyst-16px">
+                    <img
+                      className="new-noti"
+                      src={label}
+                      alt=""
+                    />
+                    <div className="share-record-newrequests poppins-medium-amethyst-16px">
                       {shareRecord}
                     </div>
                   </div>
