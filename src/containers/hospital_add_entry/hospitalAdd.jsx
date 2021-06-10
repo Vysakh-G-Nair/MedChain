@@ -6,7 +6,7 @@ import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
-
+// import Calendar from 'react-calendar';
 
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
@@ -21,7 +21,7 @@ class HospitalAdd extends React.Component {
     loading: false,
     doctorName: "",
     recordName: "",
-    date: "",
+    date: new Date(),
     doctorNote: "",
     visible: false,
   };
@@ -44,7 +44,8 @@ class HospitalAdd extends React.Component {
           recordName,
           doctorName,
           date,
-          doctorNote
+          doctorNote,
+          "QmRjg6pi6sbsNfqdVXDsBvStfXPsnwYBAFwsTcXVDadAe4"
         )
         .send({
           from: accounts[0],
@@ -196,6 +197,11 @@ class HospitalAdd extends React.Component {
                 }
                 required
               />
+              {/* <Calendar
+                onChange={(event) =>
+                  this.setState({ date: event.target.value })}
+                value={this.state.date}
+              /> */}
             </div>
           </div>
           <div className="group-53-notes">

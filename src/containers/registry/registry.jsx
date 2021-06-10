@@ -17,6 +17,7 @@ const registryRowData = {
 class Registry extends React.Component {
   state = {
     address: "",
+    patients: []
   };
 
   componentWillMount() {
@@ -25,19 +26,18 @@ class Registry extends React.Component {
   }
 
   async getInstance(state) {
-    const medPro = MedProCreator(state);
+    const medPro = MedProCreator(state[0]);
     console.log("Deployed address: " + medPro.options.address);
     const accounts = await web3.eth.getAccounts();
 
-    const noOfPatients = medPro.methods.noOfPatients().call({
-      from: accounts[0],
-    });
+    const noOfPatients = state[1];
+    console.log("No. of patients: " + noOfPatients);
 
     const patients = await Promise.all(
       Array(parseInt(noOfPatients))
         .fill()
         .map((element, index) => {
-          return medPro.methods.viewRecords(index).call({
+          return medPro.methods.regPatient(index).call({
             from: accounts[0],
           });
         })
@@ -45,14 +45,15 @@ class Registry extends React.Component {
 
     this.setState({
       address: state[0],
+      patients: patients
     });
   }
 
   renderRows() {
-    return this.state.records.map((record, index) => {
+    return this.state.patients.map((patient, index) => {
       // console.log(record);
       return (
-        <RegistryRow {...registryRowData} record={record} key={index} />
+        <RegistryRow {...registryRowData} patient={patient} key={index} address={this.state.address} />
       );
     });
   }
