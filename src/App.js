@@ -2,7 +2,7 @@ import React from 'react';
 //import { useMediaQuery } from 'react-responsive';
 //import { MediaQueries } from './responsive';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Record, HospitalAddCheck, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient } from './containers/index' ;
+import { Registry, Record, HospitalAddCheck, RegisterPatientHospital, External, Requests, ExternalView, ViewRecords, Landing, Hospital, Register, RegisterHospitalForm, RegisterExternalForm, RegisterPatientForm, LoginAs, HospitalView, HospitalAdd, Patient } from './containers/index' ;
 
 
 
@@ -28,6 +28,7 @@ const hospitalData = {
   viewRecord: "View Record",
   addRecord: "Add Record",
   regPatient: "Reg Patient",
+  PatientRegistry: "Registry"
 };
 
 const externalData = {
@@ -244,6 +245,16 @@ const viewRecordsData = {
   yourRecords: "YOUR RECORDS",
 };
 
+const registryData = {
+  overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
+  incomingRequests: "",
+  doctersName: "Patient Name",
+  text2: "Ethereum Address",
+  takeAction: "Take Action",
+  patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
+  yourRecords: "PATIENTS REGISTERED BY YOU",
+};
+
 // const viewRecordsRowData = {
 //   overlapGroup: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/609b614b08bbf1aecdf4b534/img/rectangle-46@1x.svg",
 //   manjunathanM: "Fever",
@@ -311,6 +322,7 @@ class App extends React.Component {
             <Route path="/patientexternalview" exact component={() => <PatientExternalView {...patientExternalViewData} />} />
             <Route path="/patientgrant" exact component={() => <PatientGrant {...patientGrantData} />} /> */}
             <Route path="/viewrecords" exact component={() => <ViewRecords {...viewRecordsData} />} />
+            <Route path="/registry" exact component={() => <Registry {...registryData} />} />
             <Route path="/external" exact component={() => <External {...externalData} />} />
             <Route path="/externalview" exact component={() => <ExternalView {...externalViewData} />} />
             <Route path="/record" exact component={() => <Record {...recordData} />} />
