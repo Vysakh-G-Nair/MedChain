@@ -1,0 +1,188 @@
+:root {
+    --font-family-poppins: Poppins;
+    --font-size-xxl: 22px;
+    --font-size-xl: 20px;  
+    --mine-shaft: #2D3135;
+    --white: #FFFFFF;
+    --font-size-l2: 16px;
+    --font-size-l: 18px;
+  }
+
+  .records-row {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    mix-blend-mode: normal;
+    padding: 0px 0px 120px 0px;
+    width: 1440px;
+    margin-top: -100px;
+  }
+
+  
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+  @import url("https://fonts.googleapis.com/css?family=Poppins:500");
+  * {
+    box-sizing: border-box;
+  }
+  .container-center-horizontal {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-center-horizontal > * {
+    pointer-events: auto;
+    flex-shrink: 0;
+  }
+  .screen a {
+    text-decoration: none;
+    display: contents;
+  }
+
+  
+  .flex-row-1-view-records {
+    align-items: flex-end;
+    display: flex;
+    margin-left: 4.0px;
+    margin-top: 36px;
+    min-width: 1134px;
+  }
+  
+  .grant-button {
+    align-items: flex-start;
+    cursor: pointer;
+    display: flex;
+    margin-left: 183px;
+    min-width: 111px;
+  }
+  .docname1 {
+    letter-spacing: 0;
+    line-height: 24px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+  }
+  .name-view-records {
+    letter-spacing: 1.00px;
+    min-height: 21px;
+    min-width: 92px;
+    mix-blend-mode: normal;
+    text-align: center;
+    width: 92px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9A5BFF;
+    mix-blend-mode: normal;
+  }
+
+  .overlap-group-1-view-records {
+    align-items: flex-start;
+    background-color: var(--mine-shaft);
+    border-radius: 30px;
+    box-shadow: -6px -6px 20px #494e52b2 , 8px 8px 30px #232527e6 , 2px 2px 6px #232527cc , -2px -2px 4px #4a4e5380;
+    display: flex;
+    height: 28px;
+    justify-content: flex-end;
+    min-width: 109px;
+    padding: 3px 8px;
+  }
+
+  .overlap-group-1-view-records:hover{
+    background: #2D3135;
+    /* Hover Shadow */
+  
+    box-shadow: 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7), inset -2px -2px 4px rgba(74, 78, 83, 0.5), inset 4px 4px 10px rgba(35, 37, 39, 0.8);
+    border-radius: 30px;
+  }
+  
+  .rectangle-95-view-records {
+    height: 1px;
+    margin-left: 5.0px;
+    margin-top: 30px;
+    mix-blend-mode: normal;
+    width: 1135px;
+    background: rgba(127, 132, 137, 0.25);
+    box-shadow: 12px 6px 40px rgba(255, 105, 169, 0.182009);
+    border-radius: 100px;
+  }
+  .download {
+    letter-spacing: 1.00px;
+    min-height: 21px;
+    min-width: 92px;
+    mix-blend-mode: normal;
+    text-align: center;
+    width: 92px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9A5BFF;
+    mix-blend-mode: normal;
+  }
+  .reject-button {
+    align-items: flex-start;
+    cursor: pointer;
+    display: flex;
+    margin-left: 28px;
+    min-width: 111px;
+  }
+
+
+  .docether1 {
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-left: 139px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+  }
+
+  
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+  @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
+  * {
+    box-sizing: border-box;
+  }
+  .container-center-horizontal {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-center-horizontal > * {
+    pointer-events: auto;
+    flex-shrink: 0;
+  }
+  .screen a {
+    text-decoration: none;
+    display: contents;
+  }
+  

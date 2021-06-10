@@ -1,0 +1,239 @@
+:root {
+    --font-family-poppins: Poppins;
+    --font-size-xxl: 22px;
+    --font-size-xl: 20px;  
+    --mine-shaft: #2D3135;
+    --white: #FFFFFF;
+    --font-size-l2: 16px;
+    --font-size-l: 18px;
+  }
+
+  .header-viewrecords{
+    margin-left: -510px;
+    margin-top: -130px;
+  }
+  .RecordRow {
+    margin-top: 120px;
+  }
+
+  .patient-s-own-records {
+    align-items: center;
+    background-color: var(--mine-shaft);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    height: 900px;
+    mix-blend-mode: normal;
+    padding: 128px 0px 0px 0px;
+    width: 1440px;
+  }
+
+  .your-records-registry {
+    letter-spacing: 1.00px;
+    line-height: 24px;
+    margin-right: 20.0px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-align: center;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    margin-top: 140px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+
+    mix-blend-mode: normal;
+    opacity: 0.8;
+  }
+  
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+  @import url("https://fonts.googleapis.com/css?family=Poppins:500");
+  * {
+    box-sizing: border-box;
+  }
+  .container-center-horizontal {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-center-horizontal > * {
+    pointer-events: auto;
+    flex-shrink: 0;
+  }
+  .screen a {
+    text-decoration: none;
+    display: contents;
+  }
+
+  
+  .docters-name-view-records {
+    letter-spacing: 1.00px;
+    line-height: 24px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    margin-left: 0px;
+  }
+  .flex-row-view-records {
+    align-items: flex-start;
+    display: flex;
+    margin-right: 107.0px;
+    margin-top: 6px;
+    min-width: 1023px;
+  }
+  .recordrow {
+    align-items: flex-end;
+    display: flex;
+    margin-left: 4.0px;
+    margin-top: 36px;
+    min-width: 1134px;
+  }
+  .flex-row-2-view-records {
+    align-items: flex-start;
+    align-self: flex-end;
+    display: flex;
+    height: 24px;
+    margin-top: 36px;
+    min-width: 1224px;
+  }
+ 
+  .overlap-group-view-records {
+    align-items: center;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 406px;
+    min-height: 1200px;
+    padding: 56px 93px 0px 93px;
+    width: 1504px;
+    background: #2D3135;
+    /* Idle Shadow */
+
+    box-shadow: -2px -2px 4px rgba(74, 78, 83, 0.5), 2px 2px 6px rgba(35, 37, 39, 0.8), 8px 8px 30px rgba(35, 37, 39, 0.9), -6px -6px 20px rgba(74, 78, 83, 0.7);
+    border-radius: 45px 45px 0px 0px;
+  }
+  .view-records {
+    align-items: flex-start;
+    //background-color: var(--mine-shaft);
+    display: flex;
+    height: 1600px;
+    mix-blend-mode: normal;
+    overflow: hidden;
+    width: 1440px;
+    margin-top: -350px;
+  }
+
+
+  .rectangle-5-view-records {
+    background: rgba(127, 132, 137, 0.25);
+    box-shadow: 12px 6px 40px rgba(255, 105, 169, 0.182009);
+    border-radius: 100px;
+    height: 3px;
+    mix-blend-mode: normal;
+    width: 80px;
+  }
+  .rectangle-89-view-records {
+    background: rgba(127, 132, 137, 0.25);
+    box-shadow: 12px 6px 40px rgba(255, 105, 169, 0.182009);
+    border-radius: 100px;
+    height: 3px;
+    margin-left: 340px;
+    mix-blend-mode: normal;
+    width: 80px;
+  }
+  .rectangle-90-view-records {
+    height: 3px;
+    margin-left: 443px;
+    mix-blend-mode: normal;
+    width: 80px;
+    background: rgba(127, 132, 137, 0.25);
+    box-shadow: 12px 6px 40px rgba(255, 105, 169, 0.182009);
+    border-radius: 100px;
+  }
+
+ 
+
+  .take-action {
+    letter-spacing: 1.00px;
+    line-height: 24px;
+    margin-left: 242px;
+    min-height: 24px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+  }
+
+  .text-2-view-records {
+    letter-spacing: 1.00px;
+    line-height: 24px;
+    margin-left: 139px;
+    min-height: 24px;
+    min-width: 281px;
+    mix-blend-mode: normal;
+    opacity: 0.8;
+    text-shadow: 0px 2px 2px #272c3566;
+    white-space: nowrap;
+    width: 281px;
+    font-family: var(--font-family-poppins);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--font-size-l);
+    line-height: 24px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+  }
+  
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+  @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
+  * {
+    box-sizing: border-box;
+  }
+  .container-center-horizontal {
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-center-horizontal > * {
+    pointer-events: auto;
+    flex-shrink: 0;
+  }
+  .screen a {
+    text-decoration: none;
+    display: contents;
+  }
+  

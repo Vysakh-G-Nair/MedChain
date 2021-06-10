@@ -1,8 +1,8 @@
 import React from "react";
-import "./viewRecordsRowStyling.scss";
+import "./registryRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 
-class ViewRecordsRow extends React.Component {
+class RegistryRow extends React.Component {
   render() {
     const { name, download, record } = this.props;
 
@@ -29,13 +29,6 @@ class ViewRecordsRow extends React.Component {
               </div>
             </div>
           </Link>
-          <div className="reject-button">
-            <div className="overlap-group-1-view-records">
-              <div className="download poppins-medium-alizarin-crimson-15px">
-                {download}
-              </div>
-            </div>
-          </div>
         </div>
         <div className="rectangle-95-view-records"></div>
       </div>
@@ -43,4 +36,4 @@ class ViewRecordsRow extends React.Component {
   }
 }
 
-export default withRouter(ViewRecordsRow);
+export default withRouter(RegistryRow);

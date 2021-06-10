@@ -2,6 +2,8 @@ import React from "react";
 import "./hospitalStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import add_record_img from "./add_record.png";
+import registry from "./registry.png";
+import register from "./register.png";
 import view_record_img from "./view_record.png";
 import { Details } from "../index.js";
 import web3 from "../../ethereum/web3";
@@ -53,7 +55,7 @@ class Hospital extends React.Component {
   }
 
   render() {
-    const { hospital, viewRecord, addRecord, regPatient } = this.props;
+    const { hospital, viewRecord, addRecord, regPatient, PatientRegistry } = this.props;
 
     const detailsData = {
       overlapGroup:
@@ -143,9 +145,17 @@ class Hospital extends React.Component {
               >
                 <div className="add-record-group smart-layers-pointers">
                   <div className="overlap-group1-hospital">
-                    <img className="edit-5" src={add_record_img} alt="" />
+                    <img className="edit-5" src={register} alt="" />
                     <div className="add-record poppins-medium-amethyst-16px">
                       {regPatient}
+                    </div>
+                  </div>
+                </div>
+                <div className="add-record-group smart-layers-pointers">
+                  <div className="overlap-group1-hospital">
+                    <img className="edit-5" src={registry} alt="" />
+                    <div className="add-record poppins-medium-amethyst-16px">
+                      {PatientRegistry}
                     </div>
                   </div>
                 </div>

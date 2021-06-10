@@ -19,6 +19,8 @@ export { default as Details } from "./details/details";
 export { default as Header } from "./header/header";
 export { default as ViewRecords } from "./view_records/viewRecords";
 export { default as ViewRecordsRow } from "./view_records_row/viewRecordsRow";
+export { default as Registry } from "./registry/registry";
+export { default as RegistryRow } from "./registry_row/registryRow";
 export { default as External } from "./external/external";
 export { default as Record } from "./record/record";
 export { default as ExternalView } from "./external_view/externalView";
