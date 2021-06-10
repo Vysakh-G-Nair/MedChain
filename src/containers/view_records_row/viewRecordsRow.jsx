@@ -2,7 +2,25 @@ import React from "react";
 import "./viewRecordsRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 
-class ViewRecordsRow extends React.Component {
+
+class ViewRecords extends React.Component {
+  downloadPDF(record) {
+    const { jsPDF } = require("jspdf");
+    const doc = new jsPDF();
+    record = [
+      "Record ID: " + record[0],
+      "Creator's Ethereum Address: " + record[1],
+      "Record Name: " + record[2],
+      "Record Creator Doctor's Name: " + record[3],
+      "Record Date: " + record[4],
+      "Record Description: " + record[5]
+    ];
+    doc.setFont("times");
+    doc.text(record, 10, 10);
+    doc.save(record[0] + ".pdf"); 
+  }
+
+
   render() {
     const { name, download, record } = this.props;
 
@@ -29,6 +47,7 @@ class ViewRecordsRow extends React.Component {
               </div>
             </div>
           </Link>
+          <a onClick={() => this.downloadPDF(record)} >
           <div className="reject-button">
             <div className="overlap-group-1-view-records">
               <div className="download poppins-medium-alizarin-crimson-15px">
@@ -36,6 +55,7 @@ class ViewRecordsRow extends React.Component {
               </div>
             </div>
           </div>
+          </a>
         </div>
         <div className="rectangle-95-view-records"></div>
       </div>

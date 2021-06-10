@@ -99,7 +99,7 @@ class ExternalView extends React.Component {
     const headerData = {
       inputPlaceholder: "Enter Ethereum Address",
       check: "Check",
-      inputType: "/external",
+      logoLink: "/external",
       logOut: "Log Out",
       address: this.props.location.state
     };    
