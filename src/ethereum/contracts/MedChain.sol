@@ -9,6 +9,15 @@ contract UserFactory {
         require(medProsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && patientsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && extUserAddress[msg.sender] == 0x0000000000000000000000000000000000000000, "Already registered as a user in the system!");
     }
     
+    function isRegistered(address _owner) public view returns (string memory) {
+        if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
+            return ("Not registered as a user in the system!");
+        }
+        else {
+            return ("Registered as a user in the system!");
+        }
+    }
+    
     function registerPatient(string memory _name, uint _age, string memory _gender, string memory _bloodGroup, bool _isdoc, address _owner) public {
         canRegister();
         address newPatient;
@@ -58,6 +67,7 @@ contract Patient {
         string name;
         string date;
         string description;
+        string fileHash;
         mapping (address => bool) canView;
     }
     
@@ -79,6 +89,7 @@ contract Patient {
     uint noOfRecords;
     mapping (address => bool) public canCreate;
     Request[] public requests;
+    bool pendingRequest;
     
     constructor (address _owner, bool _isdoc, address _doc, string memory _name, uint _age, string memory _gender, string memory _bloodGroup) public {
         ownerPatient = _owner;
@@ -91,6 +102,7 @@ contract Patient {
         age = _age;
         gender = _gender;
         bloodGroup = _bloodGroup;
+        pendingRequest = false;
     }
     
     function restricted() public view {
@@ -102,7 +114,7 @@ contract Patient {
         return (ownerPatient, name, age, gender, bloodGroup, noOfRecords);
     }
     
-    function createRecord(uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc) public {
+    function createRecord(uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc, string memory _hash) public {
         require(canCreate[msg.sender], "You don't have permission to create a record!");
         Record memory record = Record({
             recordID: _id,
@@ -110,7 +122,8 @@ contract Patient {
             nameDoc: _nameDoc,
             date: _date,
             creator: msg.sender,
-            description: _desc
+            description: _desc,
+            fileHash: _hash
         });
         records.push(record); 
         records[noOfRecords].canView[msg.sender] = true;
@@ -128,6 +141,7 @@ contract Patient {
             granted: false
         });
         requests.push(request);
+        pendingRequest = true;
     }
     
     function grantRequest(uint _index) public {
@@ -142,6 +156,7 @@ contract Patient {
             canCreate[request.viewer] = true;
         }
         request.granted = true;
+        pendingRequest = false;
     }
     
     function revokeRequest(uint _index) public {
@@ -156,18 +171,19 @@ contract Patient {
             canCreate[request.viewer] = false;
         }
         request.granted = false;
+        pendingRequest = false;
     }
     
-    function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
+    function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {
         Record storage record = records[indices[_id]];
         require(record.canView[msg.sender] , "You don't have permission to view this record!");
-        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
+        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description, record.fileHash);
     }
     
-    function viewRecords(uint _index) public view returns(uint, address, string memory, string memory, string memory, string memory) {
+    function viewRecords(uint _index) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {
         restricted();
         Record storage record = records[_index];
-        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description);
+        return (record.recordID, record.creator, record.name, record.nameDoc, record.date, record.description, record.fileHash);
     }
     
     function getRequestsCount() public view returns (uint) {
@@ -182,6 +198,8 @@ contract MedicalPro {
     string category;
     string place;
     string lisenceNo;
+    address[] regPatients;
+    string[] public namePatients;
     
     constructor (address _owner, string memory _name, string memory _category, string _place, string _lisenceNo) public {
         owner = _owner;
@@ -204,6 +222,12 @@ contract MedicalPro {
     function createPatient(address _patient, string memory _name, uint _age, string memory _gender, string memory _bloodGroup) public {
         restricted();
         Ufactory.registerPatient(_name, _age, _gender, _bloodGroup, true, _patient);
+        regPatients.push(_patient);
+        namePatients.push(_name);
+    }
+    
+    function noOfPatients() public view returns(uint) {
+        return (regPatients.length);
     }
     
     function getPatient(address _patient) private view returns (Patient) {
@@ -211,10 +235,10 @@ contract MedicalPro {
         return (Patient(dep_patient));
     }
     
-    function createRecord(address _patient, uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc) public {
+    function createRecord(address _patient, uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc, string memory _hash) public {
         restricted();
         Patient patient = getPatient(_patient);
-        patient.createRecord(_id, _name, _nameDoc, _date, _desc);
+        patient.createRecord(_id, _name, _nameDoc, _date, _desc, _hash);
     }
     
     function requestPermission(address _patient, uint _id, bool _isView) public {
@@ -223,7 +247,7 @@ contract MedicalPro {
         patient.addRequest(_id, _isView, name);
     }
     
-    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
+    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {
         restricted();
         Patient patient = getPatient(_patient);
         return (patient.viewRecord(_id));
@@ -268,7 +292,7 @@ contract External {
         patient.addRequest(_id, true, name);
     }
     
-    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory) {
+    function viewRecord(address _patient, uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {
         restricted();
         Patient patient = getPatient(_patient);
         return (patient.viewRecord(_id));
