@@ -19,7 +19,6 @@ class ViewRecordsRow extends React.Component {
     doc.save(record[0] + ".pdf"); 
   }
 
-
   render() {
     const { name, download, record } = this.props;
 
@@ -46,6 +45,7 @@ class ViewRecordsRow extends React.Component {
               </div>
             </div>
           </Link>
+          {/* eslint-disable-next-line */}
           <a onClick={() => this.downloadPDF(record)} >
           <div className="reject-button">
             <div className="overlap-group-1-view-records">

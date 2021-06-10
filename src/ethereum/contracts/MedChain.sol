@@ -109,9 +109,9 @@ contract Patient {
         require(msg.sender == ownerPatient, "Not the owner!");
     }
     
-    function getPatSummary() public view returns (address, string memory, uint, string memory, string memory, uint) {
+    function getPatSummary() public view returns (address, string memory, uint, string memory, string memory, uint, bool) {
         restricted();
-        return (ownerPatient, name, age, gender, bloodGroup, noOfRecords);
+        return (ownerPatient, name, age, gender, bloodGroup, noOfRecords, pendingRequest);
     }
     
     function createRecord(uint _id, string memory _name, string memory _nameDoc, string memory _date, string memory _desc, string memory _hash) public {
