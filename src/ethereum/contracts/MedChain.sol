@@ -9,14 +9,14 @@ contract UserFactory {
         require(medProsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && patientsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && extUserAddress[msg.sender] == 0x0000000000000000000000000000000000000000, "Already registered as a user in the system!");
     }
     
-    function isRegistered(address _owner) public view returns (string memory) {
-        if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
-            return ("Not registered as a user in the system!");
-        }
-        else {
-            return ("Registered as a user in the system!");
-        }
-    }
+    // function isRegistered(address _owner) public view returns (string memory) {
+    //     if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
+    //         return ("Not registered as a user in the system!");
+    //     }
+    //     else {
+    //         return ("Registered as a user in the system!");
+    //     }
+    // }
     
     function registerPatient(string memory _name, uint _age, string memory _gender, string memory _bloodGroup, bool _isdoc, address _owner) public {
         canRegister();
@@ -198,7 +198,7 @@ contract MedicalPro {
     string category;
     string place;
     string lisenceNo;
-    address[] regPatients;
+    address[] public regPatients;
     string[] public namePatients;
     
     constructor (address _owner, string memory _name, string memory _category, string _place, string _lisenceNo) public {
@@ -214,9 +214,9 @@ contract MedicalPro {
         require(msg.sender == owner, "Not the owner!");
     }
     
-    function getMedProSummary() public view returns (address, string memory, string memory, string memory, string memory) {
+    function getMedProSummary() public view returns (address, string memory, string memory, string memory, string memory, uint) {
         restricted();
-        return (owner, name, category, place, lisenceNo);
+        return (owner, name, category, place, lisenceNo, regPatients.length);
     }
     
     function createPatient(address _patient, string memory _name, uint _age, string memory _gender, string memory _bloodGroup) public {
@@ -224,10 +224,6 @@ contract MedicalPro {
         Ufactory.registerPatient(_name, _age, _gender, _bloodGroup, true, _patient);
         regPatients.push(_patient);
         namePatients.push(_name);
-    }
-    
-    function noOfPatients() public view returns(uint) {
-        return (regPatients.length);
     }
     
     function getPatient(address _patient) private view returns (Patient) {

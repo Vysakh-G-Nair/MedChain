@@ -139,7 +139,7 @@ class Hospital extends React.Component {
               </Link>
               <Link
                 to={{
-                  pathname: "/registerpatienthospital",
+                  pathname: "/registry",
                   state: this.state.address,
                 }}
               >

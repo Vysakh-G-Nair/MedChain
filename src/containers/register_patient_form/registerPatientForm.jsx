@@ -27,7 +27,7 @@ class RegisterPatientForm extends React.Component {
     errorMessage: "",
     loading: false,
     patientName: "",
-    age: undefined,
+    age: "",
     gender: null,
     bloodGroup: "",
     visible: false,
