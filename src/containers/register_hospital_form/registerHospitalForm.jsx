@@ -238,8 +238,6 @@ class RegisterHospitalForm extends React.Component {
               {/* eslint-disable-next-line */}
               <a
                 onClick={this.registerMedical}
-                error={!!this.state.errorMessage}
-                disabled={loading}
               >
                 <div className="rectangle-94">
                   {loading && (

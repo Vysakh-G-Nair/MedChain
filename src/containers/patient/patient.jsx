@@ -45,6 +45,8 @@ class Patient extends React.Component {
         from: accounts[0],
       });
 
+      console.log(summary)
+
       this.setState({
         address: state,
         addressOwner: summary[0],
@@ -202,12 +204,12 @@ class Patient extends React.Component {
                 </div> */}
               <Rodal
                 visible={this.state.visible}
-                // onClose={() => this.setState({ visible: false })}
+                onClose={() => this.props.history.push("/loginAs")}
               >
                 <div className="text-1-rodal">{this.state.errorMessage}</div>
-                <Link to='/'>
+                <Link to='/loginAs'>
                   <div className="rectangle-94-rodal">
-                    <div className="view-rodal">Go to homepage</div>
+                    <div className="view-rodal">Go to Login page</div>
                   </div>
                   </Link>
               </Rodal>
