@@ -6,7 +6,13 @@ import "rodal/lib/rodal.css";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
+
+
+const ipfsClient = require('ipfs-http-client')
+const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
 // import Calendar from 'react-calendar';
+
 
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
@@ -24,6 +30,8 @@ class HospitalAdd extends React.Component {
     date: new Date(),
     doctorNote: "",
     visible: false,
+    buffer:"",
+    memeHash:""
   };
 
   addRecord = async (event) => {
@@ -37,6 +45,16 @@ class HospitalAdd extends React.Component {
       const accounts = await web3.eth.getAccounts();
       const hospital = HospitalCreator(state[0]);
       // console.log("hospital"+hospital.options.address);
+      console.log("submiting the form");
+      ipfs.add(this.state.buffer, (error, result) => {
+        console.log('Ipfs result', result)
+      const memeHash=result[0].hash
+      this.setState({memeHash})
+      if(error) {
+        console.error(error)
+        return
+      } 
+    })
       await hospital.methods
         .createRecord(
           state[1],
@@ -45,7 +63,7 @@ class HospitalAdd extends React.Component {
           doctorName,
           date,
           doctorNote,
-          "QmRjg6pi6sbsNfqdVXDsBvStfXPsnwYBAFwsTcXVDadAe4"
+          this.state.memeHash
         )
         .send({
           from: accounts[0],
@@ -59,8 +77,21 @@ class HospitalAdd extends React.Component {
       console.log(this.state.errorMessage);
     }
 
+
     this.setState({ loading: false });
   };
+
+  capturefile = (event)=>{
+    event.preventDefault()
+    console.log("filecaptured");
+    const file = event.target.files[0]
+    const reader = new window.FileReader()
+    reader.readAsArrayBuffer(file)
+    reader.onloadend = () =>  {
+      this.setState({buffer:Buffer(reader.result)})
+    }
+    
+  }
   render() {
     const {
       hospitalView,
@@ -225,10 +256,12 @@ class HospitalAdd extends React.Component {
               />
             </div>
           </div>
-          
-          
 
-          <div className="group-54">
+          <div className="group-53">
+            <input type='file' onChange={this.capturefile}/>
+          </div>
+        
+      <div className="group-54">
             <div className="overlap-group-hospitalview">
               {/* eslint-disable-next-line */}
               <a onClick={this.addRecord}>
