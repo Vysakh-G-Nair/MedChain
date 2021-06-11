@@ -277,6 +277,7 @@ const recordData = {
   recDate: "Date Created: ",
   recDateVal: <>25 April 2021<br /></>,
   docNote: "Doctor's Note: ",
+  Attachfile:"Attached File:"
   // docNoteVal: <>Mild fever only. Paracetamol 650mg 10nos<br /></>,
 };
 

@@ -23,15 +23,17 @@ class Record extends React.Component {
       recDate,
       docNote,
       patientShareRecord,
+      Attachfile,
     } = this.props;
 
     let record;
 
     if (typeof this.props.location.state === "undefined") {
-      record = [0, 0, 0, 0, 0];
+      record = [0, 0, 0, 0, 0, 0];
     } else {
       const { state } = this.props.location;
       record = state;
+      console.log('result',record);
     }
 
     return (
@@ -91,9 +93,19 @@ class Record extends React.Component {
                 <span className="span-1-record poppins-medium-white-18px">
                   {record[5]}
                   <br />
+                </span><span className="span-record poppins-normal-white-16px">
+                  {Attachfile}
                 </span>
+                <span className="span-1-record poppins-medium-white-18px">
+               
+                <a href={'https://ipfs.infura.io/ipfs/'+ record[6]}> View File </a>
+                  <br />
+
+                </span>
+                
               </p>
             </div>
+            
             <Rodal visible={record[1] === 0}>
               <div className="text-1-rodal">No record found!</div>
               <Link to="/loginAs">
