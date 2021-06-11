@@ -1,7 +1,7 @@
 import React from "react";
 import "./registryStyling.scss";
 import { withRouter } from "react-router-dom";
-import PatientCreator from "../../ethereum/patient";
+import MedProCreator from "../../ethereum/medicalpro";
 import web3 from "../../ethereum/web3";
 import { RegistryRow, Header} from "../index.js";
 
@@ -17,7 +17,7 @@ const registryRowData = {
 class Registry extends React.Component {
   state = {
     address: "",
-    records: [],
+    patients: []
   };
 
   componentWillMount() {
@@ -26,18 +26,18 @@ class Registry extends React.Component {
   }
 
   async getInstance(state) {
-    const patient = PatientCreator(state[0]);
-    console.log("Deployed address: " + patient.options.address);
+    const medPro = MedProCreator(state[0]);
+    console.log("Deployed address: " + medPro.options.address);
     const accounts = await web3.eth.getAccounts();
 
-    const noOfRecords = state[1];
-    console.log("No. of records: " + noOfRecords);
+    const noOfPatients = state[1];
+    console.log("No. of patients: " + noOfPatients);
 
-    const records = await Promise.all(
-      Array(parseInt(noOfRecords))
+    const patients = await Promise.all(
+      Array(parseInt(noOfPatients))
         .fill()
         .map((element, index) => {
-          return patient.methods.viewRecords(index).call({
+          return medPro.methods.regPatient(index).call({
             from: accounts[0],
           });
         })
@@ -45,16 +45,15 @@ class Registry extends React.Component {
 
     this.setState({
       address: state[0],
-      noOfRecords: state[1],
-      records: records,
+      patients: patients
     });
   }
 
   renderRows() {
-    return this.state.records.map((record, index) => {
+    return this.state.patients.map((patient, index) => {
       // console.log(record);
       return (
-        <RegistryRow {...registryRowData} record={record} key={index} />
+        <RegistryRow {...registryRowData} patient={patient} key={index} address={this.state.address} />
       );
     });
   }

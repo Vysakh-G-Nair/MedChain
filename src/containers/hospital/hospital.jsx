@@ -10,12 +10,11 @@ import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
 
-
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
   inputType: "text",
-  logOut: "Log Out"
+  logOut: "Log Out",
 };
 
 class Hospital extends React.Component {
@@ -49,13 +48,15 @@ class Hospital extends React.Component {
       addressOwner: summary[0],
       hosname: summary[1],
       category: summary[2],
-      lisenceNo: summary[4],
       location: summary[3],
+      lisenceNo: summary[4],
+      noOfPatients: summary[5],
     });
   }
 
   render() {
-    const { hospital, viewRecord, addRecord, regPatient, PatientRegistry } = this.props;
+    const { hospital, viewRecord, addRecord, regPatient, PatientRegistry } =
+      this.props;
 
     const detailsData = {
       overlapGroup:
@@ -100,7 +101,7 @@ class Hospital extends React.Component {
           action="form2"
           method="post"
         >
-          <div className=""> 
+          <div className="">
             <Header {...headerData} />
           </div>
           <div className="details-comp">
@@ -112,7 +113,6 @@ class Hospital extends React.Component {
               <Link
                 to={{ pathname: "/hospitalview", state: this.state.address }}
               >
-                
                 <div className="view-record-group smart-layers-pointers">
                   <div className="overlap-group2-hospital">
                     <img className="view-3" src={view_record_img} alt="" />
@@ -151,6 +151,13 @@ class Hospital extends React.Component {
                     </div>
                   </div>
                 </div>
+              </Link>
+              <Link
+                to={{
+                  pathname: "/registry",
+                  state: [this.state.address, this.state.noOfPatients],
+                }}
+              >
                 <div className="add-record-group smart-layers-pointers">
                   <div className="overlap-group1-hospital">
                     <img className="edit-5" src={registry} alt="" />

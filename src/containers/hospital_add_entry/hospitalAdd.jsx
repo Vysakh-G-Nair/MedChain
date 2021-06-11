@@ -7,8 +7,13 @@ import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
 
+
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+
+// import Calendar from 'react-calendar';
+
+
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
@@ -22,7 +27,7 @@ class HospitalAdd extends React.Component {
     loading: false,
     doctorName: "",
     recordName: "",
-    date: "",
+    date: new Date(),
     doctorNote: "",
     visible: false,
     buffer:"",
@@ -223,6 +228,11 @@ class HospitalAdd extends React.Component {
                 }
                 required
               />
+              {/* <Calendar
+                onChange={(event) =>
+                  this.setState({ date: event.target.value })}
+                value={this.state.date}
+              /> */}
             </div>
           </div>
           <div className="group-53-notes">

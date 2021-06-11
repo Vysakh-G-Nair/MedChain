@@ -4,21 +4,21 @@ import { Link, withRouter } from "react-router-dom";
 
 class RegistryRow extends React.Component {
   render() {
-    const { name, download, record } = this.props;
+    const { name, download, patient, address } = this.props;
 
     return (
       <div className="records-row screen">
         <div className="flex-row-1-view-records">
           <div className="docname1 poppins-normal-baby-powder-18px">
-            {record[2]}
+            {patient[0]}
           </div>
           <div className="docether1 poppins-normal-baby-powder-18px">
-            {record[4]}
+            {patient[1]}
           </div>
           <Link
             to={{
-              pathname: "/record",
-              state: record,
+              pathname: "/hospitaladd",
+              state: [address, patient[0]]
             }}
           >
             <div className="grant-button">
