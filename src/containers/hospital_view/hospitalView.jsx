@@ -182,7 +182,6 @@ class HospitalView extends React.Component {
                 </div>
                 {/* <div className="view-hospitalview">{view}</div> */}
               </a>
-              9
               <Rodal
                 visible={this.state.visible}
                 onClose={() =>

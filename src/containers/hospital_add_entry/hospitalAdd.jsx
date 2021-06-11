@@ -27,18 +27,18 @@ class HospitalAdd extends React.Component {
     loading: false,
     doctorName: "",
     recordName: "",
-    date: new Date(),
+    date: "",
     doctorNote: "",
     visible: false,
     buffer:"",
-    memeHash:""
+    
   };
 
   addRecord = async (event) => {
     event.preventDefault();
     const { state } = this.props.location;
     // console.log(state);
-    const { doctorName, recordName, date, doctorNote, recordID } = this.state;
+    const { doctorName, recordName, date, doctorNote, recordID} = this.state;
     this.setState({ loading: true, errorMessage: "" });
 
     try {
@@ -46,15 +46,12 @@ class HospitalAdd extends React.Component {
       const hospital = HospitalCreator(state[0]);
       // console.log("hospital"+hospital.options.address);
       console.log("submiting the form");
-      ipfs.add(this.state.buffer, (error, result) => {
-        console.log('Ipfs result', result)
-      const memeHash=result[0].hash
-      this.setState({memeHash})
+      ipfs.add(this.state.buffer, async (error, result) => {
+      console.log('Ipfs result', result)
       if(error) {
         console.error(error)
         return
-      } 
-    })
+      }
       await hospital.methods
         .createRecord(
           state[1],
@@ -63,22 +60,23 @@ class HospitalAdd extends React.Component {
           doctorName,
           date,
           doctorNote,
-          this.state.memeHash
+          result[0].hash
         )
         .send({
           from: accounts[0],
-        });
-      this.props.history.push({
-        pathname: "/hospital",
-        state: state[0],
-      });
+        })
+        this.props.history.push({
+          pathname: "/hospital",
+          state: state[0],  
+      }) 
+      this.setState({ loading: false });
+      })
+    
     } catch (error) {
       this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
-
-
-    this.setState({ loading: false });
+    
   };
 
   capturefile = (event)=>{
