@@ -131,7 +131,7 @@ class HospitalAdd extends React.Component {
           <div className="text-1-hospitalview poppins-medium-white-20px">
             {text1}
           </div>
-          <div className="group-52">
+          <div className="group-52-addrecord">
             <div className="text-2-hospitalview poppins-normal-baby-powder-18px">
               {text2}
             </div>
@@ -255,8 +255,8 @@ class HospitalAdd extends React.Component {
             </div>
           </div>
 
-          <div className="group-53">
-            <input type='file' onChange={this.capturefile}/>
+          <div className="group-53-attach">
+            <input className="attach" type='file' onChange={this.capturefile} />
           </div>
         
       <div className="group-54">
@@ -266,7 +266,7 @@ class HospitalAdd extends React.Component {
                 {/* <div className="rectangle-94">
                 <div className="view-hospitaladd">{view}</div>
                 </div> */}
-                <div className="rectangle-94">
+                <div className="rectangle-94-addrecord">
                   {loading && (
                     <i
                       className="fa fa-refresh fa-2x fa-spin"
