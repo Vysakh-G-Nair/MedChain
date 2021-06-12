@@ -7,18 +7,18 @@ import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
 
-
-const ipfsClient = require('ipfs-http-client')
-const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
-
-// import Calendar from 'react-calendar';
-
+const ipfsClient = require("ipfs-http-client");
+const ipfs = ipfsClient({
+  host: "ipfs.infura.io",
+  port: 5001,
+  protocol: "https",
+});
 
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
+  inputType: "/hospital",
+  logOut: "Log Out",
 };
 
 class HospitalAdd extends React.Component {
@@ -30,67 +30,65 @@ class HospitalAdd extends React.Component {
     date: "",
     doctorNote: "",
     visible: false,
-    buffer:"",
-    fileName: ""
+    buffer: "",
+    fileName: "",
   };
 
   addRecord = async (event) => {
     event.preventDefault();
     const { state } = this.props.location;
     // console.log(state);
-    const { doctorName, recordName, date, doctorNote, recordID} = this.state;
+    const { doctorName, recordName, date, doctorNote, recordID } = this.state;
     this.setState({ loading: true, errorMessage: "" });
 
     try {
       const accounts = await web3.eth.getAccounts();
       const hospital = HospitalCreator(state[0]);
       // console.log("hospital"+hospital.options.address);
-      console.log("submiting the form");
+      console.log("Submiting the form..");
       ipfs.add(this.state.buffer, async (error, result) => {
-      console.log('Ipfs result', result)
-      if(error) {
-        console.error(error)
-        return
-      }
-      await hospital.methods
-        .createRecord(
-          state[1],
-          recordID,
-          recordName,
-          doctorName,
-          date,
-          doctorNote,
-          result[0].hash
-        )
-        .send({
-          from: accounts[0],
-        })
+        console.log("IPFS result: ", result);
+        if (error) {
+          console.error(error);
+          return;
+        }
+        const fileHash = result[0].hash;
+        await hospital.methods
+          .createRecord(
+            state[1],
+            recordID,
+            recordName,
+            doctorName,
+            date,
+            doctorNote,
+            fileHash
+          )
+          .send({
+            from: accounts[0],
+          });
         this.props.history.push({
           pathname: "/hospital",
-          state: state[0],  
-      }) 
-      this.setState({ loading: false });
-      })
-    
+          state: state[0],
+        });
+        this.setState({ loading: false });
+      });
     } catch (error) {
       this.setState({ errorMessage: error.message, visible: true });
       console.log(this.state.errorMessage);
     }
-    
   };
 
-  capturefile = (event)=>{
-    event.preventDefault()
+  capturefile = (event) => {
+    event.preventDefault();
     console.log("filecaptured");
-    const file = event.target.files[0]
-    this.setState({ fileName: file.name })
-    const reader = new window.FileReader()
-    reader.readAsArrayBuffer(file)
-    reader.onloadend = () =>  {
-      this.setState({buffer:Buffer(reader.result)})
-    }
-    
-  }
+    const file = event.target.files[0];
+    this.setState({ fileName: file.name });
+    const reader = new window.FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onloadend = () => {
+      this.setState({ buffer: Buffer(reader.result) });
+    };
+  };
   render() {
     const {
       hospitalView,
@@ -126,7 +124,7 @@ class HospitalAdd extends React.Component {
           action="form1"
           method="post"
         >
-          <div className="header-hospitaladd"> 
+          <div className="header-hospitaladd">
             <Header {...headerData} />
           </div>
           <div className="text-1-hospitalview poppins-medium-white-20px">
@@ -261,17 +259,24 @@ class HospitalAdd extends React.Component {
           </div> */}
 
           <div class="inputfile-box">
-            <input type="file" id="file" class="inputfile" onChange={this.capturefile}/>
+            <input
+              type="file"
+              id="file"
+              class="inputfile"
+              onChange={this.capturefile}
+            />
             <label for="file">
-              <span id="file-name" class="file-box">{this.state.fileName}</span>
+              <span id="file-name" class="file-box">
+                {this.state.fileName}
+              </span>
               <span class="file-button">
                 <i class="fa fa-upload" aria-hidden="true"></i>
                 Select File
               </span>
             </label>
           </div>
-        
-      <div className="group-54">
+
+          <div className="group-54">
             <div className="overlap-group-hospitalview">
               {/* eslint-disable-next-line */}
               <a onClick={this.addRecord}>

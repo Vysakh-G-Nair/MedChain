@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 
 class RegistryRow extends React.Component {
   render() {
-    const { name, download, patient, address } = this.props;
+    const { name, patient, address } = this.props;
 
     return (
       <div className="records-row screen">

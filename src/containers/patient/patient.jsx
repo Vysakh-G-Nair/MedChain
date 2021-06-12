@@ -25,7 +25,7 @@ class Patient extends React.Component {
     errorMessage: "",
     loading: false,
     visible: false,
-    newtag: false,
+    newTag: false,
   };
 
   componentDidMount() {
@@ -56,7 +56,7 @@ class Patient extends React.Component {
         gender: summary[3],
         bloodGroup: summary[4],
         noOfRecords: summary[5],
-        newtag : summary[6],
+        newTag : summary[6],
       });
     } catch (error) {
       let er = error.message;
@@ -181,14 +181,13 @@ class Patient extends React.Component {
                     />
 
                     <div className="newnoticlass">
-                      {this.state.newtag && (
-                    <img
-                      className="new-noti"
-                      src={label}
-                      alt=""
-                    />
-                    )} 
-                    
+                      {this.state.newTag && (
+                        <img
+                          className="new-noti"
+                          src={label}
+                          alt=""
+                        />
+                      )}
                     </div>
                     
                     <div className="share-record-newrequests poppins-medium-amethyst-16px">
