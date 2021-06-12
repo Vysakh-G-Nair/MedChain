@@ -98,7 +98,7 @@ class Record extends React.Component {
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
                
-                <a href={'https://ipfs.infura.io/ipfs/'+ record[6]}> View File </a>
+                <a href={'https://ipfs.infura.io/ipfs/'+ record[6]} style={{color:"#b080ff"}}> View File </a>
                   <br />
 
                 </span>

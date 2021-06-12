@@ -31,7 +31,7 @@ class HospitalAdd extends React.Component {
     doctorNote: "",
     visible: false,
     buffer:"",
-    
+    fileName: ""
   };
 
   addRecord = async (event) => {
@@ -83,6 +83,7 @@ class HospitalAdd extends React.Component {
     event.preventDefault()
     console.log("filecaptured");
     const file = event.target.files[0]
+    this.setState({ fileName: file.name })
     const reader = new window.FileReader()
     reader.readAsArrayBuffer(file)
     reader.onloadend = () =>  {
@@ -255,8 +256,19 @@ class HospitalAdd extends React.Component {
             </div>
           </div>
 
-          <div className="group-53-attach">
-            <input className="attach" type='file' onChange={this.capturefile} />
+          {/* <div className="group-53-attach">
+              <input className="attach" type='file' onChange={this.capturefile} />
+          </div> */}
+
+          <div class="inputfile-box">
+            <input type="file" id="file" class="inputfile" onChange={this.capturefile}/>
+            <label for="file">
+              <span id="file-name" class="file-box">{this.state.fileName}</span>
+              <span class="file-button">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                Select File
+              </span>
+            </label>
           </div>
         
       <div className="group-54">
