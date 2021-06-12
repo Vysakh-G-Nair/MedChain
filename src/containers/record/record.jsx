@@ -9,9 +9,8 @@ const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
   check: "Check",
   logoLink: "back",
-  logOut: "Log Out"
+  logOut: "Log Out",
 };
-
 
 class Record extends React.Component {
   render() {
@@ -23,7 +22,7 @@ class Record extends React.Component {
       recDate,
       docNote,
       patientShareRecord,
-      Attachfile,
+      attachFile,
     } = this.props;
 
     let record;
@@ -33,7 +32,7 @@ class Record extends React.Component {
     } else {
       const { state } = this.props.location;
       record = state;
-      console.log('result',record);
+      // console.log("result", record);
     }
 
     return (
@@ -45,10 +44,10 @@ class Record extends React.Component {
             backgroundSize: "100% 100%",
           }}
         >
-          <div className="header-record"> 
+          <div className="header-record">
             <Header {...headerData} />
           </div>
-          
+
           <div className="boxposition">
             <div className="overlap-group-record-record">
               <p className="text-1-record-record poppins-normal-white-16px">
@@ -93,19 +92,22 @@ class Record extends React.Component {
                 <span className="span-1-record poppins-medium-white-18px">
                   {record[5]}
                   <br />
-                </span><span className="span-record poppins-normal-white-16px">
-                  {Attachfile}
+                </span>
+                <span className="span-record poppins-normal-white-16px">
+                  {attachFile}
                 </span>
                 <span className="span-1-record poppins-medium-white-18px">
-               
-                <a href={'https://ipfs.infura.io/ipfs/'+ record[6]} style={{color:"#b080ff"}}> View File </a>
+                  <a
+                    href={"https://ipfs.infura.io/ipfs/" + record[6]}
+                    style={{ color: "#b080ff" }}
+                  >
+                    View File
+                  </a>
                   <br />
-
                 </span>
-                
               </p>
             </div>
-            
+
             <Rodal visible={record[1] === 0}>
               <div className="text-1-rodal">No record found!</div>
               <Link to="/loginAs">

@@ -7,6 +7,8 @@ import search_img from "./search.png";
 import logo_hori_img from "./medlogohori.png";
 
 class Header extends React.Component {
+  isRegister() {}
+
   render() {
     const { inputPlaceholder, logoLink, logOut, address } = this.props;
 
@@ -46,11 +48,7 @@ class Header extends React.Component {
         )}
         <div className="overlap-group4-header">
           {/* eslint-disable-next-line */}
-          <a
-            onClick={() => {
-              this.props.history.goBack();
-            }}
-          >
+          <a onClick={this.isRegister}>
             <div className="group-83-header">
               <div className="overlap-group1-1-header-check">
                 <img className="vector-header" src={search_img} alt="search" />

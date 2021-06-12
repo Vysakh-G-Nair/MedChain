@@ -5,7 +5,7 @@ import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import openflagimage from "./openflagimage.png";
+import openFlagimage from "./openflagimage.png";
 
 class RequestsRow extends React.Component {
   state = {
@@ -63,12 +63,12 @@ class RequestsRow extends React.Component {
       console.log(this.state.errorMessage);
     }
     this.setState({ rloading: false });
-    console.log(this.props.openflag);
   };
 
   render() {
-    const { reject, name, ethAdd, docName, isView, granted, openflag} = this.props;
-    console.log(openflag);
+    const { reject, name, ethAdd, docName, isView, granted, openFlag } =
+      this.props;
+    // console.log(openFlag);
 
     let { recordID } = this.props;
 
@@ -104,16 +104,16 @@ class RequestsRow extends React.Component {
                   </div>
                 )}
                 {rloading && (
-                    <i
-                      className="fa fa-refresh fa-1x fa-spin"
-                      style={{
-                        marginRight: "0px",
-                        color: "#E32C2C",
-                        marginTop: "2px",
-                        marginLeft: "-2px",
-                      }}
-                    />
-                  )}
+                  <i
+                    className="fa fa-refresh fa-1x fa-spin"
+                    style={{
+                      marginRight: "0px",
+                      color: "#E32C2C",
+                      marginTop: "2px",
+                      marginLeft: "-2px",
+                    }}
+                  />
+                )}
               </div>
             </div>
           </a>
@@ -137,16 +137,16 @@ class RequestsRow extends React.Component {
                   </div>
                 )}
                 {gloading && (
-                    <i
-                      className="fa fa-refresh fa-1x fa-spin"
-                      style={{
-                        marginRight: "0px",
-                        color: "#9A5BFF",
-                        marginTop: "2px",
-                        marginLeft: "-2px",
-                      }}
-                    />
-                  )}
+                  <i
+                    className="fa fa-refresh fa-1x fa-spin"
+                    style={{
+                      marginRight: "0px",
+                      color: "#9A5BFF",
+                      marginTop: "2px",
+                      marginLeft: "-2px",
+                    }}
+                  />
+                )}
               </div>
             </div>
           </a>
@@ -156,13 +156,10 @@ class RequestsRow extends React.Component {
           <div className="text-1-requests poppins-normal-baby-powder-18px">
             {ethAdd}
           </div>
-          <div className="record-name1-requests poppins-normal-baby-powder-18px" >
-          {openflag && (
-              <img className="newopenflag"
-                      src={openflagimage}
-                      alt=""
-                    />
-                     )} 
+          <div className="record-name1-requests poppins-normal-baby-powder-18px">
+            {openFlag && (
+              <img className="newopenFlag" src={openFlagimage} alt="" />
+            )}
             {docName}
           </div>
         </div>
