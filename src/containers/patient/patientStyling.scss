@@ -177,7 +177,7 @@
   .share-record-newrequests {
     letter-spacing: 1.00px;
     line-height: 20px;
-    margin-top: 43px;
+    margin-top: 15px;
     margin-right: 5px;
     mix-blend-mode: normal;
     white-space: nowrap;
@@ -190,6 +190,23 @@
     font-weight: 600;
     padding-top: 5px;
   }
+
+  .new-noti{
+    align-self: center;
+    height: 56px;
+    margin-top: -30px;
+    margin-left: 100px;
+    margin-right: -13px;
+    mix-blend-mode: normal;
+    object-fit: cover;
+    width: 56px;
+
+  }
+
+  .newnoticlass{
+    position: absolute;
+  }
+
   .text-1-patient {
     //align-self: center;
     line-height: 27px;

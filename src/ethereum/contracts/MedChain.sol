@@ -9,14 +9,14 @@ contract UserFactory {
         require(medProsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && patientsAddress[msg.sender] == 0x0000000000000000000000000000000000000000 && extUserAddress[msg.sender] == 0x0000000000000000000000000000000000000000, "Already registered as a user in the system!");
     }
     
-    // function isRegistered(address _owner) public view returns (string memory) {
-    //     if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
-    //         return ("Not registered as a user in the system!");
-    //     }
-    //     else {
-    //         return ("Registered as a user in the system!");
-    //     }
-    // }
+    function isRegistered(address _owner) public view returns (string memory) {
+        if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
+            return ("Not registered as a user in the system!");
+        }
+        else {
+            return ("Registered as a user in the system!");
+        }
+    }
     
     function registerPatient(string memory _name, uint _age, string memory _gender, string memory _bloodGroup, bool _isdoc, address _owner) public {
         canRegister();
@@ -69,6 +69,7 @@ contract Patient {
         string description;
         string fileHash;
         mapping (address => bool) canView;
+        
     }
     
     struct Request {
@@ -77,6 +78,7 @@ contract Patient {
         string nameDoc;
         bool isView; // false for create
         bool granted;
+        bool openflag;
     }
     
     address ownerPatient;
@@ -138,7 +140,8 @@ contract Patient {
             viewer: msg.sender,
             nameDoc: _name,
             isView: _isView,
-            granted: false
+            granted: false,
+            openflag: true
         });
         requests.push(request);
         pendingRequest = true;
@@ -157,6 +160,7 @@ contract Patient {
         }
         request.granted = true;
         pendingRequest = false;
+        request.openflag = false;
     }
     
     function revokeRequest(uint _index) public {
@@ -172,6 +176,7 @@ contract Patient {
         }
         request.granted = false;
         pendingRequest = false;
+        request.openflag = false;
     }
     
     function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {
