@@ -92,17 +92,17 @@ class Registry extends React.Component {
                 <div className="docters-name-view-records poppins-medium-baby-powder-18px">
                   {doctersName}
                 </div>
-                <div className="text-2-view-records poppins-medium-baby-powder-18px">
+                <div className="text-2-view-records-registry poppins-medium-baby-powder-18px">
                   {text2}
                 </div>
-                <div className="take-action poppins-medium-baby-powder-18px">
+                <div className="take-action-registry poppins-medium-baby-powder-18px">
                   {takeAction}
                 </div>
               </div>
               <div className="flex-row-view-records">
-                <div className="rectangle-5-view-records"></div>
-                <div className="rectangle-89-view-records"></div>
-                <div className="rectangle-90-view-records"></div>
+                <div className="rectangle-5-view-records-registry"></div>
+                <div className="rectangle-89-view-records-registry"></div>
+                <div className="rectangle-90-view-records-registry"></div>
               </div>
               <div className="RecordRow">{this.renderRows()}</div>
             </div>

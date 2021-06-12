@@ -10,10 +10,10 @@ class RegistryRow extends React.Component {
       <div className="records-row screen">
         <div className="flex-row-1-view-records">
           <div className="docname1 poppins-normal-baby-powder-18px">
-            {patient[0]}
-          </div>
-          <div className="docether1 poppins-normal-baby-powder-18px">
             {patient[1]}
+          </div>
+          <div className="docether1-registryrow poppins-normal-baby-powder-18px">
+            {patient[0]}
           </div>
           <Link
             to={{
@@ -21,7 +21,7 @@ class RegistryRow extends React.Component {
               state: [address, patient[0]]
             }}
           >
-            <div className="grant-button">
+            <div className="grant-button-registryrow">
               <div className="overlap-group-1-view-records">
                 <div className="name-view-records poppins-medium-amethyst-15px">
                   {name}
@@ -30,7 +30,7 @@ class RegistryRow extends React.Component {
             </div>
           </Link>
         </div>
-        <div className="rectangle-95-view-records"></div>
+        <div className="rectangle-95-view-records-registryrow"></div>
       </div>
     );
   }
