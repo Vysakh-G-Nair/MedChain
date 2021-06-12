@@ -5,6 +5,7 @@ import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import openflagimage from "./openflagimage.png";
 
 class RequestsRow extends React.Component {
   state = {
@@ -62,10 +63,12 @@ class RequestsRow extends React.Component {
       console.log(this.state.errorMessage);
     }
     this.setState({ rloading: false });
+    console.log(this.props.openflag);
   };
 
   render() {
-    const { reject, name, ethAdd, docName, isView, granted } = this.props;
+    const { reject, name, ethAdd, docName, isView, granted, openflag} = this.props;
+    console.log(openflag);
 
     let { recordID } = this.props;
 
@@ -153,7 +156,13 @@ class RequestsRow extends React.Component {
           <div className="text-1-requests poppins-normal-baby-powder-18px">
             {ethAdd}
           </div>
-          <div className="record-name1-requests poppins-normal-baby-powder-18px">
+          <div className="record-name1-requests poppins-normal-baby-powder-18px" >
+          {openflag && (
+              <img className="newopenflag"
+                      src={openflagimage}
+                      alt=""
+                    />
+                     )} 
             {docName}
           </div>
         </div>

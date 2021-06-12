@@ -64,6 +64,8 @@ class Requests extends React.Component {
           address={this.state.address}
           isView={request.isView}
           granted={request.granted}
+          openflag={request.openflag}
+          
         />
       );
     });

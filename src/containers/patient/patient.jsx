@@ -25,6 +25,7 @@ class Patient extends React.Component {
     errorMessage: "",
     loading: false,
     visible: false,
+    newtag: false,
   };
 
   componentDidMount() {
@@ -55,6 +56,7 @@ class Patient extends React.Component {
         gender: summary[3],
         bloodGroup: summary[4],
         noOfRecords: summary[5],
+        newtag : summary[6],
       });
     } catch (error) {
       let er = error.message;
@@ -169,6 +171,7 @@ class Patient extends React.Component {
                 }}
                 onClick={this.test}
               >
+              
                 <div className="group-patient">
                   <div className="overlap-group2-patient">
                     <img
@@ -176,11 +179,18 @@ class Patient extends React.Component {
                       src={share_your_record_img}
                       alt=""
                     />
+
+                    <div className="newnoticlass">
+                      {this.state.newtag && (
                     <img
                       className="new-noti"
                       src={label}
                       alt=""
                     />
+                    )} 
+                    
+                    </div>
+                    
                     <div className="share-record-newrequests poppins-medium-amethyst-16px">
                       {shareRecord}
                     </div>
