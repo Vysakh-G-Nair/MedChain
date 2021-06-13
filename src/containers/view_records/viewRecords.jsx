@@ -33,7 +33,7 @@ class ViewRecords extends React.Component {
     const accounts = await web3.eth.getAccounts();
 
     const noOfRecords = state[1];
-    console.log("No. of records: " + noOfRecords);
+    // console.log("No. of records: " + noOfRecords);
 
     const records = await Promise.all(
       Array(parseInt(noOfRecords))
@@ -84,7 +84,7 @@ class ViewRecords extends React.Component {
           <div className="your-records poppins-medium-white-20px">
             {yourRecords}
             <div className="number-group">
-            <span className="number-text">10</span>
+            <span className="number-text">{this.state.noOfRecords}</span>
             <img className="number-round"
                       src={round_img}
                       alt=""
