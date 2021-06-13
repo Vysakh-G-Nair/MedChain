@@ -14,8 +14,29 @@
   }
   .RecordRow {
     margin-top: 120px;
+    
   }
 
+  .number-group{
+    margin-left: 240px;
+    margin-top: -30px;
+  }
+
+  .number-round{
+    height: 35px;
+    width: auto;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -29px;
+    z-index: 10;
+  }
+
+  .number-text{
+    margin-left: -22px;
+    margin-top: 6px;
+    position: absolute;
+    z-index: 20;
+  }
   .patient-s-own-records {
     align-items: center;
     background-color: var(--mine-shaft);
@@ -37,6 +58,7 @@
     mix-blend-mode: normal;
     opacity: 0.8;
     text-align: center;
+    align-items: center;
     text-shadow: 0px 2px 2px #272c3566;
     white-space: nowrap;
     width: 281px;
