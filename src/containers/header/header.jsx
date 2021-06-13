@@ -5,12 +5,56 @@ import back_img from "./back.png";
 import vector1_img from "./vector1.png";
 import search_img from "./search.png";
 import logo_hori_img from "./medlogohori.png";
+import factory from "../../ethereum/factory";
+import web3 from "../../ethereum/web3";
+import Rodal from "rodal";
+import "rodal/lib/rodal.css";
 
 class Header extends React.Component {
-  isRegister() {}
+  state = {
+    errorMessage: "",
+    loading: false,
+    visible: false,
+    ethAddr: "",
+    isRegistered: false
+  };
+
+  isRegister = async (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true, errorMessage: "" });
+
+    try {
+      const accounts = await web3.eth.getAccounts();
+
+      const isReg = await factory.methods.isRegistered(this.state.ethAddr).call({
+        from: accounts[0],
+      });
+
+      if (isReg === "Registered as a user in the system!") {
+        this.setState({ isRegistered: true })
+      }
+
+      this.setState({
+        errorMessage: isReg,
+        visible: true,
+      });
+    } catch (error) {
+      const er = error.message;
+      // console.log(er);
+      this.setState({
+        errorMessage: er.slice(er.indexOf("N"), er.indexOf("!") + 1),
+        visible: true,
+      });
+      console.log(error.message);
+    }
+    this.setState({ loading: false });
+  };
 
   render() {
     const { inputPlaceholder, logoLink, logOut, address } = this.props;
+
+    const { isRegistered } = this.state;
 
     return (
       <div className="group-85-header">
@@ -68,6 +112,8 @@ class Header extends React.Component {
                 name="enter-ethereum-address"
                 placeholder={inputPlaceholder}
                 type="text"
+                value={this.state.ethAddr}
+                onChange={event => this.setState({ ethAddr: event.target.value })}
                 required
               />
               <img className="vector-1-header" src={vector1_img} alt="Header" />
@@ -85,6 +131,22 @@ class Header extends React.Component {
             </div>
           )}
         </Link>
+        <Rodal
+              visible={this.state.visible}
+              onClose={() => this.setState({ visible: false })}
+            >
+              <div className="text-1-rodal">{this.state.errorMessage}</div>
+              {!isRegistered && <Link to="/register">
+                <div className="rectangle-94-rodal">
+                  <div className="view-rodal">Go to Register Page</div>
+                </div>
+              </Link>}
+              {isRegistered && <Link to="/loginAs">
+                <div className="rectangle-94-rodal">
+                  <div className="view-rodal">Go to Login Page</div>
+                </div>
+              </Link>}
+            </Rodal>
       </div>
     );
   }
