@@ -5,6 +5,7 @@ import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
 import { ViewRecordsRow } from "../index.js";
 import { Header } from "../index.js";
+import round_img from "./round.png";
 
 const viewRecordsRowData = {
   overlapGroup:
@@ -82,6 +83,14 @@ class ViewRecords extends React.Component {
           </div>
           <div className="your-records poppins-medium-white-20px">
             {yourRecords}
+            <div className="number-group">
+            <span className="number-text">10</span>
+            <img className="number-round"
+                      src={round_img}
+                      alt=""
+                    />
+            
+            </div>
           </div>
           <form
             className="view-records screen"
