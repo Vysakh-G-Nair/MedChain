@@ -252,7 +252,7 @@ const registryData = {
   text2: "Ethereum Address",
   takeAction: "Add Record",
   patientsOwnRecords: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/60891dcbaf87ec1bbe8d0827/img/rectangle-84@1x.svg",
-  yourRecords: "PATIENTS REGISTERED BY YOU",
+  yourRecords: "PATIENT REGISTRY",
 };
 
 // const viewRecordsRowData = {
