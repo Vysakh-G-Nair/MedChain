@@ -3,8 +3,6 @@ import "./patientStyling.scss";
 import { Link, withRouter } from "react-router-dom";
 import view_your_record_img from "./view_record.png";
 import label from "./label.svg";
-// import grant_img from "./grant.png";
-// import view_external_img from "./view external.png";
 import share_your_record_img from "./share.png";
 import PatientCreator from "../../ethereum/patient";
 import web3 from "../../ethereum/web3";
@@ -12,6 +10,7 @@ import { Details } from "../index.js";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import { Header } from "../index.js";
+import QRCode from 'qrcode';
 
 class Patient extends React.Component {
   state = {
@@ -26,6 +25,7 @@ class Patient extends React.Component {
     loading: false,
     visible: false,
     newTag: false,
+    qrCode: ""
   };
 
   componentDidMount() {
@@ -46,8 +46,6 @@ class Patient extends React.Component {
         from: accounts[0],
       });
 
-      console.log(summary)
-
       this.setState({
         address: state,
         addressOwner: summary[0],
@@ -57,8 +55,11 @@ class Patient extends React.Component {
         bloodGroup: summary[4],
         noOfRecords: summary[5],
         newTag : summary[6],
+        qrCode: await QRCode.toDataURL(summary[0])
       });
-    } catch (error) {
+      // console.log(await QRCode.toDataURL(this.state.addressOwner))
+
+      }catch (error) {
       let er = error.message;
       if (er.indexOf(":") !== -1) {
         er = er.slice(er.indexOf(":") + 1, er.indexOf("!") + 1)
@@ -112,10 +113,14 @@ class Patient extends React.Component {
           <br />
         </>
       ),
-      spanText9: "No of records: ",
+      spanText9: "QR Code: ",
       spanText10: (
         <>
-          {this.state.noOfRecords}
+        <img
+          className="share-1"
+          src={this.state.qrCode}
+          alt=""
+        />
           <br />
         </>
       ),
@@ -154,16 +159,6 @@ class Patient extends React.Component {
                   </div>
                 </div>
               </Link>
-              {/* <Link to="/patientgrant">
-                    <div className="group-patient">
-                      <div className="overlap-group3-patient">
-                        <img className="grant-1" src={grant_img} alt="" />
-                        <div className="name poppins-medium-amethyst-16px">
-                          {name}
-                        </div>
-                      </div>
-                    </div>
-                    </Link> */}
               <Link
                 to={{
                   pathname: "/requests",
@@ -196,21 +191,6 @@ class Patient extends React.Component {
                   </div>
                 </div>
               </Link>
-              {/* <Link to="/patientexternalview">
-                    <div className="group-patient">
-                      <div className="overlap-group1-patient">
-                        <img
-                          className="view-external-1"
-                          src={view_external_img}
-                          alt=""
-                        />
-                        <div className="text-2-patient poppins-medium-amethyst-16px">
-                          {text2}
-                        </div>
-                      </div>
-                    </div>
-                    </Link>
-                </div> */}
               <Rodal
                 visible={this.state.visible}
                 onClose={() => this.props.history.push("/loginAs")}
