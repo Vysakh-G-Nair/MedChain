@@ -158,7 +158,7 @@ class RequestsRow extends React.Component {
           </div>
           <div className="record-name1-requests poppins-normal-baby-powder-18px">
             {openFlag && (
-              <img className="newopenFlag" src={openFlagimage} alt="" />
+              <img className="newopenflag" src={openFlagimage} alt="" />
             )}
             {docName}
           </div>
