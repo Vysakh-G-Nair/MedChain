@@ -69,7 +69,6 @@ contract Patient {
         string description;
         string fileHash;
         mapping (address => bool) canView;
-        
     }
     
     struct Request {
@@ -78,7 +77,7 @@ contract Patient {
         string nameDoc;
         bool isView; // false for create
         bool granted;
-        bool openflag;
+        bool openFlag;
     }
     
     address ownerPatient;
@@ -141,7 +140,7 @@ contract Patient {
             nameDoc: _name,
             isView: _isView,
             granted: false,
-            openflag: true
+            openFlag: true
         });
         requests.push(request);
         pendingRequest = true;
@@ -160,7 +159,7 @@ contract Patient {
         }
         request.granted = true;
         pendingRequest = false;
-        request.openflag = false;
+        request.openFlag = false;
     }
     
     function revokeRequest(uint _index) public {
@@ -176,7 +175,7 @@ contract Patient {
         }
         request.granted = false;
         pendingRequest = false;
-        request.openflag = false;
+        request.openFlag = false;
     }
     
     function viewRecord(uint _id) public view returns(uint, address, string memory, string memory, string memory, string memory, string memory) {

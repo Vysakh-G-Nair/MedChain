@@ -48,7 +48,7 @@ const hospitalViewData = {
   recordID: "Record ID",
   overlapGroup1: "https://anima-uploads.s3.amazonaws.com/projects/60891db35bdecf992a20f15c/releases/608d3aad710ab4fa079fc6c8/img/rectangle-51@1x.svg",
   inputType2: "text",
-  inputPlaceholder2: "Enter record name",
+  inputPlaceholder2: "Enter record ID",
   view: "View",
 };
 
