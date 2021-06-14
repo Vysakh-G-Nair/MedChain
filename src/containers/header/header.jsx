@@ -32,7 +32,10 @@ class Header extends React.Component {
       });
 
       if (isReg === "Registered as a user in the system!") {
-        this.setState({ isRegistered: true })
+        this.setState({ isRegistered: true });
+      }
+      else {
+        this.setState({ isRegistered: false });
       }
 
       this.setState({
