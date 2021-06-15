@@ -52,7 +52,7 @@ class Requests extends React.Component {
   }
 
   renderRows() {
-    return this.state.requests.map((request, index) => {
+    return this.state.requests.slice(0).reverse().map((request, index) => {
       return (
         <RequestsRow
           {...requestsRowData}

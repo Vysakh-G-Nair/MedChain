@@ -55,9 +55,9 @@ class Patient extends React.Component {
         bloodGroup: summary[4],
         noOfRecords: summary[5],
         newTag : summary[6],
-        qrCode: await QRCode.toDataURL(summary[0])
+        qrCode: await QRCode.toDataURL(summary[0], { scale: 8 })
       });
-      // console.log(await QRCode.toDataURL(this.state.addressOwner))
+      console.log(this.state.qrCode)
 
       }catch (error) {
       let er = error.message;

@@ -17,11 +17,6 @@ class ExternalView extends React.Component {
     visible: false,
   };
 
-  // componentWillMount() {
-  //   const { state } = this.props.location;
-  //   this.setState({address:state});
-  // }
-
   checkPermission = async (event) => {
     event.preventDefault();
     const { state } = this.props.location;
@@ -30,7 +25,7 @@ class ExternalView extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
       const external = ExternalCreator(this.state.address);
-      console.log("external" + external.options.address);
+      console.log("External deployed: " + external.options.address);
       const recordinstance = await external.methods
         .viewRecord(this.state.patientAddr, this.state.recordid)
         .call({
@@ -54,8 +49,6 @@ class ExternalView extends React.Component {
     try {
       const accounts = await web3.eth.getAccounts();
       const external = ExternalCreator(this.state.address);
-      console.log("external" + external.options.address);
-      console.log("external" + this.state.address);
       await external.methods
         .requestPermission(this.state.patientAddr, this.state.recordid)
         .send({
@@ -66,8 +59,6 @@ class ExternalView extends React.Component {
         state: this.state.address,
       });
     } catch (error) {
-      // this.setState({ errorMessage: error.message, visible: true });
-      // console.log(this.state.errorMessage);
       const er = error.message;
       // console.log(er);
       this.setState({
