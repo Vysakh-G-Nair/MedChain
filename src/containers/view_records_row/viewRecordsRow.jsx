@@ -1,22 +1,30 @@
 import React from "react";
 import "./viewRecordsRowStyling.scss";
 import { Link, withRouter } from "react-router-dom";
+import logo_hori_img from "./medlogohori.png";
 
 class ViewRecordsRow extends React.Component {
   downloadPDF(record) {
     const { jsPDF } = require("jspdf");
     const doc = new jsPDF();
-    record = [
-      "Record ID: " + record[0],
-      "Creator's Ethereum Address: " + record[1],
-      "Record Name: " + record[2],
-      "Record Creator Doctor's Name: " + record[3],
-      "Record Date: " + record[4],
-      "Record Description: " + record[5]
-    ];
-    doc.setFont("times");
-    doc.text(record, 10, 10);
-    doc.save(record[0] + ".pdf"); 
+    doc.setFillColor("#2d3035");
+    doc.addImage(logo_hori_img, "PNG", 80, 10, 40, 8);
+    doc.setLineWidth(1.25);
+    doc.line(10, 20, 200, 20);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Record ID: " + record[0], 85, 30);
+
+    doc.setFont("times", "normal");
+    doc.text("Record Name: " + record[2], 10, 40);
+    doc.text("Record Date: " + record[4], 10, 50);
+    doc.text("Record Description: " + record[5], 10, 60);
+    doc.text("Creator's Ethereum Address: " + record[1], 10, 70);
+    doc.text("Creator Doctor's Name: " + record[3], 10, 80);
+    doc.text("Attached File: ", 10, 90);
+    doc.textWithLink("View", 43, 90, {url: "https://ipfs.infura.io/ipfs/" + record[6]});
+
+    doc.save("Record ID-" + record[0] + ".pdf"); 
   }
 
   render() {
