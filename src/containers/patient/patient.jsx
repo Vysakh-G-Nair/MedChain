@@ -59,6 +59,7 @@ class Patient extends React.Component {
         qrCode: await QRCode.toDataURL(summary[0], { scale: 8 })
       });
       console.log(this.state.qrCode)
+      // console.log(await QRCode.toDataURL(this.state.addressOwner))
 
       }catch (error) {
       let er = error.message;
