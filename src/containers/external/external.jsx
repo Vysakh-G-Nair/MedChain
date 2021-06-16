@@ -6,7 +6,7 @@ import ExternalCreator from "../../ethereum/external";
 import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
 import { Header } from "../index.js";
-import QRCode from 'qrcode';
+import QRCode from "qrcode";
 
 class External extends React.Component {
   state = {
@@ -14,7 +14,7 @@ class External extends React.Component {
     addressOwner: "",
     name: "",
     designation: "",
-    qrCode:""
+    qrCode: "",
   };
 
   componentWillMount() {
@@ -37,9 +37,9 @@ class External extends React.Component {
       addressOwner: summary[0],
       name: summary[1],
       designation: summary[2],
-      qrCode:await QRCode.toDataURL(summary[0])
+      qrCode: await QRCode.toDataURL(summary[0], { scale: 8 }),
     });
-    console.log(this.state.qrCode)
+    // console.log(this.state.qrCode);
   }
 
   render() {
@@ -50,7 +50,7 @@ class External extends React.Component {
       check: "Check",
       logoLink: "/external",
       logOut: "Log Out",
-      address: this.state.address
+      address: this.state.address,
     };
 
     const detailsData = {
@@ -70,7 +70,7 @@ class External extends React.Component {
           <br />
         </>
       ),
-      spanText9:this.state.qrCode
+      qr_img: this.state.qrCode,
     };
 
     return (
@@ -82,7 +82,7 @@ class External extends React.Component {
           action="form2"
           method="post"
         >
-          <div className=""> 
+          <div className="">
             <Header {...headerData} />
           </div>
           <div className="details-comp-external">
