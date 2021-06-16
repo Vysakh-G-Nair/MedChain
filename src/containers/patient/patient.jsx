@@ -45,6 +45,7 @@ class Patient extends React.Component {
       const summary = await patient.methods.getPatSummary().call({
         from: accounts[0],
       });
+     
 
       this.setState({
         address: state,
