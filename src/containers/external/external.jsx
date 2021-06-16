@@ -6,6 +6,7 @@ import ExternalCreator from "../../ethereum/external";
 import web3 from "../../ethereum/web3";
 import { Details } from "../index.js";
 import { Header } from "../index.js";
+import QRCode from 'qrcode';
 
 class External extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class External extends React.Component {
     addressOwner: "",
     name: "",
     designation: "",
+    qrCode:""
   };
 
   componentWillMount() {
@@ -35,7 +37,9 @@ class External extends React.Component {
       addressOwner: summary[0],
       name: summary[1],
       designation: summary[2],
+      qrCode:await QRCode.toDataURL(summary[0])
     });
+    console.log(this.state.qrCode)
   }
 
   render() {
@@ -66,6 +70,7 @@ class External extends React.Component {
           <br />
         </>
       ),
+      spanText9:this.state.qrCode
     };
 
     return (
