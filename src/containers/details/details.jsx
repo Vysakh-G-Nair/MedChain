@@ -32,6 +32,8 @@ class Details extends React.Component {
       spanText6,
       spanText7,
       spanText8,
+      spanText9
+
     } = this.props;
 
     return (
@@ -45,7 +47,7 @@ class Details extends React.Component {
             </a>
             <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
               <div className="qr_img_div" >
-                <img className="qr_img" src={qr_img} alt="" />
+                <img className="qr_img" src={spanText9} alt="" />
               </div>
             </Rodal>
             <span className="span-details poppins-normal-white-16px">{spanText3}</span>

@@ -45,6 +45,7 @@ class Patient extends React.Component {
       const summary = await patient.methods.getPatSummary().call({
         from: accounts[0],
       });
+     
 
       this.setState({
         address: state,
@@ -55,8 +56,10 @@ class Patient extends React.Component {
         bloodGroup: summary[4],
         noOfRecords: summary[5],
         newTag : summary[6],
-        qrCode: await QRCode.toDataURL(summary[0])
+        qrCode:await QRCode.toDataURL(summary[0])
+        
       });
+      console.log(this.state.qrCode)
       // console.log(await QRCode.toDataURL(this.state.addressOwner))
 
       }catch (error) {
@@ -113,17 +116,7 @@ class Patient extends React.Component {
           <br />
         </>
       ),
-      spanText9: "QR Code: ",
-      spanText10: (
-        <>
-        <img
-          className="share-1"
-          src={this.state.qrCode}
-          alt=""
-        />
-          <br />
-        </>
-      ),
+      spanText9: this.state.qrCode  
     };
 
     return (
