@@ -9,6 +9,7 @@ import { Details } from "../index.js";
 import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
+import QRCode from 'qrcode';
 
 const headerData = {
   inputPlaceholder: "Enter Ethereum Address",
@@ -26,6 +27,7 @@ class Hospital extends React.Component {
     lisenceNo: "",
     location: "",
     visible: false,
+    qrCode:""
   };
 
   componentDidMount() {
@@ -51,6 +53,7 @@ class Hospital extends React.Component {
       location: summary[3],
       lisenceNo: summary[4],
       noOfPatients: summary[5],
+      qrCode:await QRCode.toDataURL(summary[0])
     });
   }
 
@@ -90,6 +93,7 @@ class Hospital extends React.Component {
           <br />
         </>
       ),
+      spanText9:this.state.qrCode
     };
 
     return (
