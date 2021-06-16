@@ -113,17 +113,7 @@ class Patient extends React.Component {
           <br />
         </>
       ),
-      spanText9: "QR Code: ",
-      spanText10: (
-        <>
-        <img
-          className="share-1"
-          src={this.state.qrCode}
-          alt=""
-        />
-          <br />
-        </>
-      ),
+      qr_img: this.state.qrCode,
     };
 
     return (

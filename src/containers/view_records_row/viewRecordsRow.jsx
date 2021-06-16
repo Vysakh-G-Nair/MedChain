@@ -7,6 +7,7 @@ class ViewRecordsRow extends React.Component {
   downloadPDF(record) {
     const { jsPDF } = require("jspdf");
     const doc = new jsPDF();
+    doc.setFillColor("#2d3035");
     doc.addImage(logo_hori_img, "PNG", 80, 10, 40, 8);
     doc.setLineWidth(1.25);
     doc.line(10, 20, 200, 20);
