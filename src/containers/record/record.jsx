@@ -100,6 +100,8 @@ class Record extends React.Component {
                   <a
                     href={"https://ipfs.infura.io/ipfs/" + record[6]}
                     style={{ color: "#b080ff" }}
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     View File
                   </a>
