@@ -10,11 +10,17 @@ contract UserFactory {
     }
     
     function isRegistered(address _owner) public view returns (string memory) {
-        if (medProsAddress[_owner] == 0x0000000000000000000000000000000000000000 && patientsAddress[_owner] == 0x0000000000000000000000000000000000000000 && extUserAddress[_owner] == 0x0000000000000000000000000000000000000000) {
-            return ("Not registered as a user in the system!");
+        if (patientsAddress[_owner] != 0x0000000000000000000000000000000000000000) {
+            return ("Registered as a patient in the system!");
+        }
+        else if (medProsAddress[_owner] != 0x0000000000000000000000000000000000000000) {
+            return ("Registered as a medical professional in the system!");
+        }
+        else if (extUserAddress[_owner] != 0x0000000000000000000000000000000000000000) {
+            return ("Registered as an external user in the system!");
         }
         else {
-            return ("Registered as a user in the system!");
+            return ("Not registered as a user in the system!");
         }
     }
     
