@@ -31,11 +31,11 @@ class Header extends React.Component {
         from: accounts[0],
       });
 
-      if (isReg === "Registered as a user in the system!") {
-        this.setState({ isRegistered: true });
+      if (isReg === "Not registered as a user in the system!") {
+        this.setState({ isRegistered: false });
       }
       else {
-        this.setState({ isRegistered: false });
+        this.setState({ isRegistered: true });
       }
 
       this.setState({
