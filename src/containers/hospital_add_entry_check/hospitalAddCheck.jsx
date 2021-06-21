@@ -7,12 +7,7 @@ import "rodal/lib/rodal.css";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
+
 
 class PatientGrant extends React.Component {
   state = {
@@ -96,6 +91,15 @@ class PatientGrant extends React.Component {
       inputPlaceholder,
       view,
     } = this.props;
+
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      logoLink: "/hospital",
+      inputType: "text",
+      logOut: "Log Out",
+      address:this.props.location.state
+    };
 
     const { loading } = this.state;
 

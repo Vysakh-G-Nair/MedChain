@@ -7,13 +7,6 @@ import HospitalCreator from "../../ethereum/medicalpro";
 import { withRouter } from "react-router-dom";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
-
 class HospitalView extends React.Component {
   state = {
     patientAddr: "",
@@ -103,6 +96,12 @@ class HospitalView extends React.Component {
     } = this.props;
 
     const { loading } = this.state;
+    const headerData = { 
+      inputPlaceholder: "Enter Ethereum Address",
+        check: "Check",
+        logoLink: "/hospital", 
+        logOut: "Log Out",
+        address:this.props.location.state      };
 
     return (
       <div className="container-center-horizontal">

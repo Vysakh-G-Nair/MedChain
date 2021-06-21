@@ -9,12 +9,7 @@ import HospitalCreator from "../../ethereum/medicalpro";
 import Select from "react-select";
 import { Header } from "../index.js";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out"
-};
+
 
 const genderoptions = [
   { value: "Male", label: "Male" },
@@ -128,6 +123,14 @@ class RegisterPatientHospital extends React.Component {
       view,
     } = this.props;
 
+    const headerData = {
+      inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      inputType: "text",
+      logoLink: "/hospital",
+      logOut: "Log Out",
+      address:this.props.location.state
+    };
     const { loading, gender } = this.state;
 
     return (
