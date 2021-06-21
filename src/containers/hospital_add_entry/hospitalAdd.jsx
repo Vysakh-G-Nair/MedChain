@@ -14,12 +14,6 @@ const ipfs = ipfsClient({
   protocol: "https",
 });
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "/hospital",
-  logOut: "Log Out",
-};
 
 class HospitalAdd extends React.Component {
   state = {
@@ -113,6 +107,14 @@ class HospitalAdd extends React.Component {
       view,
     } = this.props;
 
+    const headerData = { 
+    inputPlaceholder: "Enter Ethereum Address",
+      check: "Check",
+      logoLink: "/hospital",
+      inputType: "text",
+      logOut: "Log Out",
+      address:this.props.location.state[0]
+    };
     const { loading } = this.state;
 
     return (

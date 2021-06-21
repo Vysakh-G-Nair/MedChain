@@ -10,13 +10,9 @@ import web3 from "../../ethereum/web3";
 import HospitalCreator from "../../ethereum/medicalpro";
 import { Header } from "../index.js";
 import QRCode from "qrcode";
+import Rodal from "rodal";
 
-const headerData = {
-  inputPlaceholder: "Enter Ethereum Address",
-  check: "Check",
-  inputType: "text",
-  logOut: "Log Out",
-};
+
 
 class Hospital extends React.Component {
   state = {
@@ -28,6 +24,7 @@ class Hospital extends React.Component {
     location: "",
     visible: false,
     qrCode: "",
+    errorMessage:""
   };
 
   componentDidMount() {
@@ -36,14 +33,16 @@ class Hospital extends React.Component {
   }
 
   async getMedSummary(state) {
-    const hospital = HospitalCreator(state);
-    console.log("Hospital deployed at: " + hospital.options.address);
+    this.setState({errorMessage:""});
+    try{
+        const hospital = HospitalCreator(state);
+        console.log("Hospital deployed at: " + hospital.options.address);
 
-    const accounts = await web3.eth.getAccounts();
+        const accounts = await web3.eth.getAccounts();
 
-    const summary = await hospital.methods.getMedProSummary().call({
-      from: accounts[0],
-    });
+        const summary = await hospital.methods.getMedProSummary().call({
+          from: accounts[0],
+        });
 
     this.setState({
       address: state,
@@ -56,11 +55,30 @@ class Hospital extends React.Component {
       qrCode: await QRCode.toDataURL(summary[0], { scale: 8 }),
     });
     // console.log(this.state.qrCode);
+  }catch(error)
+  {
+    let er = error.message;
+    if (er.indexOf(":") !== -1) {
+      er = er.slice(er.indexOf(":") + 1, er.indexOf("!") + 1)
+    }
+    this.setState({ errorMessage: er, visible: true });
+    console.log(error.message);
+
   }
+}
 
   render() {
     const { hospital, viewRecord, addRecord, regPatient, PatientRegistry } =
       this.props;
+
+      const headerData = {
+        inputPlaceholder: "Enter Ethereum Address",
+        check: "Check",
+        logoLink: "/hospital",
+        inputType: "text",
+        logOut: "Log Out",
+        address:this.state.address
+      };
 
     const detailsData = {
       overlapGroup:
@@ -172,6 +190,17 @@ class Hospital extends React.Component {
                   </div>
                 </div>
               </Link>
+              <Rodal
+                visible={this.state.visible}
+                onClose={()=>this.props.history.push("/loginAs")}
+              >
+               <div className="text-1-rodal">{this.state.errorMessage}</div>
+                <Link to='/loginAs'>
+                  <div className="rectangle-94-rodal">
+                    <div className="view-rodal">Go to Login page</div>
+                  </div>
+                </Link> 
+              </Rodal> 
             </div>
           </div>
         </form>

@@ -61,13 +61,16 @@ class Registry extends React.Component {
   render() {
     const { patientsOwnRecords, yourRecords, doctersName, text2, takeAction } = this.props;
 
-    const headerData = {
-      inputPlaceholder: "Enter Ethereum Address",
-      check: "Check",
-      inputType: "/patient",
-      logOut: "Log Out",
-      address: this.state.address
-    };
+   
+      const headerData = { 
+        inputPlaceholder: "Enter Ethereum Address",
+          check: "Check",
+          logoLink: "/hospital",
+          inputType: "text",
+          logOut: "Log Out",
+          address:this.props.location.state[0]
+        };
+   
 
     return (
       <div class="container-center-horizontal">
